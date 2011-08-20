@@ -1,10 +1,11 @@
-package xml;
+package cjna;
 
+import java.util.*;
 /**
  * @author Pree
  *
  */
 public interface Global {
 	// link of the rss lists.
-	public static  String URI = "http://preet.sesolution.com/camtrss/news.xml";
+	public static ArrayList<String> URI = new ArrayList<String>();
 }// end class
