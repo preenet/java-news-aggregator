@@ -9,9 +9,12 @@ import org.xml.sax.helpers.DefaultHandler;
  *
  */
 public class SaxHandler extends DefaultHandler {
+		private boolean title = false;
+		
 		@Override
 		public void startDocument() throws SAXException {
 			System.out.println("Document processing started");
+			
 		}
 		@Override
 		public void endDocument() throws SAXException {
@@ -19,21 +22,23 @@ public class SaxHandler extends DefaultHandler {
 		}
 		@Override
 		public void startElement(String uri, String localName, String qName, Attributes attrs) throws SAXException {
-			
-	        for (int i = 0; i < attrs.getLength(); i++) {
-	            System.out.print(attrs.getLocalName(i) + " => "
-	                    + attrs.getValue(i));
-	        }
+	
+	        if (qName.equalsIgnoreCase("title")) {
+				title = true;
+			}
 		}
 		
 		@Override
 		public void characters(char ch[], int start, int length) throws SAXException {
 			
-			System.out.println(new String(ch));
+			if(title) {
+				System.out.println(new String(ch, start, length));
+				title = false;
+			}
 		}
 		
 		public void endElement(String uri, String localName, String qName) throws SAXException {
-	        System.out.print("\n</" + qName + ">");
+	      
 	    }
 
 }// end class SaxHandler
