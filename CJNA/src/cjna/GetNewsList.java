@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.*;
 import cjna.Global;
 
+
 /**
  * @author Pree
  *
@@ -11,7 +12,9 @@ import cjna.Global;
 
 @SuppressWarnings("unused")
 public class GetNewsList {
-	 	private URL url; 
+	 	private URL url;
+
+
 	    private URLConnection urlConn; 
 	    private DataInputStream dis;
 	    
@@ -19,22 +22,26 @@ public class GetNewsList {
 		public GetNewsList() {
 	   
 	    try {
-	    url = new URL("http://preet.sesolution.com/camtrss/news_list.txt");
-
-		    urlConn = url.openConnection(); 
-		    urlConn.setDoInput(true); 
-		    urlConn.setUseCaches(false);
+	    	url = new URL(Global.listURI);
+	    	if(url.openConnection().getContentLength() > 0) {
+			    urlConn = url.openConnection(); 
+			    urlConn.setDoInput(true); 
+			    urlConn.setUseCaches(false);
 	    
-	    
-	    dis = new DataInputStream(urlConn.getInputStream()); 
-	    String s; 
-	  
-	    Global.URI.clear(); 
-	  
-	    while ((s = dis.readLine()) != null)
-	      Global.URI.add(s);
-	      dis.close(); 
+			    dis = new DataInputStream(urlConn.getInputStream()); 
+			    String s; 
+		  
+			    Global.URI.clear(); 
+		  
+			    while ((s = dis.readLine()) != null) {
+			      Global.URI.add(s);
+			    }
+			      dis.close(); 
+	    	}
+	    	  else {
+	    		System.out.println("Error: Couldn't connect to the server.");
+	  	    	System.exit(0);
+	    	  }
+	    }catch(Exception e) {}
 	    }
-		catch(Exception e) {}
-		}
 }// end class GetNewsList
