@@ -15,25 +15,23 @@ public class SaxHandler extends DefaultHandler {
 		}
 		@Override
 		public void endDocument() throws SAXException {
-			System.out.println("Document processing finished.");
+			System.out.println("\nDocument processing finished.");
 		}
 		@Override
 		public void startElement(String uri, String localName, String qName, Attributes attrs) throws SAXException {
-			 System.out.println();
-		        System.out.print("<" + qName + "");
-		        if (attrs.getLength() == 0) {
-		            System.out.print(">");
-		        } 
-		        else {
-		            System.out.print(" ");
-		            for (int i = 0; i < attrs.getLength(); i++) {
-		                System.out.print(attrs.getLocalName(i) + " => "
-		                        + attrs.getValue(i));
-		            }
-		            System.out.print(">");
-		        }
+			
+	        for (int i = 0; i < attrs.getLength(); i++) {
+	            System.out.print(attrs.getLocalName(i) + " => "
+	                    + attrs.getValue(i));
+	        }
 		}
+		
 		@Override
+		public void characters(char ch[], int start, int length) throws SAXException {
+			
+			System.out.println(new String(ch));
+		}
+		
 		public void endElement(String uri, String localName, String qName) throws SAXException {
 	        System.out.print("\n</" + qName + ">");
 	    }

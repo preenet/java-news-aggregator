@@ -32,6 +32,7 @@ public class SaxDriver {
 	}
 	
 	public void parse() throws ParserConfigurationException, SAXException, IOException {
+
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 	    SAXParser parser = factory.newSAXParser();
 	    SaxHandler handler = new SaxHandler();
