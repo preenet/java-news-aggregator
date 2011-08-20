@@ -1,6 +1,4 @@
-/**
- * @author Pree
- */
+
 
 package xml;
 
@@ -11,6 +9,10 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.SAXException;
 
+/**
+ * @author Pree
+ *
+ */
 public class SaxDriver {
 	private String URI;
 	public SaxDriver(String URI) {
