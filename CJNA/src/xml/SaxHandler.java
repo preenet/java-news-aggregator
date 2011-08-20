@@ -10,6 +10,7 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class SaxHandler extends DefaultHandler {
 		private boolean title = false;
+		private boolean description = false;
 		
 		@Override
 		public void startDocument() throws SAXException {
@@ -26,6 +27,9 @@ public class SaxHandler extends DefaultHandler {
 	        if (qName.equalsIgnoreCase("title")) {
 				title = true;
 			}
+	        if (qName.equalsIgnoreCase("description")) {
+	        	description = true;
+	        }
 		}
 		
 		@Override
@@ -34,6 +38,10 @@ public class SaxHandler extends DefaultHandler {
 			if(title) {
 				System.out.println(new String(ch, start, length));
 				title = false;
+			}
+			if(description) {
+				System.out.println(new String(ch, start, length));
+				description = false;	
 			}
 		}
 		
