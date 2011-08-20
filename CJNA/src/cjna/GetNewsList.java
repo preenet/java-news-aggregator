@@ -11,12 +11,13 @@ import cjna.Global;
 
 @SuppressWarnings("unused")
 public class GetNewsList {
+	 	private URL url; 
+	    private URLConnection urlConn; 
+	    private DataInputStream dis;
+	    
 		@SuppressWarnings("deprecation")
 		public GetNewsList() {
-	    URL                url; 
-	    URLConnection      urlConn; 
-	    DataInputStream    dis;
-	    
+	   
 	    try {
 	    url = new URL("http://preet.sesolution.com/camtrss/news_list.txt");
 
