@@ -1,6 +1,6 @@
 Connecting to news list server at http://preet.sesolution.com/camtrss/news_list.txt
 Connected to the server.
-Retrived the news list URI...
+Retreived the news list URI...
 Disconnected to the news list server.
 News List are as following: 
 http://www.camt.cmu.ac.th/th/rss/rss_activity.xml
@@ -13,7 +13,8 @@ FeedMessage [title=CAMT RSS, description=CAMT ACTIVITIES RSS , link=null, author
 FeedMessage [title=ร่วมแสดงความยินดีแก่คณะรัฐศาสตร์และรัฐประศาสนศาสตร์, description= อาจารย์ ดร. ณพศิษฐ์ จักร์พิทักษ์ คณบดี นำคณาจารย์และเจ้าหน้าที่ วิทยาลัยศิลปะ สื่อ และเทคโนโลยีมหาวิทยาลัยเชียงใหม่มอบช่อดอกไม้แสดงความยินดีในโอกาสบุญและเปิดป้ายอาคารคณะรัฐศาสตร์และรัฐประศาสนศาสตร์ วันศุกร์ที่ 19 สิงหาคม พ.ศ. 2554, link=null, author=null, guid=null]
 FeedMessage [title=น.ศ.CAMT คว้า 3 รางวัล จากการประกวด CMITcontest 2554, description= จากการแข่งขัน CMITcontest 2554  ซึ่งเป็นการแข่งขันการเขียนโปรแกรมด้วยภาษา PHP, C และระบบ ERP  จัดโดย ศูนย์เศรษฐกิจการลงทุนภาคที่ 1 (BOI ภาคที่ 1) ร่วมกับ SIPA ภาคเหนือ, สวทช. ภาคเหนือ, NECTEC และสถาบันการศึกษาในเขตภาคเหนือ เพื่อส่งเสริมและพัฒนาทักษะด้านเทคโนโลยีและ ICT ในสถานประกอบการ ผลการแข่งขันประเภทการเขียนโปรแกรมด้วยภาษา PHP นักศึกษาของวิทยาลัยศิลปะสื่อ และเทคโนโลยี มหาวิทยาลัยเชียงใหม่หลักสูตรวิศวกรรมซอฟต์แวร์และหลักสูตรการจัดการสมัยใหม่และเทศโนโลยีสารสนเทศ ได้รับรางวัลรองชนะเลิศ ถึง 2 ทีมด้วยกัน ได้แก่ ทีม MMIT 2  โดยมีอาจารย์กฤตวายาน์  ทองคู่ เป็นผู้ควบคุมทีม และทีม CHERP จากหลักสูตรวิศวกรรมซอฟต์แวร์ รับเงินรางวัลทีมละ 36,000 บาท พร้อมใบประกาศนียบัตร และรางวัลชมเชย จากทีม MMIT 3 โดยมีอาจารย์พชร  ตินะมาส เป็นอาจารย์ที่ปรึกษา รับเงินรางวัล 12,000 บาท พร้อมใบประกาศนียบัตร โดยมี                         นางนฤมล ปานวัฒน์ รองผู้ว่าราชการจังหวัดเชียงใหม่ ประธานพิธีปิดการแข่งขันเป็นผู้มอบรางวัล เมื่อวันอาทิตย์ที่ 31 กรกฎาคม 2554 ณ ศูนย์ประชุมนานาชาตินอร์ท-เชียงใหม่ อาคารเฉลิมพระเกียรติ 80 พรรษา 5 ธันวาคม 2550, link=null, author=null, guid=null]
 FeedMessage [title=ถวายพานพุ่ม งานวันวิทยาศาสตร์ ปี 2554, description=อาจารย์ ดร.ปิติพงษ์ ยอดมงคล รองคณบดีฝ่ายวิจัยและวิเทศสัมพันธ์ เป็นตัวแทนวิทยาลัยถวายพานพุ่มสักการะพระบรมสาทิศลักษณ์ พระบาทสมเด็จพระจอมเกล้าเจ้าอยู่หัว เนื่องในวันวิทยาศาสตร์แห่งชาติ ประจำปี 2554 ซึ่งคณะวิทยาศาสตร์ มหาวิทยาลัยเชียงใหม่ ได้จัดงานสัปดาห์วิทยาศาสตร์แห่งชาติส่วนภูมิภาค ประจำปี 2554 โดยมี รองศาสตราจารย์ ดร.สัมพันธ์ สิงหราชวราพันธ์ คณบดีคณะวิทยาศาสตร์ กล่าวรายงาน และ  มล. ปนัดดา ดิศกุล ผู้ว่าราชการจังหวัดเชียงใหม่ เปิดกรวยดอกไม้ ธูปเทียนแพ กล่าวถวายราชสดุดี ณ ห้อง SCB2100 อาคาร 40 ปีคณะวิทยาศาสตร์ในวันจันทร์ที่ 18  สิงหาคม 2554, link=null, author=null, guid=null]
-This feeder has : 4 messages.
+CJNA Reader now has : 4 messages.
+
 Parsing http://rss.cnn.com/rss/cnn_topstories.rss
 Document processing started...
 Document processing finished...
@@ -33,5 +34,6 @@ FeedMessage [title=U.S. hikers get 8 years in Iran prison, description=Josh Fatt
 FeedMessage [title=Retweet, sexting added to dictionary, description=Don't be a denialist., link=null, author=null, guid=null]
 FeedMessage [title=Deep fryer meets cheeseburger in Ohio, description=Step aside Iowa and fried butter -- there is a new national fried treasure to feast upon., link=null, author=null, guid=null]
 FeedMessage [title=Harvey hits Belize; Irene forms, description=Tropical Storm Harvey has made landfall over Belize and is expected to move into northern Guatemala on Saturday afternoon or night., link=null, author=null, guid=null]
-This feeder has : 16 messages.
+CJNA Reader now has : 16 messages.
+
 Done!
