@@ -11,8 +11,10 @@ import cjna.Global;
  */
 
 public class CJNA {
-	public static void main(String args[]) throws IOException{
+	public static void main(String args[]) throws IOException, InterruptedException{
 		GetNewsList myList = new GetNewsList();
+		myList.run();
+		
 		FeedParser fp;
 		
 		System.out.println("News List are as following: ");
@@ -20,6 +22,7 @@ public class CJNA {
 			System.out.println(Global.URI.get(i));
 		}
 		System.out.println();
+		myList.join();
 		
 		// loop through news list
 		for(int i = 0; i < Global.URI.size(); i++) {
