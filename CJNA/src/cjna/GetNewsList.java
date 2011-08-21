@@ -20,10 +20,11 @@ public class GetNewsList {
 	    
 		@SuppressWarnings("deprecation")
 		public GetNewsList() {
-	   
+			System.out.println("Connecting to news list server at " + Global.listURI);
 		    try {
 		    	url = new URL(Global.listURI);
 		    	if(url.openConnection().getContentLength() > 0) {
+		    		System.out.println("Connected to the server.");
 				    urlConn = url.openConnection(); 
 				    urlConn.setDoInput(true); 
 				    urlConn.setUseCaches(false);
@@ -36,7 +37,9 @@ public class GetNewsList {
 				    while ((s = dis.readLine()) != null) {
 				      Global.URI.add(s);
 				    }
+				      System.out.println("Retrived the news list URI...");
 				      dis.close(); 
+				      System.out.println("Disconnected to the news list server.");
 		    	}
 		    	  else {
 		    		System.out.println("Error: Couldn't connect to the server.");

@@ -35,6 +35,7 @@ public class FeedParser {
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 	    SAXParser parser = factory.newSAXParser();
 	    SaxHandler handler = new SaxHandler();
+	    System.out.println("Parsing " + URI);
 	    parser.parse(URI, handler);
 	    
 	}
