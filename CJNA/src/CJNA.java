@@ -1,3 +1,7 @@
+import java.io.IOException;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
+
 import parser.FeedParser;
 import cjna.GetNewsList;
 import cjna.Global;
@@ -7,7 +11,7 @@ import cjna.Global;
  */
 
 public class CJNA {
-	public static void main(String args[]) {
+	public static void main(String args[]) throws SAXException, IOException, ParserConfigurationException {
 		GetNewsList myList = new GetNewsList();
 		FeedParser fp;
 		

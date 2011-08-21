@@ -13,30 +13,11 @@ import org.xml.sax.SAXException;
  *
  */
 public class FeedParser {
-	private String URI;
-	public FeedParser(String URI) {
-		this.URI = URI;
-		try {
-			parse();
-		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public void parse() throws ParserConfigurationException, SAXException, IOException {
-
+	public FeedParser(String URI) throws SAXException, IOException, ParserConfigurationException {
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 	    SAXParser parser = factory.newSAXParser();
 	    SaxHandler handler = new SaxHandler();
 	    System.out.println("Parsing " + URI);
 	    parser.parse(URI, handler);
-	    
 	}
 }// end class FeedParser
