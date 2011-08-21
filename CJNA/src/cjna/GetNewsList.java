@@ -37,7 +37,7 @@ public class GetNewsList {
 				    while ((s = dis.readLine()) != null) {
 				      Global.URI.add(s);
 				    }
-				      System.out.println("Retrived the news list URI...");
+				      System.out.println("Retreived the news list URI...");
 				      dis.close(); 
 				      System.out.println("Disconnected to the news list server.");
 		    	}

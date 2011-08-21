@@ -25,7 +25,7 @@ public class CJNA {
 			for(int j = 0; j < Global.myFeed.getSize(); j++) {
 				System.out.println(Global.myFeed.getMessages().get(j));
 			}
-			System.out.println("This feeder has : " + Global.myFeed.getSize() + " messages.");
+			System.out.println("CJNA Reader now has : " + Global.myFeed.getSize() + " messages.");
 			System.out.println();
 		}
 	
