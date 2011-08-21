@@ -14,7 +14,7 @@ import org.xml.sax.SAXException;
  */
 public class FeedParser implements Runnable {
 	private String URI;
-	public FeedParser(String URI){
+	public FeedParser(String URI)  {
 		this.URI = URI;
 	}
 
