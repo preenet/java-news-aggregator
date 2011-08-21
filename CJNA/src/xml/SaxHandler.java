@@ -25,9 +25,11 @@ public class SaxHandler extends DefaultHandler {
 		public void startElement(String uri, String localName, String qName, Attributes attrs) throws SAXException {
 	
 	        if (qName.equalsIgnoreCase("title")) {
+	        	System.out.print("<" + qName + ">");
 				title = true;
 			}
 	        if (qName.equalsIgnoreCase("description")) {
+	        	System.out.print("<" + qName + ">");
 	        	description = true;
 	        }
 		}
@@ -36,17 +38,22 @@ public class SaxHandler extends DefaultHandler {
 		public void characters(char ch[], int start, int length) throws SAXException {
 			
 			if(title) {
-				System.out.println(new String(ch, start, length));
+				System.out.print(new String(ch, start, length));
 				title = false;
 			}
 			if(description) {
-				System.out.println(new String(ch, start, length));
+				System.out.print(new String(ch, start, length));
 				description = false;	
 			}
 		}
 		
 		public void endElement(String uri, String localName, String qName) throws SAXException {
-	      
+			if (qName.equalsIgnoreCase("title")) {
+				System.out.println("</" + qName + ">");
+			}
+			if (qName.equalsIgnoreCase("description")) {
+		        System.out.println("</" + qName + ">");
+		    }
 	    }
 
 }// end class SaxHandler
