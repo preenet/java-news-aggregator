@@ -18,6 +18,7 @@ public class SaxHandler extends DefaultHandler {
 		@Override
 		public void startDocument() throws SAXException {
 			System.out.println("Document processing started");
+
 			
 		}
 		@Override
@@ -26,19 +27,19 @@ public class SaxHandler extends DefaultHandler {
 		}
 		@Override
 		public void startElement(String uri, String localName, String qName, Attributes attrs) throws SAXException {
-			fm = new FeedMessage();
 			
-	        if (qName.equalsIgnoreCase("title"))
+	        if (qName.equalsIgnoreCase("title")) {
+				fm = new FeedMessage();
 				title = true;
+	        }
 	        
-	        if (qName.equalsIgnoreCase("description"))
+	        if (qName.equalsIgnoreCase("description")) {
 	        	description = true;
-	       
+	        }
 		}
 		
 		@Override
 		public void characters(char ch[], int start, int length) throws SAXException {
-			
 			if(title) {
 				fm.setTitle(new String(ch, start, length));
 				title = false;
@@ -46,12 +47,12 @@ public class SaxHandler extends DefaultHandler {
 			if(description) {
 				fm.setDescription(new String(ch, start, length));
 				description = false;	
+				Global.myFeed.getMessages().add(fm);
 			}
-			
 		}
 		
 		@Override
 		public void endElement(String uri, String localName, String qName) throws SAXException {
-			Global.myFeed.getMessages().add(fm);
+		
 	    }
 }// end class SaxHandler
