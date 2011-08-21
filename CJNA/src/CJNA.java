@@ -11,7 +11,7 @@ import cjna.Global;
  */
 
 public class CJNA {
-	public static void main(String args[]) throws SAXException, IOException, ParserConfigurationException {
+	public static void main(String args[]) throws IOException{
 		GetNewsList myList = new GetNewsList();
 		FeedParser fp;
 		
@@ -23,7 +23,13 @@ public class CJNA {
 		
 		// loop through news list
 		for(int i = 0; i < Global.URI.size(); i++) {
-			fp = new FeedParser(Global.URI.get(i));
+			try {
+				fp = new FeedParser(Global.URI.get(i));
+				fp.run();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
 			// show feed messages
 			for(int j = 0; j < Global.myFeed.getSize(); j++) {

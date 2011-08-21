@@ -12,12 +12,36 @@ import org.xml.sax.SAXException;
  * @author Pree
  *
  */
-public class FeedParser {
-	public FeedParser(String URI) throws SAXException, IOException, ParserConfigurationException {
+public class FeedParser implements Runnable {
+	private String URI;
+	public FeedParser(String URI){
+		this.URI = URI;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
 		SAXParserFactory factory = SAXParserFactory.newInstance();
-	    SAXParser parser = factory.newSAXParser();
+	    SAXParser parser = null;
+		try {
+			parser = factory.newSAXParser();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	    SaxHandler handler = new SaxHandler();
 	    System.out.println("Parsing " + URI);
-	    parser.parse(URI, handler);
+	    try {
+			parser.parse(URI, handler);
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }// end class FeedParser

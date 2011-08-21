@@ -1,11 +1,13 @@
 package ui;
 
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import javax.swing.JTextArea;
+
 
 
 /**
@@ -49,6 +51,9 @@ public class CJNAUI {
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		
+		JLabel lblNewLabel_1 = new JLabel();
+		panel.add(lblNewLabel_1);
 	}
 
 }
