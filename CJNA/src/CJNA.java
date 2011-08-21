@@ -18,15 +18,17 @@ public class CJNA {
 		System.out.println();
 		
 		// loop through news list
-		for(int i = 0; i < Global.URI.size(); i++)
+		for(int i = 0; i < Global.URI.size(); i++) {
 			fp = new FeedParser(Global.URI.get(i));
-
 		
-		// show feed messages
-		for(int i = 0; i < Global.myFeed.getSize(); i++) {
-			System.out.println(Global.myFeed.getMessages().get(i));
+			// show feed messages
+			for(int j = 0; j < Global.myFeed.getSize(); j++) {
+				System.out.println(Global.myFeed.getMessages().get(j));
+			}
+			System.out.println("This feeder has : " + Global.myFeed.getSize() + " messages.");
+			System.out.println();
 		}
-		System.out.println("This feeder has : " + Global.myFeed.getSize() + " messages.");
+	
 		System.out.println("Done!");
 	}
 }// end class CJNA
