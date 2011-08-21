@@ -16,14 +16,13 @@ public class Feed {
 	private String pubDate;
 	private ArrayList<FeedMessage> entries = new ArrayList<FeedMessage>();
 
-	public Feed(String title, String link, String description, String language,
-			String copyright, String pubDate) {
-		this.title = title;
-		this.link = link;
-		this.description = description;
-		this.language = language;
-		this.copyright = copyright;
-		this.pubDate = pubDate;
+	public Feed() {
+		this.title = "";
+		this.link = "";
+		this.description = "";
+		this.language = "";
+		this.copyright = "";
+		this.pubDate = "";
 	}
 
 	public ArrayList<FeedMessage> getMessages() {
@@ -52,6 +51,10 @@ public class Feed {
 
 	public String getPubDate() {
 		return pubDate;
+	}
+	
+	public int getSize() {
+		return this.entries.size();
 	}
 
 	@Override

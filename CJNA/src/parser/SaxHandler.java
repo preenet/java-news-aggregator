@@ -4,6 +4,8 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import cjna.Global;
+
 /**
  * @author Pree
  *
@@ -11,6 +13,7 @@ import org.xml.sax.helpers.DefaultHandler;
 public class SaxHandler extends DefaultHandler {
 		private boolean title = false;
 		private boolean description = false;
+		private FeedMessage fm;
 		
 		@Override
 		public void startDocument() throws SAXException {
@@ -23,38 +26,32 @@ public class SaxHandler extends DefaultHandler {
 		}
 		@Override
 		public void startElement(String uri, String localName, String qName, Attributes attrs) throws SAXException {
-	
-	        if (qName.equalsIgnoreCase("title")) {
-	        	System.out.print("<" + qName + ">");
+			fm = new FeedMessage();
+			
+	        if (qName.equalsIgnoreCase("title"))
 				title = true;
-			}
-	        if (qName.equalsIgnoreCase("description")) {
-	        	System.out.print("<" + qName + ">");
+	        
+	        if (qName.equalsIgnoreCase("description"))
 	        	description = true;
-	        }
+	       
 		}
 		
 		@Override
 		public void characters(char ch[], int start, int length) throws SAXException {
 			
 			if(title) {
-				System.out.print(new String(ch, start, length));
+				fm.setTitle(new String(ch, start, length));
 				title = false;
 			}
 			if(description) {
-				System.out.print(new String(ch, start, length));
+				fm.setDescription(new String(ch, start, length));
 				description = false;	
 			}
+			
 		}
 		
 		@Override
 		public void endElement(String uri, String localName, String qName) throws SAXException {
-			if (qName.equalsIgnoreCase("title")) {
-				System.out.println("</" + qName + ">");
-			}
-			if (qName.equalsIgnoreCase("description")) {
-		        System.out.println("</" + qName + ">");
-		    }
+			Global.myFeed.getMessages().add(fm);
 	    }
-
 }// end class SaxHandler
