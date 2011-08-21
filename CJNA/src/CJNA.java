@@ -1,4 +1,4 @@
-import xml.SaxDriver;
+import parser.FeedParser;
 import cjna.GetNewsList;
 import cjna.Global;
 
@@ -9,7 +9,7 @@ import cjna.Global;
 public class CJNA {
 	public static void main(String args[]) {
 		GetNewsList myList = new GetNewsList();
-		SaxDriver sax;
+		FeedParser fp;
 		
 		System.out.println("News List are as following: ");
 		for(int i = 0; i < Global.URI.size(); i++) {
@@ -19,7 +19,7 @@ public class CJNA {
 		
 		// loop through news list
 		for(int i = 0; i < Global.URI.size(); i++)
-			sax = new SaxDriver(Global.URI.get(i));
+			fp = new FeedParser(Global.URI.get(i));
 		System.out.println("Done!");
 	}
 }// end class CJNA

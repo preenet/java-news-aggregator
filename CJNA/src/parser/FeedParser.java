@@ -1,6 +1,4 @@
-
-
-package xml;
+package parser;
 
 import java.io.IOException;
 
@@ -9,13 +7,14 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.SAXException;
 
+
 /**
  * @author Pree
  *
  */
-public class SaxDriver {
+public class FeedParser {
 	private String URI;
-	public SaxDriver(String URI) {
+	public FeedParser(String URI) {
 		this.URI = URI;
 		try {
 			parse();
@@ -38,4 +37,4 @@ public class SaxDriver {
 	    SaxHandler handler = new SaxHandler();
 	    parser.parse(URI, handler);
 	}
-}// end class SaxDriver
+}// end class FeedParser
