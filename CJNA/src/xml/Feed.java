@@ -1,7 +1,6 @@
 package xml;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Pree
@@ -26,7 +25,7 @@ public class Feed {
 		this.pubDate = pubDate;
 	}
 
-	public List<FeedMessage> getMessages() {
+	public ArrayList<FeedMessage> getMessages() {
 		return entries;
 	}
 
