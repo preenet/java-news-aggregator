@@ -12,7 +12,7 @@ public class FeedMessage {
 	private String link;
 	private String author;
 	private String guid;
-
+	
 	public String getTitle() {
 		return title;
 	}
