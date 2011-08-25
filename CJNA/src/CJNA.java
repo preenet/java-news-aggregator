@@ -12,6 +12,8 @@ import cjna.Global;
 
 /**
  * @author Pree
+ * Description:
+ * This is the driver class of the program.
  */
 
 public class CJNA {
