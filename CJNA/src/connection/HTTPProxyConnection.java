@@ -6,4 +6,4 @@ package connection;
  */
 public class HTTPProxyConnection {
 
-}
+}// end class HTTPProxyConnection

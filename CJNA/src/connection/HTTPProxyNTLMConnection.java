@@ -6,4 +6,4 @@ package connection;
  */
 public class HTTPProxyNTLMConnection {
 
-}
+}// end class HTTPProxyNTLMConnection
