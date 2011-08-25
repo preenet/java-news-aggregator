@@ -18,7 +18,7 @@ public class HTTPConnection {
 	
 	public void execute() {
 		try {
-			
+			System.out.println("Connecting without proxy.");
 		  	url = new URL(this.listURI);
 	    	
 	    	if(url.openConnection().getContentLength() > 0) {
@@ -28,10 +28,18 @@ public class HTTPConnection {
 			    urlConn.setDoInput(true); 
 			    urlConn.setUseCaches(false);
 	    	}
-	    	  else {
-	    		System.out.println("Error: Couldn't connect to the server.");
-	  	    	System.exit(0);
-	    	  }
+	    	// check if the connection could be pass through proxy.
+	    	else if(urlConn == null) {
+	    		System.out.println("Connecting through proxy.");
+	    		HTTPProxyNTLMConnection proxy = new HTTPProxyNTLMConnection();
+	    		proxy.execute();
+	    		System.out.println("Connected via the proxy");
+	    	}
+	    	// giving error for no connection
+			else {
+				System.out.println("Error: Couldn't connect to the server.");
+				System.exit(0);
+			}
 	    }catch(Exception e) {}
     }// end method execute
 	
