@@ -1,49 +1,27 @@
 package cjna;
 import java.io.DataInputStream;
-import java.io.IOException;
-import java.net.*;
-import java.util.Properties;
-
-import org.apache.commons.codec.binary.Base64;
-
-
+import connection.HTTPConnection;
 
 /**
  * @author Pree
  *
  */
 
-@SuppressWarnings("unused")
 public class GetNewsList extends Thread {
-	 	private URL url;
-	    private URLConnection urlConn; 
-	    private DataInputStream dis;
-	  
-	    
+		
+		private DataInputStream dis;
+		private HTTPConnection myConn;
+	 
 	    public GetNewsList() {
-	    	
+	    	myConn = new HTTPConnection(Global.listURI);
 	    }// end constructor
 	    
 		@Override
 		public void run() {
-			
-
 			System.out.println("Connecting to news list server at " + Global.listURI);
 			  try {
-				
-				  	url = new URL(Global.listURI);
-			    	
-			    	if(url.openConnection().getContentLength() > 0) {
-			    		System.out.println("Connected to the server.");
-					    urlConn = url.openConnection(); 
-						
-					    urlConn.setDoInput(true); 
-					    urlConn.setUseCaches(false);
-			    
-					    dis = new DataInputStream(urlConn.getInputStream()); 
-					    String s; 
-				  
-					    Global.URI.clear(); 
+				  dis = new DataInputStream(myConn.getURLConnection().getInputStream()); 
+				  String s; 
 				  
 					    while ((s = dis.readLine()) != null) {
 					      Global.URI.add(s);
@@ -51,11 +29,7 @@ public class GetNewsList extends Thread {
 					      System.out.println("Retreived the news list URI...");
 					      dis.close(); 
 					      System.out.println("Disconnected to the news list server.");
-			    	}
-			    	  else {
-			    		System.out.println("Error: Couldn't connect to the server.");
-			  	    	System.exit(0);
-			    	  }
+			    	 
 			    }catch(Exception e) {}
-		    }
+		}// end overrid method run
 }// end class GetNewsList
