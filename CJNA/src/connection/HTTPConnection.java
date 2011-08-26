@@ -24,16 +24,17 @@ public class HTTPConnection {
 	    	if(url.openConnection().getContentLength() > 0) {
 	    		System.out.println("Connected to the server.");
 			    urlConn = url.openConnection(); 
-				
 			    urlConn.setDoInput(true); 
 			    urlConn.setUseCaches(false);
 	    	}
-	    	// check if the connection could be pass through proxy.
 	    	else if(urlConn == null) {
 	    		System.out.println("Connecting through proxy.");
-	    		HTTPProxyNTLMConnection proxy = new HTTPProxyNTLMConnection();
+	    		HTTPProxyConnection proxy = new HTTPProxyConnection();
 	    		proxy.execute();
 	    		System.out.println("Connected via the proxy");
+	    		urlConn = url.openConnection(); 
+				urlConn.setDoInput(true); 
+				urlConn.setUseCaches(false);
 	    	}
 	    	// giving error for no connection
 			else {

@@ -10,7 +10,7 @@
   </class>  
   <class id="2" corner="BOTTOM_RIGHT" language="java" name="parser.FeedParser" project="CJNA" 
     file="/CJNA/src/parser/FeedParser.java" binary="false">    
-    <position height="-1" width="-1" x="621" y="154"/>    
+    <position height="-1" width="-1" x="578" y="154"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
