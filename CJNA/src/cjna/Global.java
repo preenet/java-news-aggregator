@@ -22,4 +22,4 @@ public interface Global {
 	public static String proxyUserName = "kanitta";
 	public static String proxyPassword = "1";
 	
-}// end class
+}

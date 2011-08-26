@@ -14,7 +14,7 @@ public class GetNewsList extends Thread {
 	 
 	    public GetNewsList() {
 	    	myConn = new HTTPConnection(Global.listURI);
-	    }// end constructor
+	    }
 	    
 		@Override
 		public void run() {
@@ -31,5 +31,5 @@ public class GetNewsList extends Thread {
 					      System.out.println("Disconnected to the news list server.");
 			    	 
 			    }catch(Exception e) {}
-		}// end overrid method run
+		}
 }// end class GetNewsList

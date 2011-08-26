@@ -14,7 +14,7 @@ public class HTTPConnection {
 	public HTTPConnection(String listURI) {
 		this.listURI = listURI;
 		this.execute();
-	}// end constructor
+	}
 	
 	public void execute() {
 		try {
@@ -42,9 +42,9 @@ public class HTTPConnection {
 				System.exit(0);
 			}
 	    }catch(Exception e) {}
-    }// end method execute
+    }
 	
 	public URLConnection getURLConnection() {
 		return this.urlConn;
-	}// end method URLConnection
+	}
 }// end class HTTPConnection

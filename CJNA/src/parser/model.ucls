@@ -2,7 +2,7 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" corner="BOTTOM_RIGHT" language="java" name="parser.SaxHandler" project="CJNA" 
     file="/CJNA/src/parser/SaxHandler.java" binary="false">    
-    <position height="-1" width="-1" x="316" y="140"/>    
+    <position height="-1" width="-1" x="448" y="95"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
@@ -10,7 +10,7 @@
   </class>  
   <class id="2" corner="BOTTOM_RIGHT" language="java" name="parser.FeedParser" project="CJNA" 
     file="/CJNA/src/parser/FeedParser.java" binary="false">    
-    <position height="-1" width="-1" x="578" y="154"/>    
+    <position height="-1" width="-1" x="695" y="102"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
@@ -18,7 +18,7 @@
   </class>  
   <class id="3" corner="BOTTOM_RIGHT" language="java" name="parser.FeedMessage" project="CJNA" 
     file="/CJNA/src/parser/FeedMessage.java" binary="false">    
-    <position height="-1" width="-1" x="317" y="484"/>    
+    <position height="-1" width="-1" x="450" y="449"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
@@ -26,12 +26,40 @@
   </class>  
   <class id="4" corner="BOTTOM_RIGHT" language="java" name="parser.Feed" project="CJNA" 
     file="/CJNA/src/parser/Feed.java" binary="false">    
-    <position height="-1" width="-1" x="625" y="480"/>    
+    <position height="-1" width="-1" x="902" y="444"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
+  <interface id="5" corner="BOTTOM_RIGHT" language="java" name="java.lang.Runnable" project="CJNA" 
+    file="C:/Program Files/Java/jre6/lib/rt.jar" binary="true">    
+    <position height="-1" width="-1" x="905" y="98"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class id="6" corner="BOTTOM_RIGHT" language="java" name="org.xml.sax.helpers.DefaultHandler" project="CJNA" 
+    file="C:/Program Files/Java/jre6/lib/rt.jar" binary="true">    
+    <position height="-1" width="-1" x="118" y="95"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <dependency>    
+    <end type="SOURCE" nodeId="2"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </dependency>  
+  <realization>    
+    <end type="SOURCE" nodeId="2"/>    
+    <end type="TARGET" nodeId="5"/>  
+  </realization>  
+  <generalization>    
+    <end type="SOURCE" nodeId="1"/>    
+    <end type="TARGET" nodeId="6"/>  
+  </generalization>  
   <association>    
     <end type="SOURCE" nodeId="1" navigable="false">      
       <attribute name="fm"/>      
