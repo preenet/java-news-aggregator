@@ -108,6 +108,14 @@
     <end type="SOURCE" nodeId="1"/>    
     <end type="TARGET" nodeId="2"/>  
   </dependency>  
+  <association>    
+    <end type="SOURCE" nodeId="2" navigable="false">      
+      <attribute name="pd"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" nodeId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <dependency>    
     <end type="SOURCE" nodeId="19"/>    
     <end type="TARGET" nodeId="20"/>  
@@ -116,21 +124,9 @@
     <end type="SOURCE" nodeId="13"/>    
     <end type="TARGET" nodeId="16"/>  
   </realization>  
-  <association>    
-    <end type="SOURCE" nodeId="2" navigable="false">      
-      <attribute name="myConn"/>      
-      <multiplicity minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" nodeId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <dependency>    
     <end type="SOURCE" nodeId="12"/>    
     <end type="TARGET" nodeId="16"/>  
-  </dependency>  
-  <dependency>    
-    <end type="SOURCE" nodeId="19"/>    
-    <end type="TARGET" nodeId="18"/>  
   </dependency>  
   <dependency>    
     <end type="SOURCE" nodeId="13"/>    
@@ -140,6 +136,14 @@
     <end type="SOURCE" nodeId="1"/>    
     <end type="TARGET" nodeId="13"/>  
   </dependency>  
+  <association>    
+    <end type="SOURCE" nodeId="2" navigable="false">      
+      <attribute name="myConnSelect"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" nodeId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association>    
     <end type="SOURCE" nodeId="15" navigable="false">      
       <attribute name="entries"/>      

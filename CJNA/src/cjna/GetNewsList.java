@@ -1,6 +1,7 @@
 package cjna;
 import java.io.DataInputStream;
 import connection.HTTPConnectionSelection;
+import connection.ProxyDectector;
 
 /**
  * @author Pree
@@ -10,18 +11,22 @@ import connection.HTTPConnectionSelection;
 public class GetNewsList extends Thread {
 		
 		private DataInputStream dis;
-		private HTTPConnectionSelection myConn;
+		private ProxyDectector pd;
+		private HTTPConnectionSelection myConnSelect;
 	 
 	    public GetNewsList() {
-	    	myConn = new HTTPConnectionSelection(Global.listURI);
+	    	pd = new ProxyDectector();
+	    	myConnSelect = new HTTPConnectionSelection(Global.listURI);
 	    }
 	    
 		@Override
 		public void run() {
 			System.out.println("Connecting to news list server at " + Global.listURI);
 			  try {
-				  dis = new DataInputStream(myConn.getURLConnection().getInputStream()); 
-				  String s; 
+				  if(!pd.isProxy()) {
+					  myConnSelect.DirectConnect();
+					  dis = new DataInputStream(myConnSelect.getURLConnection().getInputStream()); 
+					  String s; 
 				  
 					    while ((s = dis.readLine()) != null) {
 					      Global.URI.add(s);
@@ -29,7 +34,15 @@ public class GetNewsList extends Thread {
 					      System.out.println("Retreived the news list URI...");
 					      dis.close(); 
 					      System.out.println("Disconnected to the news list server.");
-			    	 
+				  }
+				  else if(pd.isProxy()) {
+					  myConnSelect.ProxyConnect();
+					  // TODO Convert bufferedReader to InputStream
+				  }
+				  else {
+					  System.out.println("Error: Can't connect to the list server.");
+				  }
 			    }catch(Exception e) {}
+			  
 		}
 }// end class GetNewsList
