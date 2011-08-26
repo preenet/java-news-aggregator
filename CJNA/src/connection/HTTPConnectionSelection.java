@@ -5,14 +5,14 @@ import java.net.*;
  * @author Pree
  *
  */
-public class HTTPConnection {
+public class HTTPConnectionSelection {
 	
-	private String listURI;
+	private String URI;
  	private URL url;
     private URLConnection urlConn; 
     
-	public HTTPConnection(String listURI) {
-		this.listURI = listURI;
+	public HTTPConnectionSelection(String URI) {
+		this.URI = URI;
 		this.execute();
 	}
 	
@@ -21,15 +21,12 @@ public class HTTPConnection {
 			ProxyDectector pd = new ProxyDectector();
 			if(!pd.isProxy()) {
 				System.out.println("Connecting without proxy...");
-				url = new URL(this.listURI);
-				urlConn = url.openConnection();
-				urlConn.setDoInput(true); 
-				urlConn.setUseCaches(false);
+				HTTPDirectConnection dc = new HTTPDirectConnection(this.URI);
+				this.urlConn = dc.getURLConnection();
 			}
 			else if(pd.isProxy()) {
-				System.out.println("Connecting through proxy...");
-	    		HTTPProxyConnection proxy = new HTTPProxyConnection();
-	    		proxy.execute();	
+				System.out.println("Connecting with proxy...");
+	    		HTTPProxyConnection proxy = new HTTPProxyConnection(this.URI);
 			}
 			else {
 				System.out.println("Error: No internet Connection.");

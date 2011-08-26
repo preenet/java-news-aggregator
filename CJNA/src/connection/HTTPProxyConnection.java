@@ -23,8 +23,10 @@ import java.util.List;
  */
 public class HTTPProxyConnection {
 	
-	public HTTPProxyConnection() {
-		
+	private String URI;
+	public HTTPProxyConnection(String URI) throws HttpException, IOException {
+		this.URI = URI;
+		this.execute();
 	}
 	
 	public void execute() throws HttpException, IOException {
@@ -41,7 +43,7 @@ public class HTTPProxyConnection {
 
         proxyClient.getParams().setParameter(AuthPolicy.AUTH_SCHEME_PRIORITY, authPrefs);
 
-        HttpMethod get = new GetMethod(Global.listURI);
+        HttpMethod get = new GetMethod(this.URI);
         int status = proxyClient.executeMethod(get);
         
         BufferedReader reader = new BufferedReader(new InputStreamReader(get.getResponseBodyAsStream()));

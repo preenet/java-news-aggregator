@@ -1,6 +1,6 @@
 package cjna;
 import java.io.DataInputStream;
-import connection.HTTPConnection;
+import connection.HTTPConnectionSelection;
 
 /**
  * @author Pree
@@ -10,10 +10,10 @@ import connection.HTTPConnection;
 public class GetNewsList extends Thread {
 		
 		private DataInputStream dis;
-		private HTTPConnection myConn;
+		private HTTPConnectionSelection myConn;
 	 
 	    public GetNewsList() {
-	    	myConn = new HTTPConnection(Global.listURI);
+	    	myConn = new HTTPConnectionSelection(Global.listURI);
 	    }
 	    
 		@Override
