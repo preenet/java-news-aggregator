@@ -2,13 +2,17 @@ package connection;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.NTCredentials;
 import org.apache.commons.httpclient.auth.AuthPolicy;
 import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.commons.httpclient.methods.GetMethod;
 
 import cjna.Global;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,14 +27,11 @@ public class HTTPProxyConnection {
 		
 	}
 	
-	public int execute() throws HttpException, IOException {
+	public void execute() throws HttpException, IOException {
 		HttpClient proxyClient = new HttpClient();
-		
-		proxyClient.getHostConfiguration().setHost("www.sesolution.com");
 		proxyClient.getHostConfiguration().setProxy(Global.proxyHost, Global.proxyPort);
 		
 		List<String> authPrefs = new ArrayList<String>(3);
-		authPrefs.add(AuthPolicy.DIGEST);
 		authPrefs.add(AuthPolicy.BASIC);
 		authPrefs.add(AuthPolicy.NTLM);
 
@@ -40,9 +41,20 @@ public class HTTPProxyConnection {
 
         proxyClient.getParams().setParameter(AuthPolicy.AUTH_SCHEME_PRIORITY, authPrefs);
 
-        GetMethod get = new GetMethod("/");
+        HttpMethod get = new GetMethod(Global.listURI);
         int status = proxyClient.executeMethod(get);
         
-        return status;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(get.getResponseBodyAsStream()));
+        
+        int count = 0;
+        int read = 0;
+        char[] body = new char[2048];
+        do {
+        	count = reader.read(body);
+        	read += count;
+        	System.out.println(body);
+        	
+        }while(count != -1);
+        System.out.println("Read " + read + " bytes");
 	}
 }
