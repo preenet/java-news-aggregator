@@ -28,6 +28,7 @@ public class CJNA {
 		Vector<FeedParser> fps = new Vector<FeedParser>();
 		
 		// show the news list and initialize threads
+		System.out.println("Global URI size: " + Global.URI.size());
 		System.out.println("News List are as following: ");
 		for(int i = 0; i < Global.URI.size(); i++) {
 			System.out.println(Global.URI.get(i));

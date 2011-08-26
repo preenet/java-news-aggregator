@@ -48,17 +48,6 @@ public class HTTPProxyConnection {
         int status = proxyClient.executeMethod(get);
         
         reader = new BufferedReader(new InputStreamReader(get.getResponseBodyAsStream()));
-        
-        int count = 0;
-        int read = 0;
-        char[] body = new char[2048];
-        do {
-        	count = reader.read(body);
-        	read += count;
-        	System.out.println(body);
-        	
-        }while(count != -1);
-        System.out.println("Read " + read + " bytes");
 	}
 	public BufferedReader getBufferedReader() {
 		return this.reader;
