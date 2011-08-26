@@ -1,11 +1,5 @@
 import java.io.IOException;
-import java.util.Properties;
 import java.util.Vector;
-
-import javax.xml.parsers.ParserConfigurationException;
-import org.xml.sax.SAXException;
-
-
 import parser.FeedParser;
 import cjna.GetNewsList;
 import cjna.Global;
@@ -31,14 +25,11 @@ public class CJNA {
 		System.out.println("Global URI size: " + Global.URI.size());
 		System.out.println("News List are as following: ");
 		for(int i = 0; i < Global.URI.size(); i++) {
-			System.out.println(Global.URI.get(i));
+			System.out.println(i+1 + ". " +Global.URI.get(i));
 			FeedParser fp = new FeedParser(Global.URI.get(i));
 			fps.add(fp);
 		}
 		System.out.println();
-		
-		// wait for this thread to die
-		
 		
 		for(int i = 0; i < Global.URI.size(); i++) {
 			try {

@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import connection.HTTPConnectionSelection;
-import connection.ProxyDectector;
+import connection.ProxyDetector;
+
 
 /**
  * @author Pree
@@ -14,11 +15,11 @@ import connection.ProxyDectector;
 public class GetNewsList extends Thread {
 		
 		private BufferedReader reader;
-		private ProxyDectector pd;
+		private ProxyDetector pd;
 		private HTTPConnectionSelection myConnSelect;
 	 
 	    public GetNewsList() {
-	    	pd = new ProxyDectector();
+	    	pd = new ProxyDetector();
 	    	myConnSelect = new HTTPConnectionSelection(Global.listURI);
 	    }
 	    

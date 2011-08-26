@@ -1,6 +1,5 @@
 package connection;
 
-import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.ProxySelector;
 import java.net.URI;
@@ -12,13 +11,13 @@ import java.util.List;
  */
 import cjna.Global;
 
-public class ProxyDectector {
+public class ProxyDetector {
 	
 	private String host;
 	private int port;
 	private boolean isProxy = false;
     
-    public ProxyDectector(){
+    public ProxyDetector(){
     	System.out.println("Detecting Proxy Type, Host and Port...");
     	this.execute();
     }
@@ -36,7 +35,7 @@ public class ProxyDectector {
                 if (!proxyList.isEmpty()) {
                     switch (proxy.type()) {
                         case DIRECT:
-                            System.out.println("Direct connection - no proxy.");
+                            System.out.println("Direct connection - No proxy.");
                             break;
                         case HTTP:
                             System.out.println("HTTP proxy: " + proxy.address());
