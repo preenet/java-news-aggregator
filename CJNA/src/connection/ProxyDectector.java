@@ -19,37 +19,34 @@ public class ProxyDectector {
 	private boolean isProxy = false;
     
     public ProxyDectector(){
-    	System.out.println("Detecting Proxy Server and Port...");
+    	System.out.println("Detecting Proxy Type, Host and Port...");
     	this.execute();
     }
-    
  
     public void execute() {
         try {
             
             System.setProperty("java.net.useSystemProxies","true");
-            List<Proxy> l = ProxySelector.getDefault().select(
+            List<Proxy> proxyList = ProxySelector.getDefault().select(
                         new URI(Global.listURI));
             
-            for (Iterator<Proxy> iter = l.iterator(); iter.hasNext(); ) {
+            for (Iterator<Proxy> iter = proxyList.iterator(); iter.hasNext(); ) {
                 
                 Proxy proxy = (Proxy) iter.next();
-                
-                System.out.println("proxy hostname : " + proxy.type());
-                
-                InetSocketAddress addr = (InetSocketAddress)
-                    proxy.address();
-                
-                if(addr == null) {
-                    
-                    System.out.println("No Proxy");
-                    
-                } else {
-                    
-                    System.out.println("proxy hostname : " + addr.getHostName());
-                    
-                    System.out.println("proxy port : " + addr.getPort());
-                    isProxy = true;
+                if (!proxyList.isEmpty()) {
+                    switch (proxy.type()) {
+                        case DIRECT:
+                            System.out.println("Direct connection - no proxy.");
+                            break;
+                        case HTTP:
+                            System.out.println("HTTP proxy: " + proxy.address());
+                            isProxy = true;
+                            break;
+                        case SOCKS:
+                            System.out.println("SOCKS proxy: " + proxy.address());
+                            isProxy = true;
+                            break;
+                    }
                 }
             }
         } catch (Exception e) {

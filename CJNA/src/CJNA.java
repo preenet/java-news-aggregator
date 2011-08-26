@@ -19,7 +19,7 @@ import cjna.Global;
 public class CJNA {
 	public static void main(String args[]) throws IOException, InterruptedException{
 	
-		System.out.println("Start");
+		System.out.println("Start CJNA Console.");
 		
 		GetNewsList myList = new GetNewsList();
 		myList.run();
