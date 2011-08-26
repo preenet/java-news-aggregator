@@ -13,6 +13,7 @@ import cjna.Global;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +23,8 @@ import java.util.List;
  *
  */
 public class HTTPProxyConnection {
-	
-	private String URI;
 	private BufferedReader reader;
+	private String URI;
 	public HTTPProxyConnection(String URI) throws HttpException, IOException {
 		this.URI = URI;
 		this.execute();
@@ -49,7 +49,6 @@ public class HTTPProxyConnection {
         
         reader = new BufferedReader(new InputStreamReader(get.getResponseBodyAsStream()));
         
-        // display the stream that buffering.
         int count = 0;
         int read = 0;
         char[] body = new char[2048];
@@ -61,7 +60,6 @@ public class HTTPProxyConnection {
         }while(count != -1);
         System.out.println("Read " + read + " bytes");
 	}
-	
 	public BufferedReader getBufferedReader() {
 		return this.reader;
 	}

@@ -1,5 +1,9 @@
 package cjna;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import connection.HTTPConnectionSelection;
 import connection.ProxyDectector;
 
@@ -10,7 +14,7 @@ import connection.ProxyDectector;
 
 public class GetNewsList extends Thread {
 		
-		private DataInputStream dis;
+		private BufferedReader reader;
 		private ProxyDectector pd;
 		private HTTPConnectionSelection myConnSelect;
 	 
@@ -25,24 +29,34 @@ public class GetNewsList extends Thread {
 			  try {
 				  if(!pd.isProxy()) {
 					  myConnSelect.DirectConnect();
-					  dis = new DataInputStream(myConnSelect.getURLConnection().getInputStream()); 
+					  reader = new BufferedReader(new InputStreamReader
+							  (myConnSelect.getURLConnection().getInputStream())); 
 					  String s; 
 				  
-					    while ((s = dis.readLine()) != null) {
+					    while ((s = reader.readLine()) != null) {
 					      Global.URI.add(s);
 					    }
-					      System.out.println("Retreived the news list URI...");
-					      dis.close(); 
-					      System.out.println("Disconnected to the news list server.");
+					     close();
 				  }
 				  else if(pd.isProxy()) {
 					  myConnSelect.ProxyConnect();
-					  // TODO Convert bufferedReader to InputStream
+					  reader = myConnSelect.getBufferedReader();
+					  String s; 
+					  
+					    while ((s = reader.readLine()) != null) {
+					      Global.URI.add(s);
+					    }
+					      close();
 				  }
 				  else {
 					  System.out.println("Error: Can't connect to the list server.");
 				  }
 			    }catch(Exception e) {}
 			  
+		}
+		private void close() throws IOException {
+			System.out.println("Retreived the news list URI...");
+		    reader.close(); 
+		    System.out.println("Disconnected to the news list server.");
 		}
 }// end class GetNewsList
