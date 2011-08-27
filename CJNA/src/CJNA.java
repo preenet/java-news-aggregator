@@ -1,5 +1,7 @@
 import java.io.IOException;
 import java.util.Vector;
+
+import connection.ProxyDetector;
 import parser.FeedParser;
 import cjna.GetNewsList;
 import cjna.Global;
@@ -15,7 +17,8 @@ public class CJNA {
 	
 		System.out.println("Start CJNA Console.");
 		
-		GetNewsList myList = new GetNewsList();
+		ProxyDetector pd = new ProxyDetector();
+		GetNewsList myList = new GetNewsList(pd);
 		myList.run();
 		myList.join();
 		
@@ -26,7 +29,7 @@ public class CJNA {
 		System.out.println("News List are as following: ");
 		for(int i = 0; i < Global.URI.size(); i++) {
 			System.out.println(i+1 + ". " +Global.URI.get(i));
-			FeedParser fp = new FeedParser(Global.URI.get(i));
+			FeedParser fp = new FeedParser(Global.URI.get(i), pd);
 			fps.add(fp);
 		}
 		System.out.println();

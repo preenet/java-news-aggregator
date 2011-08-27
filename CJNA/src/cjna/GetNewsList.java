@@ -15,11 +15,11 @@ import connection.ProxyDetector;
 public class GetNewsList extends Thread {
 		
 		private BufferedReader reader;
-		private ProxyDetector pd;
 		private HTTPConnectionSelection myConnSelect;
+		private ProxyDetector pd;
 	 
-	    public GetNewsList() {
-	    	pd = new ProxyDetector();
+	    public GetNewsList(ProxyDetector pd) {
+	    	this.pd = pd;
 	    	myConnSelect = new HTTPConnectionSelection(Global.listURI);
 	    }
 	    
