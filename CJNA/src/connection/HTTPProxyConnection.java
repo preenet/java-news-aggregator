@@ -34,8 +34,7 @@ public class HTTPProxyConnection {
 		HttpClient proxyClient = new HttpClient();
 		proxyClient.getHostConfiguration().setProxy(Global.proxyHost, Global.proxyPort);
 		
-		List<String> authPrefs = new ArrayList<String>(3);
-		authPrefs.add(AuthPolicy.BASIC);
+		List<String> authPrefs = new ArrayList<String>();
 		authPrefs.add(AuthPolicy.NTLM);
 
         proxyClient.getState().setProxyCredentials(
@@ -44,8 +43,10 @@ public class HTTPProxyConnection {
 
         proxyClient.getParams().setParameter(AuthPolicy.AUTH_SCHEME_PRIORITY, authPrefs);
 
+        System.out.println("testing to get " + this.URI);
         HttpMethod get = new GetMethod(this.URI);
         int status = proxyClient.executeMethod(get);
+        System.out.println("status is: " + status);
         
         reader = new BufferedReader(new InputStreamReader(get.getResponseBodyAsStream()));
 	}

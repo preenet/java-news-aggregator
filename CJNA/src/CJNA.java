@@ -17,19 +17,17 @@ public class CJNA {
 	
 		System.out.println("Start CJNA Console.");
 		
-		ProxyDetector pd = new ProxyDetector();
-		GetNewsList myList = new GetNewsList(pd);
-		myList.run();
-		myList.join();
+		ProxyDetector.getInstance();
+		GetNewsList myList = new GetNewsList();
+		myList.execute();
 		
 		Vector<FeedParser> fps = new Vector<FeedParser>();
 		
 		// show the news list and initialize threads
-		System.out.println("Global URI size: " + Global.URI.size());
 		System.out.println("News List are as following: ");
 		for(int i = 0; i < Global.URI.size(); i++) {
 			System.out.println(i+1 + ". " +Global.URI.get(i));
-			FeedParser fp = new FeedParser(Global.URI.get(i), pd);
+			FeedParser fp = new FeedParser(Global.URI.get(i));
 			fps.add(fp);
 		}
 		System.out.println();

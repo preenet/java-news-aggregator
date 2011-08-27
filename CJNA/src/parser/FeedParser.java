@@ -6,7 +6,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.apache.commons.httpclient.HttpException;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import connection.HTTPProxyConnection;
@@ -20,10 +19,8 @@ import connection.ProxyDetector;
 public class FeedParser implements Runnable {
 	private String URI;
 	private HTTPProxyConnection tempConn;
-	private ProxyDetector pd;
-	public FeedParser(String URI, ProxyDetector pd)  {
+	public FeedParser(String URI)  {
 		this.URI = URI;
-		this.pd = pd;
 	}
 
 	@Override
@@ -44,15 +41,13 @@ public class FeedParser implements Runnable {
 	    System.out.println("Parsing " + URI);
 	    
 	    try {
-	    	if(pd.isProxy()) {
-	    		System.out.println("PD IS PROXY");
+	    	if(!ProxyDetector.getInstance().directConnectionAvailable()) {
 			tempConn = new HTTPProxyConnection(URI);
 
 			parser.parse(new InputSource(tempConn.getBufferedReader()), handler);
 			
 	    	}
-	    	else if(!pd.isProxy()){
-	    		System.out.println("PD IS NOT PROXY");
+	    	else if(ProxyDetector.getInstance().directConnectionAvailable()){
 	    		parser.parse(URI, handler);
 	    	}
 	    	 

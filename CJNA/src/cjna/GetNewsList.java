@@ -12,22 +12,19 @@ import connection.ProxyDetector;
  *
  */
 
-public class GetNewsList extends Thread {
+public class GetNewsList {
 		
 		private BufferedReader reader;
 		private HTTPConnectionSelection myConnSelect;
-		private ProxyDetector pd;
 	 
-	    public GetNewsList(ProxyDetector pd) {
-	    	this.pd = pd;
+	    public GetNewsList() {
 	    	myConnSelect = new HTTPConnectionSelection(Global.listURI);
 	    }
-	    
-		@Override
-		public void run() {
+	  
+		public void execute() {
 			System.out.println("Connecting to news list server at " + Global.listURI);
 			  try {
-				  if(!pd.isProxy()) {
+				  if(ProxyDetector.getInstance().directConnectionAvailable()) {
 					  myConnSelect.DirectConnect();
 					  reader = new BufferedReader(new InputStreamReader
 							  (myConnSelect.getURLConnection().getInputStream())); 
@@ -38,7 +35,7 @@ public class GetNewsList extends Thread {
 					    }
 					     close();
 				  }
-				  else if(pd.isProxy()) {
+				  else if(!ProxyDetector.getInstance().directConnectionAvailable()) {
 					  myConnSelect.ProxyConnect();
 					  reader = myConnSelect.getBufferedReader();
 					  String s; 
