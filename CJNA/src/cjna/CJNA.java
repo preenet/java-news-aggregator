@@ -1,10 +1,9 @@
+package cjna;
+
 import java.io.IOException;
 import java.util.Vector;
 
-import connection.HTTPProxyConnection;
 import parser.FeedParser;
-import cjna.GetNewsList;
-import cjna.Global;
 
 /**
  * @author Pree
