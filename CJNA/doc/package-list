@@ -1,5 +1,4 @@
-
 cjna
-connection
-parser
-ui
+cjna.connection
+cjna.parser
+cjna.ui
