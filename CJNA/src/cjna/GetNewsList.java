@@ -3,7 +3,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import connection.HTTPConnectionSelection;
+import cjna.connection.HTTPConnectionSelection;
+
 
 /**
  * @author Pree

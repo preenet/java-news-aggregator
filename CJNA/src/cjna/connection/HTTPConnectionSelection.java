@@ -1,9 +1,10 @@
-package connection;
+package cjna.connection;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.*;
 
 import org.apache.commons.httpclient.HttpException;
+
 
 /**
  * @author Pree

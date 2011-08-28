@@ -1,4 +1,4 @@
-package connection;
+package cjna.connection;
 
 import java.io.IOException;
 import java.net.URL;

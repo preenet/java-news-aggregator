@@ -1,6 +1,7 @@
-package parser;
+package cjna.parser;
 
 import java.util.ArrayList;
+
 
 
 /**

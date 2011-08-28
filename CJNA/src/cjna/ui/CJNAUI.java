@@ -1,4 +1,4 @@
-package ui;
+package cjna.ui;
 
 
 import java.awt.EventQueue;

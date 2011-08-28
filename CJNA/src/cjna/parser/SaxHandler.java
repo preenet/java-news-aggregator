@@ -1,4 +1,4 @@
-package parser;
+package cjna.parser;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

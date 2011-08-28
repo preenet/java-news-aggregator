@@ -3,7 +3,8 @@ package cjna;
 import java.io.IOException;
 import java.util.Vector;
 
-import parser.FeedParser;
+import cjna.parser.FeedParser;
+
 
 /**
  * @author Pree

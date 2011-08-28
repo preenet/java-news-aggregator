@@ -1,4 +1,4 @@
-package connection;
+package cjna.connection;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;

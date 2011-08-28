@@ -1,4 +1,4 @@
-package parser;
+package cjna.parser;
 
 import java.io.IOException;
 
@@ -9,8 +9,9 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+
 import cjna.Global;
-import connection.HTTPProxyConnection;
+import cjna.connection.HTTPProxyConnection;
 
 /**
  * @author Pree
