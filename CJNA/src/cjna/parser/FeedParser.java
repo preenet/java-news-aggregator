@@ -11,7 +11,7 @@ import org.xml.sax.SAXException;
 
 
 import cjna.Global;
-import cjna.connection.HTTPProxyConnection;
+import cjna.net.HTTPProxyConnection;
 
 /**
  * @author Pree
