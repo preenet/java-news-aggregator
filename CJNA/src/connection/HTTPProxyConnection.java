@@ -13,6 +13,8 @@ import cjna.Global;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,12 +45,13 @@ public class HTTPProxyConnection {
 
         proxyClient.getParams().setParameter(AuthPolicy.AUTH_SCHEME_PRIORITY, authPrefs);
 
-        System.out.println("testing to get " + this.URI);
         HttpMethod get = new GetMethod(this.URI);
+   
         int status = proxyClient.executeMethod(get);
-        System.out.println("status is: " + status);
-        
+        System.out.println("HTTP status is: " + status);
+      
         reader = new BufferedReader(new InputStreamReader(get.getResponseBodyAsStream()));
+
 	}
 	public BufferedReader getBufferedReader() {
 		return this.reader;

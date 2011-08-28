@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import connection.HTTPConnectionSelection;
-import connection.ProxyDetector;
-
 
 /**
  * @author Pree
@@ -21,10 +19,15 @@ public class GetNewsList {
 	    	myConnSelect = new HTTPConnectionSelection(Global.listURI);
 	    }
 	  
+	    /**
+	     * This method will check if we via direct connection or via proxy, the
+	     * it will read the list of rss URLs from the site to the URI collection
+	     * for future parse.
+	     */
 		public void execute() {
 			System.out.println("Connecting to news list server at " + Global.listURI);
 			  try {
-				  if(ProxyDetector.getInstance().directConnectionAvailable()) {
+				  if(!Global.isProxy) {
 					  myConnSelect.DirectConnect();
 					  reader = new BufferedReader(new InputStreamReader
 							  (myConnSelect.getURLConnection().getInputStream())); 
@@ -35,7 +38,7 @@ public class GetNewsList {
 					    }
 					     close();
 				  }
-				  else if(!ProxyDetector.getInstance().directConnectionAvailable()) {
+				  else if(Global.isProxy) {
 					  myConnSelect.ProxyConnect();
 					  reader = myConnSelect.getBufferedReader();
 					  String s; 

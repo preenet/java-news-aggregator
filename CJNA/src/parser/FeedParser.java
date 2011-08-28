@@ -8,9 +8,9 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import connection.HTTPProxyConnection;
-import connection.ProxyDetector;
 
+import cjna.Global;
+import connection.HTTPProxyConnection;
 
 /**
  * @author Pree
@@ -31,34 +31,29 @@ public class FeedParser implements Runnable {
 		try {
 			parser = factory.newSAXParser();
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	    SaxHandler handler = new SaxHandler();
 	    System.out.println("Parsing " + URI);
 	    
 	    try {
-	    	if(!ProxyDetector.getInstance().directConnectionAvailable()) {
+	    	if(Global.isProxy) {
 			tempConn = new HTTPProxyConnection(URI);
 
 			parser.parse(new InputSource(tempConn.getBufferedReader()), handler);
 			
 	    	}
-	    	else if(ProxyDetector.getInstance().directConnectionAvailable()){
+	    	else if(!Global.isProxy){
 	    		parser.parse(URI, handler);
 	    	}
 	    	 
 	    }catch (SAXException e) {
- 			// TODO Auto-generated catch block
  			e.printStackTrace();
  		} catch (IOException e) {
- 			// TODO Auto-generated catch block
  			e.printStackTrace();
  		}
 		
-	    
 	}
 }// end class FeedParser
