@@ -8,8 +8,6 @@ import org.apache.commons.httpclient.auth.AuthPolicy;
 import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.commons.httpclient.methods.GetMethod;
 
-import cjna.Global;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -31,14 +29,16 @@ public class HTTPProxyConnection {
 	
 	public void execute() throws HttpException, IOException {
 		HttpClient proxyClient = new HttpClient();
-		proxyClient.getHostConfiguration().setProxy(Global.proxyHost, Global.proxyPort);
+		proxyClient.getHostConfiguration().setProxy(HTTPProxyData.getInstance().getProxyHost(),
+				HTTPProxyData.getInstance().getProxyPort());
 		
 		List<String> authPrefs = new ArrayList<String>();
 		authPrefs.add(AuthPolicy.NTLM);
 
         proxyClient.getState().setProxyCredentials(
             new AuthScope(null, 8080, null),
-            new NTCredentials(Global.proxyUserName, Global.proxyPassword, "", Global.proxyDomain));
+            new NTCredentials(HTTPProxyData.getInstance().getProxyUserName(),HTTPProxyData.getInstance().getProxyPassword(),
+            		"", HTTPProxyData.getInstance().getProxyDomain()));
 
         proxyClient.getParams().setParameter(AuthPolicy.AUTH_SCHEME_PRIORITY, authPrefs);
 

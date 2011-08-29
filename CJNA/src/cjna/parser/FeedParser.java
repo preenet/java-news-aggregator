@@ -12,6 +12,7 @@ import org.xml.sax.SAXException;
 
 import cjna.Global;
 import cjna.net.HTTPProxyConnection;
+import cjna.net.HTTPProxyData;
 
 /**
  * @author Pree
@@ -40,13 +41,13 @@ public class FeedParser implements Runnable {
 	    System.out.println("Parsing " + URI);
 	    
 	    try {
-	    	if(Global.isProxy) {
+	    	if(HTTPProxyData.getInstance().isProxy()) {
 			tempConn = new HTTPProxyConnection(URI);
 
 			parser.parse(new InputSource(tempConn.getBufferedReader()), handler);
 			
 	    	}
-	    	else if(!Global.isProxy){
+	    	else if(!HTTPProxyData.getInstance().isProxy()){
 	    		parser.parse(URI, handler);
 	    	}
 	    	 

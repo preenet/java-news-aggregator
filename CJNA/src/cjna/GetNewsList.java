@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import cjna.net.HTTPConnectionSelection;
+import cjna.net.HTTPProxyData;
 
 
 /**
@@ -28,7 +29,7 @@ public class GetNewsList {
 		public void execute() {
 			System.out.println("Connecting to news list server at " + Global.listURI);
 			  try {
-				  if(!Global.isProxy) {
+				  if(!HTTPProxyData.getInstance().isProxy()) {
 					  myConnSelect.DirectConnect();
 					  reader = new BufferedReader(new InputStreamReader
 							  (myConnSelect.getURLConnection().getInputStream())); 
@@ -39,7 +40,7 @@ public class GetNewsList {
 					    }
 					     close();
 				  }
-				  else if(Global.isProxy) {
+				  else if(HTTPProxyData.getInstance().isProxy()) {
 					  myConnSelect.ProxyConnect();
 					  reader = myConnSelect.getBufferedReader();
 					  String s; 
