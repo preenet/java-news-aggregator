@@ -1,6 +1,9 @@
 package cjna.ui;
 
 import javax.swing.*;
+
+import cjna.CJNAConsole;
+
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -95,11 +98,12 @@ public ProxyUI( ) {
 		return this.UserNameTextField.getText();
 	}
 	
-	public String PassWordTextField() {
+	public String getPassWordTextField() {
 		return this.PassWordTextField.getText();
 	}
 	
 	public static void main(String args[]) {
+		
 		new ProxyUI();
 	}
 }// end class ProxyUI

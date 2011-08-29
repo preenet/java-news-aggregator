@@ -1,10 +1,9 @@
 package cjna;
 
-import java.io.IOException;
 import java.util.Vector;
-
 import cjna.net.HTTPProxyData;
 import cjna.parser.FeedParser;
+import cjna.ui.ProxyUI;
 
 
 /**
@@ -13,13 +12,14 @@ import cjna.parser.FeedParser;
  * This is the driver class of the program.
  */
 
-public class CJNA {
-	public static void main(String args[]) throws IOException, InterruptedException{
+public class CJNAConsole {
+		
+	public CJNAConsole() {
 		System.out.println("Start CJNA Console.");
 		
 		// set proxy configuration
 		HTTPProxyData.getInstance();
-		HTTPProxyData.getInstance().setProxy(true);
+		HTTPProxyData.getInstance().setProxy(false);
 		HTTPProxyData.getInstance().setProxyDomain("camt");
 		HTTPProxyData.getInstance().setProxyHost("192.168.11.1");
 		HTTPProxyData.getInstance().setProxyPort(8080);
@@ -62,4 +62,11 @@ public class CJNA {
 	
 		System.out.println("Done!");
 	}
+	public static void main(String args[]) {
+		new CJNAConsole();
+	}
+	
+	
 }// end class CJNA
+
+
