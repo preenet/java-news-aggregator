@@ -19,6 +19,7 @@ public class HTTPDirectConnection {
 	}
 	
 	private void execute() throws IOException {
+		System.out.println("Open Direct Connection to: " + this.URI);
 		url = new URL(this.URI);
 		urlConn = url.openConnection();
 		urlConn.setDoInput(true); 

@@ -18,15 +18,17 @@ import cjna.net.HTTPProxyData;
  * @author Pree
  *
  */
-public class FeedParser implements Runnable {
+public class FeedParser extends Thread {
 	private String URI;
 	private HTTPProxyConnection tempConn;
 	public FeedParser(String URI)  {
 		this.URI = URI;
+		this.start();
 	}
 
 	@Override
 	public void run() {
+		
 		// TODO Auto-generated method stub
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 	    SAXParser parser = null;

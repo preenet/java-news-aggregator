@@ -41,23 +41,20 @@ public class CJNAConsole {
 		}
 		System.out.println();
 		
+		// start the workers thread and wait for all of them to finish.
 		for(int i = 0; i < Global.URI.size(); i++) {
-			try {
-				
-				fps.elementAt(i).run();
+			try {	
+				fps.elementAt(i).join();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			// show feed messages
-			for(int j = 0; j < Global.myFeed.getSize(); j++) {
-				System.out.println(Global.myFeed.getMessages().get(j));
-			}
-			System.out.println("CJNA Reader now has : " + Global.myFeed.getSize() + " messages.");
-			System.out.println();
-		
 		}
-		
+		// show all collected feed messages from given sites.
+		for(int j = 0; j < Global.myFeed.getSize(); j++) {
+			System.out.println(Global.myFeed.getMessages().get(j));
+		}
+		System.out.println("CJNA Reader now has : " + Global.myFeed.getSize() + " messages.");
+		System.out.println();
 		// finish the program and terminate 
 	
 		System.out.println("Done!");
@@ -65,8 +62,6 @@ public class CJNAConsole {
 	public static void main(String args[]) {
 		new CJNAConsole();
 	}
-	
-	
 }// end class CJNA
 
 
