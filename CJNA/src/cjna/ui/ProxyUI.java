@@ -77,7 +77,15 @@ public ProxyUI( ) {
     c1.add(UserNameTextField);
     c1.add(new JLabel(" Password "));
     c1.add(PassWordTextField);
-
+    
+    // add ok and cancel buttons
+    
+    JButton okButton = new JButton("OK");
+    c1.add(okButton);
+    
+    JButton cancelButton = new JButton("Cancel");
+    c1.add(cancelButton);
+    
     setVisible(true);
   }// end constructor
 
@@ -103,7 +111,6 @@ public ProxyUI( ) {
 	}
 	
 	public static void main(String args[]) {
-		
 		new ProxyUI();
 	}
 }// end class ProxyUI
