@@ -16,6 +16,9 @@ import java.awt.event.ItemListener;
 public class ProxyUI extends JFrame {
 private static final long serialVersionUID = 1L;
 private boolean isProxy = false;
+private JPanel proxyCheckArea;
+private JPanel proxyConfig;
+private JPanel proxyButtons;
 private JTextField AddressTextField = new JTextField();
 private JTextField PortTextField = new JTextField();
 private JTextField DomainNameTextField = new JTextField();
@@ -43,13 +46,14 @@ public ProxyUI( ) {
 	setLocationRelativeTo(null);
     setSize(300,180);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
-    Container c1 = getContentPane();
-    c1.setLayout(new GridLayout(0,2));
-    c1.add(new JLabel(" Proxy Server "));
+    Container content = getContentPane();
+    
+    proxyCheckArea = new JPanel(new GridLayout(0, 2));
+    proxyConfig = new JPanel(new GridLayout(0,3));
+    proxyButtons = new JPanel(new GridLayout(0, 2));
     
     JCheckBox proxyCheckBox = new JCheckBox();
     proxyCheckBox.setSelected(false);
-    
     proxyCheckBox.addItemListener(
     	    new ItemListener() {
     	        public void itemStateChanged(ItemEvent e) {
@@ -72,24 +76,39 @@ public ProxyUI( ) {
     	    }
     	);
     
-    c1.add(proxyCheckBox);
-    
-    c1.setLayout(new GridLayout(0,2));
+    proxyCheckArea.add(new JLabel("Proxy Server"));
+    proxyCheckArea.setBorder(BorderFactory.createEtchedBorder());
+    proxyCheckArea.add(proxyCheckBox);
+    content.add(proxyCheckArea, BorderLayout.NORTH);
+   
    
     // add labels and text fields to the container
-    c1.add(new JLabel(" Address "));
-    c1.add(AddressTextField);
-    c1.add(new JLabel(" Port "));
-    c1.add(PortTextField);
-    c1.add(new JLabel(" Domain Name "));
-    c1.add(DomainNameTextField);
-    c1.add(new JLabel(" User Name"));
-    c1.add(UserNameTextField);
-    c1.add(new JLabel(" Password "));
-    c1.add(PasswordTextField);
+    proxyConfig.add(new JLabel(" Address "));
+    proxyConfig.add(AddressTextField);
+    proxyConfig.add(new JLabel (" e.g. 127.0.0.1"));
+    
+    proxyConfig.add(new JLabel(" Port "));
+    proxyConfig.add(PortTextField);
+    proxyConfig.add(new JLabel (" e.g. 8080"));
+    
+    proxyConfig.add(new JLabel(" Domain Name "));
+    proxyConfig.add(DomainNameTextField);
+    proxyConfig.add(new JLabel (" e.g. localhost"));
+    
+    proxyConfig.add(new JLabel(" User Name"));
+    proxyConfig.add(UserNameTextField);
+    proxyConfig.add(new JLabel (" e.g. John"));
+    
+    proxyConfig.add(new JLabel(" Password "));
+    proxyConfig.add(PasswordTextField);
+    proxyConfig.add(new JLabel (""));
+  
+    proxyConfig.setBorder(BorderFactory.createEtchedBorder());
+    content.add(proxyConfig);
+    content.add(proxyConfig, BorderLayout.CENTER);
+    
     
     // add ok and cancel buttons
-    
     JButton okButton = new JButton("OK");
     okButton.addActionListener(new ActionListener() {
 
@@ -114,7 +133,7 @@ public ProxyUI( ) {
 		}
     });  
     
-    c1.add(okButton);
+    proxyButtons.add(okButton);
     
     JButton cancelButton = new JButton("Cancel");
     cancelButton.addActionListener(new ActionListener() {
@@ -125,7 +144,8 @@ public ProxyUI( ) {
 			 dispose();
 		}
     });  
-    c1.add(cancelButton);
+    proxyButtons.add(cancelButton);
+    content.add(proxyButtons, BorderLayout.SOUTH);
     
     setVisible(true);
   }// end constructor
@@ -147,6 +167,7 @@ public ProxyUI( ) {
 		return this.UserNameTextField.getText();
 	}
 	
+	@SuppressWarnings("deprecation")
 	public String getPassWordTextField() {
 		return this.PasswordTextField.getText();
 	}
