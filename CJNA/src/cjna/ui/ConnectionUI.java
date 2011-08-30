@@ -13,7 +13,7 @@ import java.awt.event.ItemListener;
 /**
  * @author Pree 
  */
-public class ProxyUI extends JFrame {
+public class ConnectionUI extends JFrame {
 private static final long serialVersionUID = 1L;
 private boolean isProxy = false;
 private JPanel proxyCheckArea;
@@ -28,8 +28,8 @@ private JTextField UserNameTextField = new JTextField();
 private JPasswordField PasswordTextField = new JPasswordField(8);
 private CJNAConsole myCJNA;
 
-public ProxyUI( ) {
-	super("Proxy Setting");
+public ConnectionUI( ) {
+	super("Connection Setting");
 	
     // set unable to text fields as default setting.
     AddressTextField.setText("192.168.11.1");
@@ -231,7 +231,7 @@ public ProxyUI( ) {
 	}
 
 	protected static void createAndShowGUI() {
-		new ProxyUI();
+		new ConnectionUI();
 		
 	}
 
