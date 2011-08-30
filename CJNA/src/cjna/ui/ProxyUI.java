@@ -196,6 +196,7 @@ public ProxyUI( ) {
     proxyButtons.add(cancelButton);
     content.add(proxyButtons, BorderLayout.SOUTH);
     
+    setResizable(false);
     setVisible(true);
   }// end constructor
 
