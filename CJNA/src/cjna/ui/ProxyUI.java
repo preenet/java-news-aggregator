@@ -105,7 +105,7 @@ public ProxyUI( ) {
     	    }
     	);
     
-    proxyCheckArea.add(new JLabel("Connect via proxy server"));
+    proxyCheckArea.add(new JLabel(" Connect via proxy server"));
     proxyCheckArea.setBorder(BorderFactory.createEtchedBorder());
     proxyCheckArea.add(proxyCheckBox);
     content.add(proxyCheckArea, BorderLayout.NORTH);
