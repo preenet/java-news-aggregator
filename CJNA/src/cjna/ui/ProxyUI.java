@@ -19,6 +19,8 @@ private boolean isProxy = false;
 private JPanel proxyCheckArea;
 private JPanel proxyConfig;
 private JPanel proxyButtons;
+private JLabel addresslbl, addressEglbl, portlbl, portEglbl, domainlbl, domainEglbl, 
+usernamelbl, usernameEglbl, passwordlbl, passwordEglbl;
 private JTextField AddressTextField = new JTextField();
 private JTextField PortTextField = new JTextField();
 private JTextField DomainNameTextField = new JTextField();
@@ -69,6 +71,17 @@ public ProxyUI( ) {
     	        		 DomainNameTextField.setEnabled(false);
     	        		 UserNameTextField.setEnabled(false);
     	        		 PasswordTextField.setEnabled(false);
+    	        		 
+    	        		 //set JLable at proxy config to be less visible
+    	        		 addresslbl.setForeground(Color.gray);
+    	        		 addressEglbl.setForeground(Color.gray);
+    	        		 portlbl.setForeground(Color.gray);
+    	        		 portEglbl.setForeground(Color.gray); 
+    	        		 domainlbl.setForeground(Color.gray);
+    	        		 domainEglbl.setForeground(Color.gray);
+    	        		 usernamelbl.setForeground(Color.gray);
+    	        		 usernameEglbl.setForeground(Color.gray);
+    	        		 passwordlbl.setForeground(Color.gray);
     	        	 }
     	        	 else {
     	        		 AddressTextField.setEnabled(true);
@@ -76,6 +89,17 @@ public ProxyUI( ) {
     	        		 DomainNameTextField.setEnabled(true);
     	        		 UserNameTextField.setEnabled(true);
     	        		 PasswordTextField.setEnabled(true);
+    	        		 
+    	        		 //set JLable at proxy config to be more visible
+    	        		 addresslbl.setForeground(Color.black);
+    	        		 addressEglbl.setForeground(Color.black);
+    	        		 portlbl.setForeground(Color.black);
+    	        		 portEglbl.setForeground(Color.black); 
+    	        		 domainlbl.setForeground(Color.black);
+    	        		 domainEglbl.setForeground(Color.black);
+    	        		 usernamelbl.setForeground(Color.black);
+    	        		 usernameEglbl.setForeground(Color.black);
+    	        		 passwordlbl.setForeground(Color.black);
     	        	 }
     	        }
     	    }
@@ -88,29 +112,47 @@ public ProxyUI( ) {
    
    
     // add labels and text fields to the container
-    proxyConfig.add(new JLabel(" Address "));
+    addresslbl = new JLabel(" Address");
+    addresslbl.setForeground(Color.gray);
+    proxyConfig.add(addresslbl);
     proxyConfig.add(AddressTextField);
-    proxyConfig.add(new JLabel (" e.g. \"127.0.0.1\""));
+    addressEglbl = new JLabel(" e.g. \"127.0.0.1\"");
+    addressEglbl.setForeground(Color.gray);
+    proxyConfig.add(addressEglbl);
     
-    proxyConfig.add(new JLabel(" Port "));
+    portlbl = new JLabel(" Port ");
+    portlbl.setForeground(Color.gray);
+    proxyConfig.add(portlbl);
     proxyConfig.add(PortTextField);
-    proxyConfig.add(new JLabel (" e.g. \"8080\""));
+    portEglbl = new JLabel(" e.g. \"8080\"");
+    portEglbl.setForeground(Color.gray);
+    proxyConfig.add(portEglbl);
     
-    
-    proxyConfig.add(new JLabel(" Domain Name "));
+    domainlbl = new JLabel( " Domain Name");
+    domainlbl.setForeground(Color.gray);
+    proxyConfig.add(domainlbl);
     proxyConfig.add(DomainNameTextField);
-    proxyConfig.add(new JLabel (" e.g. \"localhost\""));
+    domainEglbl = new JLabel(" e.g. \"localhost\"");
+    domainEglbl.setForeground(Color.gray);
+    proxyConfig.add(domainEglbl);
     
-    proxyConfig.add(new JLabel(" User Name"));
+    usernamelbl = new JLabel( " User Name");
+    usernamelbl.setForeground(Color.gray);
+    proxyConfig.add(usernamelbl);
     proxyConfig.add(UserNameTextField);
-    proxyConfig.add(new JLabel (" e.g. \"John\""));
+    usernameEglbl = new JLabel(" e.g. \"John\"");
+    usernameEglbl.setForeground(Color.gray);
+    proxyConfig.add(usernameEglbl);
     
-    proxyConfig.add(new JLabel(" Password "));
+    passwordlbl = new JLabel(" Password");
+    passwordlbl.setForeground(Color.gray);
+    proxyConfig.add(passwordlbl);
     proxyConfig.add(PasswordTextField);
     proxyConfig.add(new JLabel (""));
   
     proxyConfig.setBorder(BorderFactory.createEtchedBorder());
    
+  
     content.add(proxyConfig);
     content.add(proxyConfig, BorderLayout.CENTER);
     
