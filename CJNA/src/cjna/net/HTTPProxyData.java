@@ -27,8 +27,8 @@ public class HTTPProxyData {
        return HTTPProxyDataHolder.INSTANCE;
    }
 
-	public void setProxyPort(int proxyPort) {
-		this.proxyPort = proxyPort;
+	public void setProxyPort(String proxyPort) {
+		this.proxyPort = Integer.parseInt(proxyPort);
 	}
 
 	/*

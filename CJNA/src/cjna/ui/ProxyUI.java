@@ -3,8 +3,11 @@ package cjna.ui;
 import javax.swing.*;
 
 import cjna.CJNAConsole;
+import cjna.net.HTTPProxyData;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 /**
@@ -18,19 +21,25 @@ private JTextField PortTextField = new JTextField();
 private JTextField DomainNameTextField = new JTextField();
 private JTextField UserNameTextField = new JTextField();
 private JTextField PassWordTextField = new JTextField();
+private CJNAConsole myCJNA;
 
 public ProxyUI( ) {
 	super("Proxy Setting");
 	
     // set unable to text fields as default setting.
+    AddressTextField.setText("192.168.11.1");
     AddressTextField.setEnabled(false);
+    
+    PortTextField.setText("8080");
 	PortTextField.setEnabled(false);
+	
+	DomainNameTextField.setText("camt");
 	DomainNameTextField.setEnabled(false);
 	UserNameTextField.setEnabled(false);
 	PassWordTextField.setEnabled(false);
 	
 	// set Frame properties and layout
-  
+	setLocationRelativeTo(null);
     setSize(300,180);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     Container c1 = getContentPane();
@@ -81,9 +90,40 @@ public ProxyUI( ) {
     // add ok and cancel buttons
     
     JButton okButton = new JButton("OK");
+    okButton.addActionListener(new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			dispose();
+			if(isProxy) {
+				// set proxy configuration
+				HTTPProxyData.getInstance();
+				HTTPProxyData.getInstance().setProxy(isProxy);
+				HTTPProxyData.getInstance().setProxyDomain(DomainNameTextField.getText());
+				HTTPProxyData.getInstance().setProxyHost(AddressTextField.getText());
+				HTTPProxyData.getInstance().setProxyPort(PortTextField.getText());
+				HTTPProxyData.getInstance().setProxyUserName(UserNameTextField.getText());
+				HTTPProxyData.getInstance().setProxyPassword(PassWordTextField.getText());
+				setMyCJNA(new CJNAConsole());
+			}
+			else {
+				setMyCJNA(new CJNAConsole());
+			}
+		}
+    });  
+    
     c1.add(okButton);
     
     JButton cancelButton = new JButton("Cancel");
+    cancelButton.addActionListener(new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			 dispose();
+		}
+    });  
     c1.add(cancelButton);
     
     setVisible(true);
@@ -112,5 +152,13 @@ public ProxyUI( ) {
 	
 	public static void main(String args[]) {
 		new ProxyUI();
+	}
+
+	public void setMyCJNA(CJNAConsole myCJNA) {
+		this.myCJNA = myCJNA;
+	}
+
+	public CJNAConsole getMyCJNA() {
+		return myCJNA;
 	}
 }// end class ProxyUI

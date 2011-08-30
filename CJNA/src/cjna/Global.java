@@ -13,9 +13,4 @@ public interface Global {
 	public static ArrayList<String> URI = new ArrayList<String>();
 	public static Feed myFeed = new Feed();
 	
-	/**
-	 * Set this variable for list of URI.
-	 */
-	public static String listURI = "http://www.preet.sesolution.com/camtrss/news_list.txt";
-	
 }// end interface Global

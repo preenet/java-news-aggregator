@@ -3,7 +3,6 @@ package cjna;
 import java.util.Vector;
 import cjna.net.HTTPProxyData;
 import cjna.parser.FeedParser;
-import cjna.ui.ProxyUI;
 
 
 /**
@@ -13,51 +12,50 @@ import cjna.ui.ProxyUI;
  */
 
 public class CJNAConsole {
-		
+	private String listURI = "http://www.preet.sesolution.com/camtrss/news_list.txt";
 	public CJNAConsole() {
 		System.out.println("Start CJNA Console.");
 		
-		// set proxy configuration
-		HTTPProxyData.getInstance();
-		HTTPProxyData.getInstance().setProxy(false);
-		HTTPProxyData.getInstance().setProxyDomain("camt");
-		HTTPProxyData.getInstance().setProxyHost("192.168.11.1");
-		HTTPProxyData.getInstance().setProxyPort(8080);
-		HTTPProxyData.getInstance().setProxyUserName("kanitta");
-		HTTPProxyData.getInstance().setProxyPassword("1");
+	
 		
 		// first getting the list from the URI site.
-		GetNewsList myList = new GetNewsList();
+		GetNewsList myList = new GetNewsList(listURI);
 		myList.execute();
 
 		Vector<FeedParser> fps = new Vector<FeedParser>();
 		
 		// show the list to the console and parse each URI site.
-		System.out.println("News List are as following: ");
-		for(int i = 0; i < Global.URI.size(); i++) {
-			System.out.println(i+1 + ". " +Global.URI.get(i));
-			FeedParser fp = new FeedParser(Global.URI.get(i));
-			fps.add(fp);
+		if(Global.URI.size() == 0) {
+			System.out.println("Error: No sites to read.");
+			System.exit(0);
 		}
-		System.out.println();
-		
-		// start the workers thread and wait for all of them to finish.
-		for(int i = 0; i < Global.URI.size(); i++) {
-			try {	
-				fps.elementAt(i).join();
-			} catch (Exception e) {
-				e.printStackTrace();
+		else {
+			System.out.println("News List are as following: ");
+			for(int i = 0; i < Global.URI.size(); i++) {
+				System.out.println(i+1 + ". " +Global.URI.get(i));
+				FeedParser fp = new FeedParser(Global.URI.get(i));
+				fps.add(fp);
 			}
-		}
-		// show all collected feed messages from given sites.
-		for(int j = 0; j < Global.myFeed.getSize(); j++) {
-			System.out.println(Global.myFeed.getMessages().get(j));
-		}
-		System.out.println("CJNA Reader now has : " + Global.myFeed.getSize() + " messages.");
-		System.out.println();
-		// finish the program and terminate 
+			System.out.println();
+			
+			// start the workers thread and wait for all of them to finish.
+			for(int i = 0; i < Global.URI.size(); i++) {
+				try {	
+					fps.elementAt(i).join();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			// show all collected feed messages from given sites.
+			for(int j = 0; j < Global.myFeed.getSize(); j++) {
+				System.out.println(Global.myFeed.getMessages().get(j));
+			}
+			System.out.println("CJNA Reader now has : " + Global.myFeed.getSize() + " messages.");
+			System.out.println();
+			// finish the program and terminate 
 	
-		System.out.println("Done!");
+			System.out.println("Done!");
+		}
 	}
 	public static void main(String args[]) {
 		new CJNAConsole();

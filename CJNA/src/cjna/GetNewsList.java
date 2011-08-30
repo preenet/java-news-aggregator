@@ -16,9 +16,10 @@ public class GetNewsList {
 		
 		private BufferedReader reader;
 		private HTTPConnectionSelection myConnSelect;
-	 
-	    public GetNewsList() {
-	    	myConnSelect = new HTTPConnectionSelection(Global.listURI);
+		public String URI;
+	    public GetNewsList(String URI) {
+	    	this.URI = URI;
+	    	myConnSelect = new HTTPConnectionSelection(this.URI);
 	    }
 	  
 	    /**
@@ -27,7 +28,7 @@ public class GetNewsList {
 	     * for future parse.
 	     */
 		public void execute() {
-			System.out.println("Connecting to news list server at " + Global.listURI);
+			System.out.println("Connecting to news list server at " + this.URI);
 			  try {
 				  if(!HTTPProxyData.getInstance().isProxy()) {
 					  myConnSelect.DirectConnect();
