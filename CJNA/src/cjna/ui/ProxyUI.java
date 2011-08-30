@@ -49,8 +49,13 @@ public ProxyUI( ) {
     Container content = getContentPane();
     
     proxyCheckArea = new JPanel(new GridLayout(0, 2));
-    proxyConfig = new JPanel(new GridLayout(0,3));
-    proxyButtons = new JPanel(new GridLayout(0, 2));
+    GridLayout conf = new GridLayout(0,3);
+    conf.setVgap(3);
+    proxyConfig = new JPanel(conf);
+    
+    GridLayout bts = new GridLayout(0,2);
+    bts.setHgap(5);
+    proxyButtons = new JPanel(bts);
     
     JCheckBox proxyCheckBox = new JCheckBox();
     proxyCheckBox.setSelected(false);
@@ -104,6 +109,7 @@ public ProxyUI( ) {
     proxyConfig.add(new JLabel (""));
   
     proxyConfig.setBorder(BorderFactory.createEtchedBorder());
+   
     content.add(proxyConfig);
     content.add(proxyConfig, BorderLayout.CENTER);
     
