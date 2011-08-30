@@ -20,7 +20,7 @@ private JTextField AddressTextField = new JTextField();
 private JTextField PortTextField = new JTextField();
 private JTextField DomainNameTextField = new JTextField();
 private JTextField UserNameTextField = new JTextField();
-private JTextField PassWordTextField = new JTextField();
+private JPasswordField PasswordTextField = new JPasswordField(8);
 private CJNAConsole myCJNA;
 
 public ProxyUI( ) {
@@ -36,7 +36,8 @@ public ProxyUI( ) {
 	DomainNameTextField.setText("camt");
 	DomainNameTextField.setEnabled(false);
 	UserNameTextField.setEnabled(false);
-	PassWordTextField.setEnabled(false);
+	PasswordTextField.setEnabled(false);
+	PasswordTextField.setEchoChar('*');
 	
 	// set Frame properties and layout
 	setLocationRelativeTo(null);
@@ -58,14 +59,14 @@ public ProxyUI( ) {
     	        		 PortTextField.setEnabled(false);
     	        		 DomainNameTextField.setEnabled(false);
     	        		 UserNameTextField.setEnabled(false);
-    	        		 PassWordTextField.setEnabled(false);
+    	        		 PasswordTextField.setEnabled(false);
     	        	 }
     	        	 else {
     	        		 AddressTextField.setEnabled(true);
     	        		 PortTextField.setEnabled(true);
     	        		 DomainNameTextField.setEnabled(true);
     	        		 UserNameTextField.setEnabled(true);
-    	        		 PassWordTextField.setEnabled(true);
+    	        		 PasswordTextField.setEnabled(true);
     	        	 }
     	        }
     	    }
@@ -85,7 +86,7 @@ public ProxyUI( ) {
     c1.add(new JLabel(" User Name"));
     c1.add(UserNameTextField);
     c1.add(new JLabel(" Password "));
-    c1.add(PassWordTextField);
+    c1.add(PasswordTextField);
     
     // add ok and cancel buttons
     
@@ -104,7 +105,7 @@ public ProxyUI( ) {
 				HTTPProxyData.getInstance().setProxyHost(AddressTextField.getText());
 				HTTPProxyData.getInstance().setProxyPort(PortTextField.getText());
 				HTTPProxyData.getInstance().setProxyUserName(UserNameTextField.getText());
-				HTTPProxyData.getInstance().setProxyPassword(PassWordTextField.getText());
+				HTTPProxyData.getInstance().setProxyPassword(PasswordTextField.getText());
 				setMyCJNA(new CJNAConsole());
 			}
 			else {
@@ -147,11 +148,20 @@ public ProxyUI( ) {
 	}
 	
 	public String getPassWordTextField() {
-		return this.PassWordTextField.getText();
+		return this.PasswordTextField.getText();
 	}
 	
 	public static void main(String args[]) {
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createAndShowGUI();
+            }
+        });
+	}
+
+	protected static void createAndShowGUI() {
 		new ProxyUI();
+		
 	}
 
 	public void setMyCJNA(CJNAConsole myCJNA) {

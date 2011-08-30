@@ -1,7 +1,6 @@
 package cjna;
 
 import java.util.Vector;
-import cjna.net.HTTPProxyData;
 import cjna.parser.FeedParser;
 
 
