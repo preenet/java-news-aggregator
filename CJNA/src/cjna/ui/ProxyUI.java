@@ -81,7 +81,7 @@ public ProxyUI( ) {
     	    }
     	);
     
-    proxyCheckArea.add(new JLabel("Proxy Server"));
+    proxyCheckArea.add(new JLabel("Connect via proxy server"));
     proxyCheckArea.setBorder(BorderFactory.createEtchedBorder());
     proxyCheckArea.add(proxyCheckBox);
     content.add(proxyCheckArea, BorderLayout.NORTH);
@@ -90,19 +90,20 @@ public ProxyUI( ) {
     // add labels and text fields to the container
     proxyConfig.add(new JLabel(" Address "));
     proxyConfig.add(AddressTextField);
-    proxyConfig.add(new JLabel (" e.g. 127.0.0.1"));
+    proxyConfig.add(new JLabel (" e.g. \"127.0.0.1\""));
     
     proxyConfig.add(new JLabel(" Port "));
     proxyConfig.add(PortTextField);
-    proxyConfig.add(new JLabel (" e.g. 8080"));
+    proxyConfig.add(new JLabel (" e.g. \"8080\""));
+    
     
     proxyConfig.add(new JLabel(" Domain Name "));
     proxyConfig.add(DomainNameTextField);
-    proxyConfig.add(new JLabel (" e.g. localhost"));
+    proxyConfig.add(new JLabel (" e.g. \"localhost\""));
     
     proxyConfig.add(new JLabel(" User Name"));
     proxyConfig.add(UserNameTextField);
-    proxyConfig.add(new JLabel (" e.g. John"));
+    proxyConfig.add(new JLabel (" e.g. \"John\""));
     
     proxyConfig.add(new JLabel(" Password "));
     proxyConfig.add(PasswordTextField);
