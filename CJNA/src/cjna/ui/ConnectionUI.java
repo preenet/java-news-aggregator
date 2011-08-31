@@ -170,6 +170,7 @@ public ConnectionUI( ) {
     JButton okButton = new JButton("OK");
     okButton.addActionListener(new ActionListener() {
 
+		@SuppressWarnings("deprecation")
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
@@ -195,12 +196,14 @@ public ConnectionUI( ) {
 						setMyCJNA(new CJNAConsole());
 						
 					}
+					// incase that the ip address is not valid, we show the error dialog.
 					else if(!checkIP(AddressTextField.getText())){
 						JOptionPane.showMessageDialog(null, "Invalid IP Address", "Error", JOptionPane.ERROR_MESSAGE);
 						HTTPProxyData.getInstance().resetProxyData();
 						createAndShowGUI();
 					
 					}
+					// incase that the port number is not valid, we show the erro dialog.
 					else if(!checkPort(PortTextField.getText())) {
 						JOptionPane.showMessageDialog(null, "Invalid Port Number", "Error", JOptionPane.ERROR_MESSAGE);
 						HTTPProxyData.getInstance().resetProxyData();
