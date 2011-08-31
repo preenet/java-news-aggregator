@@ -4,6 +4,8 @@ import javax.swing.*;
 
 import cjna.CJNAConsole;
 import cjna.net.HTTPProxyData;
+import cjna.net.IPAddressValidator;
+import cjna.net.PortValidator;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,21 +17,28 @@ import java.awt.event.ItemListener;
  */
 public class ConnectionUI extends JFrame {
 private static final long serialVersionUID = 1L;
-private boolean isProxy = false;
+private boolean isProxy;
+private boolean hasInputError;
 private JPanel proxyCheckArea;
 private JPanel proxyConfig;
 private JPanel proxyButtons;
 private JLabel addresslbl, addressEglbl, portlbl, portEglbl, domainlbl, domainEglbl, 
-usernamelbl, usernameEglbl, passwordlbl, passwordEglbl;
+usernamelbl, usernameEglbl, passwordlbl;
 private JTextField AddressTextField = new JTextField();
 private JTextField PortTextField = new JTextField();
 private JTextField DomainNameTextField = new JTextField();
 private JTextField UserNameTextField = new JTextField();
 private JPasswordField PasswordTextField = new JPasswordField(8);
 private CJNAConsole myCJNA;
+private IPAddressValidator ipval;
+private PortValidator portval;
 
 public ConnectionUI( ) {
 	super("Connection Setting");
+	isProxy = false;
+	hasInputError = false;
+	ipval = new IPAddressValidator();
+	portval = new PortValidator();
 	
     // set unable to text fields as default setting.
     AddressTextField.setText("192.168.11.1");
@@ -46,7 +55,7 @@ public ConnectionUI( ) {
 	
 	// set Frame properties and layout
 	setLocationRelativeTo(null);
-    setSize(300,180);
+    setSize(350,180);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     Container content = getContentPane();
     
@@ -163,24 +172,48 @@ public ConnectionUI( ) {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
+			if(hasInputError) {
+				createAndShowGUI();
+				System.out.println("input error");
+			}
+			else if(!hasInputError){
 			// TODO Auto-generated method stub
 			dispose();
-			if(isProxy) {
-				// set proxy configuration
-				HTTPProxyData.getInstance();
-				HTTPProxyData.getInstance().setProxy(isProxy);
-				HTTPProxyData.getInstance().setProxyDomain(DomainNameTextField.getText());
-				HTTPProxyData.getInstance().setProxyHost(AddressTextField.getText());
-				HTTPProxyData.getInstance().setProxyPort(PortTextField.getText());
-				HTTPProxyData.getInstance().setProxyUserName(UserNameTextField.getText());
-				HTTPProxyData.getInstance().setProxyPassword(PasswordTextField.getText());
-				setMyCJNA(new CJNAConsole());
+				if(isProxy) {
+					// set proxy configuration
+					HTTPProxyData.getInstance();
+					HTTPProxyData.getInstance().setProxy(isProxy);
+					HTTPProxyData.getInstance().setProxyDomain(DomainNameTextField.getText());
+					
+					// check input ip and port are valid
+					if(checkIP(AddressTextField.getText()) && checkPort(PortTextField.getText())) {
+						HTTPProxyData.getInstance().setProxyHost(AddressTextField.getText());
+						HTTPProxyData.getInstance().setProxyPort(PortTextField.getText());
+						HTTPProxyData.getInstance().setProxyUserName(UserNameTextField.getText());
+						HTTPProxyData.getInstance().setProxyPassword(PasswordTextField.getText());
+						setMyCJNA(new CJNAConsole());
+						
+					}
+					else if(!checkIP(AddressTextField.getText())){
+						JOptionPane.showMessageDialog(null, "Invalid IP Address", "Error", JOptionPane.ERROR_MESSAGE);
+						HTTPProxyData.getInstance().resetProxyData();
+						createAndShowGUI();
+					
+					}
+					else if(!checkPort(PortTextField.getText())) {
+						JOptionPane.showMessageDialog(null, "Invalid Port Number", "Error", JOptionPane.ERROR_MESSAGE);
+						HTTPProxyData.getInstance().resetProxyData();
+						createAndShowGUI();
+					}
+					
 			}
 			else {
 				setMyCJNA(new CJNAConsole());
 			}
 		}
-    });  
+			
+		}});  
     
     proxyButtons.add(okButton);
     
@@ -199,6 +232,14 @@ public ConnectionUI( ) {
     setResizable(false);
     setVisible(true);
   }// end constructor
+
+	private boolean checkIP(String IPAddress) {
+		return (ipval.validate(IPAddress));	
+	}
+	
+	private boolean checkPort(String port) {
+		return  (portval.validate(port));
+	}
 
 	// setter and getter here.
 	public String getAddress() {

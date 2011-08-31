@@ -17,7 +17,13 @@ public class HTTPProxyData {
         private static final HTTPProxyData INSTANCE = new HTTPProxyData();
    
 	}
-	public HTTPProxyData() {}
+	public HTTPProxyData() {
+		this.isProxy = false;
+		this.proxyDomain = "";
+		this.proxyHost = "";
+		this.proxyPassword = "";
+		this.proxyPort = 0;
+	}
 
 	/**
     *
@@ -76,5 +82,13 @@ public class HTTPProxyData {
 
 	public String getProxyPassword() {
 		return proxyPassword;
+	}
+	
+	public void resetProxyData() {
+		this.isProxy = false;
+		this.proxyDomain = "";
+		this.proxyHost = "";
+		this.proxyPassword = "";
+		this.proxyPort = 0;
 	}
 }// end class HTTPProxyData
