@@ -12,6 +12,7 @@ import java.awt.Color;
 public class CJNAUI extends JFrame {
 
 	private JPanel contentPane;
+	private JLabel consoleLabel;
 	private CJNAHandler worker;
 
 	/**
@@ -47,7 +48,7 @@ public class CJNAUI extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel consoleLabel = new JLabel("");
+		consoleLabel = new JLabel("");
 		consoleLabel.setBounds(6, 6, 426, 16);
 		panel_1.add(consoleLabel);
 		
@@ -56,6 +57,10 @@ public class CJNAUI extends JFrame {
 		textArea.setBounds(435, 6, -424, 235);
 		contentPane.add(textArea);
 		start();
+	}
+	
+	public void setConsoleLabel(String t) {
+		consoleLabel.setText(t);
 	}
 	
 	private void start() {

@@ -20,6 +20,14 @@ public class CJNAHandler extends Thread {
 	 */
 	public void run() {
 		this.start();
+		
+		 while(true) {  
+			 try {  
+	                sleep(100);  
+	            } catch(InterruptedException e) {}  
+			ui.setConsoleLabel(this.console.getConsoleText());
+			ui.repaint();
+		 }
 	}
 
 }// end class CJNAHandler

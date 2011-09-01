@@ -12,8 +12,10 @@ import cjna.parser.FeedParser;
 
 public class CJNAConsole {
 	private String listURI = "http://www.preet.sesolution.com/camtrss/news_list.txt";
+	private static String consoleTmp;
 	public CJNAConsole() {
 		System.out.println("Start CJNA Console.");
+		consoleTmp = "Start CJNA Console";
 		
 	
 		
@@ -56,6 +58,11 @@ public class CJNAConsole {
 			System.out.println("Done!");
 		}
 	}
+	
+	public static String getConsoleText() {
+		return consoleTmp;
+	}
+	
 	public static void main(String args[]) {
 		new CJNAConsole();
 	}
