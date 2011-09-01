@@ -1,181 +1,99 @@
 package cjna.ui;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.border.EtchedBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 
 import cjna.CJNAConsole;
 import cjna.net.HTTPProxyData;
 import cjna.net.IPAddressValidator;
 import cjna.net.PortValidator;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 /**
- * @author Pree 
+ * 
+ * @author Pree
+ *
  */
+
 public class ConnectionUI extends JFrame {
-private static final long serialVersionUID = 1L;
-private boolean isProxy;
-private boolean hasInputError;
-private JPanel proxyCheckArea;
-private JPanel proxyConfig;
-private JPanel proxyButtons;
-private JLabel addresslbl, addressEglbl, portlbl, portEglbl, domainlbl, domainEglbl, 
-usernamelbl, usernameEglbl, passwordlbl;
-private JTextField AddressTextField = new JTextField();
-private JTextField PortTextField = new JTextField();
-private JTextField DomainNameTextField = new JTextField();
-private JTextField UserNameTextField = new JTextField();
-private JPasswordField PasswordTextField = new JPasswordField(8);
-private CJNAConsole myCJNA;
-private IPAddressValidator ipval;
-private PortValidator portval;
 
-public ConnectionUI( ) {
-	super("Connection Setting");
-	isProxy = false;
-	hasInputError = false;
-	ipval = new IPAddressValidator();
-	portval = new PortValidator();
-	
-    // set unable to text fields as default setting.
-    AddressTextField.setText("192.168.11.1");
-    AddressTextField.setEnabled(false);
-    
-    PortTextField.setText("8080");
-	PortTextField.setEnabled(false);
-	
-	DomainNameTextField.setText("camt");
-	DomainNameTextField.setEnabled(false);
-	UserNameTextField.setEnabled(false);
-	PasswordTextField.setEnabled(false);
-	PasswordTextField.setEchoChar('*');
-	
-	// set Frame properties and layout
-	setLocationRelativeTo(null);
-    setSize(350,180);
-    setDefaultCloseOperation(EXIT_ON_CLOSE);
-    Container content = getContentPane();
-    
-    proxyCheckArea = new JPanel(new GridLayout(0, 2));
-    GridLayout conf = new GridLayout(0,3);
-    conf.setVgap(3);
-    proxyConfig = new JPanel(conf);
-    
-    GridLayout bts = new GridLayout(0,2);
-    bts.setHgap(5);
-    proxyButtons = new JPanel(bts);
-    
-    JCheckBox proxyCheckBox = new JCheckBox();
-    proxyCheckBox.setSelected(false);
-    proxyCheckBox.addItemListener(
-    	    new ItemListener() {
-    	        public void itemStateChanged(ItemEvent e) {
-    	        	isProxy = (e.getStateChange() == ItemEvent.SELECTED);
-    	        	 if(!isProxy) {
-    	        		 AddressTextField.setEnabled(false);
-    	        		 PortTextField.setEnabled(false);
-    	        		 DomainNameTextField.setEnabled(false);
-    	        		 UserNameTextField.setEnabled(false);
-    	        		 PasswordTextField.setEnabled(false);
-    	        		 
-    	        		 //set JLable at proxy config to be less visible
-    	        		 addresslbl.setForeground(Color.gray);
-    	        		 addressEglbl.setForeground(Color.gray);
-    	        		 portlbl.setForeground(Color.gray);
-    	        		 portEglbl.setForeground(Color.gray); 
-    	        		 domainlbl.setForeground(Color.gray);
-    	        		 domainEglbl.setForeground(Color.gray);
-    	        		 usernamelbl.setForeground(Color.gray);
-    	        		 usernameEglbl.setForeground(Color.gray);
-    	        		 passwordlbl.setForeground(Color.gray);
-    	        	 }
-    	        	 else {
-    	        		 AddressTextField.setEnabled(true);
-    	        		 PortTextField.setEnabled(true);
-    	        		 DomainNameTextField.setEnabled(true);
-    	        		 UserNameTextField.setEnabled(true);
-    	        		 PasswordTextField.setEnabled(true);
-    	        		 
-    	        		 //set JLable at proxy config to be more visible
-    	        		 addresslbl.setForeground(Color.black);
-    	        		 addressEglbl.setForeground(Color.black);
-    	        		 portlbl.setForeground(Color.black);
-    	        		 portEglbl.setForeground(Color.black); 
-    	        		 domainlbl.setForeground(Color.black);
-    	        		 domainEglbl.setForeground(Color.black);
-    	        		 usernamelbl.setForeground(Color.black);
-    	        		 usernameEglbl.setForeground(Color.black);
-    	        		 passwordlbl.setForeground(Color.black);
-    	        	 }
-    	        }
-    	    }
-    	);
-    
-    proxyCheckArea.add(new JLabel(" Connect via proxy server"));
-    proxyCheckArea.setBorder(BorderFactory.createEtchedBorder());
-    proxyCheckArea.add(proxyCheckBox);
-    content.add(proxyCheckArea, BorderLayout.NORTH);
-   
-   
-    // add labels and text fields to the container
-    addresslbl = new JLabel(" Address");
-    addresslbl.setForeground(Color.gray);
-    proxyConfig.add(addresslbl);
-    proxyConfig.add(AddressTextField);
-    addressEglbl = new JLabel(" e.g. \"127.0.0.1\"");
-    addressEglbl.setForeground(Color.gray);
-    proxyConfig.add(addressEglbl);
-    
-    portlbl = new JLabel(" Port ");
-    portlbl.setForeground(Color.gray);
-    proxyConfig.add(portlbl);
-    proxyConfig.add(PortTextField);
-    portEglbl = new JLabel(" e.g. \"8080\"");
-    portEglbl.setForeground(Color.gray);
-    proxyConfig.add(portEglbl);
-    
-    domainlbl = new JLabel( " Domain Name");
-    domainlbl.setForeground(Color.gray);
-    proxyConfig.add(domainlbl);
-    proxyConfig.add(DomainNameTextField);
-    domainEglbl = new JLabel(" e.g. \"localhost\"");
-    domainEglbl.setForeground(Color.gray);
-    proxyConfig.add(domainEglbl);
-    
-    usernamelbl = new JLabel( " User Name");
-    usernamelbl.setForeground(Color.gray);
-    proxyConfig.add(usernamelbl);
-    proxyConfig.add(UserNameTextField);
-    usernameEglbl = new JLabel(" e.g. \"John\"");
-    usernameEglbl.setForeground(Color.gray);
-    proxyConfig.add(usernameEglbl);
-    
-    passwordlbl = new JLabel(" Password");
-    passwordlbl.setForeground(Color.gray);
-    proxyConfig.add(passwordlbl);
-    proxyConfig.add(PasswordTextField);
-    proxyConfig.add(new JLabel (""));
-  
-    proxyConfig.setBorder(BorderFactory.createEtchedBorder());
-   
-  
-    content.add(proxyConfig);
-    content.add(proxyConfig, BorderLayout.CENTER);
-    
-    
-    // add ok and cancel buttons
-    JButton okButton = new JButton("OK");
-    okButton.addActionListener(new ActionListener() {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField addressTextField;
+	private JTextField portTextField;
+	private JTextField domainTextField;
+	private JTextField usernameTextField;
+	private JPasswordField passwordField;
+	private JButton okButton, cancelButton;
+	private JLabel lblAddress, lblAddressEg, lblPort, lblPortEg, lblUsername, lblUsernameEg, lblPassword, lblDomain, lblDomainEg;
+	private boolean isProxy;
+	private boolean hasInputError;
+	private CJNAConsole myCJNA;
+	private IPAddressValidator ipval;
+	private PortValidator portval;
 
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ConnectionUI frame = new ConnectionUI();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	public ConnectionUI() {
+		super();
+		intiGUI();
+	}
+	
+
+	/**
+	 * Create the frame.
+	 */
+	public void intiGUI() {
+		isProxy = false;
+		hasInputError = false;
+		
+		
+		setTitle("Connection Setting");
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		okButton = new JButton("OK");
+		okButton.setBounds(109, 243, 117, 29);
+		okButton.addActionListener(new ActionListener() {
 		@SuppressWarnings("deprecation")
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			
 			if(hasInputError) {
-				createAndShowGUI();
+				
 				System.out.println("input error");
 			}
 			else if(!hasInputError){
@@ -185,29 +103,29 @@ public ConnectionUI( ) {
 					// set proxy configuration
 					HTTPProxyData.getInstance();
 					HTTPProxyData.getInstance().setProxy(isProxy);
-					HTTPProxyData.getInstance().setProxyDomain(DomainNameTextField.getText());
+					HTTPProxyData.getInstance().setProxyDomain(domainTextField.getText());
 					
 					// check input ip and port are valid
-					if(checkIP(AddressTextField.getText()) && checkPort(PortTextField.getText())) {
-						HTTPProxyData.getInstance().setProxyHost(AddressTextField.getText());
-						HTTPProxyData.getInstance().setProxyPort(PortTextField.getText());
-						HTTPProxyData.getInstance().setProxyUserName(UserNameTextField.getText());
-						HTTPProxyData.getInstance().setProxyPassword(PasswordTextField.getText());
+					if(checkIP(addressTextField.getText()) && checkPort(portTextField.getText())) {
+						HTTPProxyData.getInstance().setProxyHost(addressTextField.getText());
+						HTTPProxyData.getInstance().setProxyPort(portTextField.getText());
+						HTTPProxyData.getInstance().setProxyUserName(usernameTextField.getText());
+						HTTPProxyData.getInstance().setProxyPassword(passwordField.getText());
 						setMyCJNA(new CJNAConsole());
 						
 					}
 					// incase that the ip address is not valid, we show the error dialog.
-					else if(!checkIP(AddressTextField.getText())){
+					else if(!checkIP(addressTextField.getText())){
 						JOptionPane.showMessageDialog(null, "Invalid IP Address", "Error", JOptionPane.ERROR_MESSAGE);
 						HTTPProxyData.getInstance().resetProxyData();
-						createAndShowGUI();
+						intiGUI();
 					
 					}
 					// incase that the port number is not valid, we show the erro dialog.
-					else if(!checkPort(PortTextField.getText())) {
+					else if(!checkPort(portTextField.getText())) {
 						JOptionPane.showMessageDialog(null, "Invalid Port Number", "Error", JOptionPane.ERROR_MESSAGE);
 						HTTPProxyData.getInstance().resetProxyData();
-						createAndShowGUI();
+						intiGUI();
 					}
 					
 			}
@@ -216,25 +134,175 @@ public ConnectionUI( ) {
 			}
 		}
 			
-		}});  
-    
-    proxyButtons.add(okButton);
-    
-    JButton cancelButton = new JButton("Cancel");
-    cancelButton.addActionListener(new ActionListener() {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			 dispose();
 		}
-    });  
-    proxyButtons.add(cancelButton);
-    content.add(proxyButtons, BorderLayout.SOUTH);
-    
-    setResizable(false);
-    setVisible(true);
-  }// end constructor
+		});  
+		contentPane.add(okButton);
+		
+		cancelButton = new JButton("Cancel");
+		cancelButton.setBounds(226, 243, 117, 29);
+		
+		cancelButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				 dispose();
+			}
+	    });  
+		
+		contentPane.add(cancelButton);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		panel.setBounds(6, 9, 438, 40);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JCheckBox proxyCheckBox = new JCheckBox("Connect via proxy server");
+		proxyCheckBox.setBounds(6, 6, 212, 23);
+		proxyCheckBox.setSelected(false);
+		proxyCheckBox.addItemListener(
+	    	    new ItemListener() {
+	    	        /* (non-Javadoc)
+	    	         * @see java.awt.event.ItemListener#itemStateChanged(java.awt.event.ItemEvent)
+	    	         */
+	    	        public void itemStateChanged(ItemEvent e) {
+	    	        	isProxy = (e.getStateChange() == ItemEvent.SELECTED);
+	    	        	 if(!isProxy) {
+	    	        		 lblPassword.setForeground(Color.gray);
+	    	        		 passwordField.setEnabled(false);
+	    	        		 addressTextField.setEnabled(false);
+	    	        		 portTextField.setEnabled(false);
+	    	        		 domainTextField.setEnabled(false);
+	    	        		 usernameTextField.setEnabled(false);
+	    	        		 passwordField.setEnabled(false);
+	    	        		 
+	    	        		 //set JLable at proxy config to be less visible
+	    	        		 lblAddress.setForeground(Color.gray);
+	    	        		 lblAddressEg.setForeground(Color.gray);
+	    	        		 lblPort.setForeground(Color.gray);
+	    	        		 lblPortEg.setForeground(Color.gray); 
+	    	        		 lblDomain.setForeground(Color.gray);
+	    	        		 lblDomainEg.setForeground(Color.gray);
+	    	        		 lblUsernameEg.setForeground(Color.gray);
+	    	        		 lblUsername.setForeground(Color.gray);
+	    	        		 lblPassword.setForeground(Color.gray);
+
+	    	        	 }
+	    	        	 else {
+	    	        		 lblPassword.setForeground(Color.black);
+	    	        		 passwordField.setEnabled(true);
+	    	        		 addressTextField.setEnabled(true);
+	    	        		 portTextField.setEnabled(true);
+	    	        		 domainTextField.setEnabled(true);
+	    	        		 
+	    	        		 
+	    	        		 //set JLable at proxy config to be more visible
+	    	        		 lblAddress.setForeground(Color.black);
+	    	        		 lblAddressEg.setForeground(Color.black);
+	    	        		 lblPort.setForeground(Color.black);
+	    	        		 lblPortEg.setForeground(Color.black); 
+	    	        		 lblDomain.setForeground(Color.black);
+	    	        		 lblDomainEg.setForeground(Color.black);
+	    	        		 lblUsername.setForeground(Color.black);
+	    	        		 lblUsernameEg.setForeground(Color.black);
+	    	        	 }
+	    	        }
+	    	    }
+	    	);
+		
+		panel.add(proxyCheckBox);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		panel_1.setBounds(6, 64, 438, 178);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+		
+		lblAddress = new JLabel("Address");
+		lblAddress.setBounds(6, 17, 100, 16);
+		panel_1.add(lblAddress);
+		
+		addressTextField = new JTextField();
+		addressTextField.setText("192.168.11.1");
+		addressTextField.setBounds(148, 11, 134, 28);
+		panel_1.add(addressTextField);
+		addressTextField.setColumns(10);
+		
+		lblPort = new JLabel("Port");
+		lblPort.setBounds(6, 45, 61, 16);
+		panel_1.add(lblPort);
+		
+		portTextField = new JTextField();
+		portTextField.setText("8080");
+		portTextField.setBounds(148, 39, 134, 28);
+		panel_1.add(portTextField);
+		portTextField.setColumns(10);
+		
+		lblDomain = new JLabel("Domain");
+		lblDomain.setBounds(6, 73, 61, 16);
+		panel_1.add(lblDomain);
+		
+		domainTextField = new JTextField();
+		domainTextField.setText("camt");
+		domainTextField.setBounds(148, 67, 134, 28);
+		panel_1.add(domainTextField);
+		domainTextField.setColumns(10);
+		
+		lblUsername = new JLabel("Username");
+		lblUsername.setBounds(6, 101, 87, 16);
+		panel_1.add(lblUsername);
+		
+		usernameTextField = new JTextField();
+		usernameTextField.setBounds(148, 95, 134, 28);
+		panel_1.add(usernameTextField);
+		usernameTextField.setColumns(10);
+		
+		lblPassword = new JLabel("Password");
+		lblPassword.setBounds(6, 129, 61, 16);
+		panel_1.add(lblPassword);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(148, 129, 134, 22);
+		panel_1.add(passwordField);
+		
+		lblAddressEg = new JLabel("e.g. \"127.0.0.1\"");
+		lblAddressEg.setBounds(294, 17, 138, 16);
+		panel_1.add(lblAddressEg);
+		
+		lblPortEg = new JLabel("e.g. \"8080\"");
+		lblPortEg.setBounds(294, 45, 138, 16);
+		panel_1.add(lblPortEg);
+		
+		lblDomainEg = new JLabel("e.g. \"localhost\"");
+		lblDomainEg.setBounds(294, 73, 138, 16);
+		panel_1.add(lblDomainEg);
+		
+		lblUsernameEg = new JLabel("e.g. \"john\"");
+		lblUsernameEg.setBounds(294, 101, 138, 16);
+		panel_1.add(lblUsernameEg);
+		
+
+		lblPassword.setForeground(Color.gray);
+		 passwordField.setEnabled(false);
+		 addressTextField.setEnabled(false);
+		 portTextField.setEnabled(false);
+		 domainTextField.setEnabled(false);
+		 usernameTextField.setEnabled(false);
+		 passwordField.setEnabled(false);
+		 
+		 //set JLable at proxy config to be less visible
+		 lblAddress.setForeground(Color.gray);
+		 lblAddressEg.setForeground(Color.gray);
+		 lblPort.setForeground(Color.gray);
+		 lblPortEg.setForeground(Color.gray); 
+		 lblDomain.setForeground(Color.gray);
+		 lblDomainEg.setForeground(Color.gray);
+		 lblUsernameEg.setForeground(Color.gray);
+		 lblUsername.setForeground(Color.gray);
+		 lblPassword.setForeground(Color.gray);
+		
+	}
 
 	private boolean checkIP(String IPAddress) {
 		return (ipval.validate(IPAddress));	
@@ -243,47 +311,12 @@ public ConnectionUI( ) {
 	private boolean checkPort(String port) {
 		return  (portval.validate(port));
 	}
-
-	// setter and getter here.
-	public String getAddress() {
-		return this.AddressTextField.getText();
-	}
 	
-	public String getPort() {
-		return this.PortTextField.getText();
-	}
-	
-	public String getDomain() {
-		return this.DomainNameTextField.getText();
-	}
-	
-	public String getUserNameTextField () {
-		return this.UserNameTextField.getText();
-	}
-	
-	@SuppressWarnings("deprecation")
-	public String getPassWordTextField() {
-		return this.PasswordTextField.getText();
-	}
-	
-	public static void main(String args[]) {
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
-            }
-        });
-	}
-
-	protected static void createAndShowGUI() {
-		new ConnectionUI();
-		
-	}
-
 	public void setMyCJNA(CJNAConsole myCJNA) {
 		this.myCJNA = myCJNA;
 	}
-
+	
 	public CJNAConsole getMyCJNA() {
 		return myCJNA;
 	}
-}// end class ProxyUI
+}// end class ConnectionUI
