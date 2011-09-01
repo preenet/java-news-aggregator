@@ -21,6 +21,8 @@ import cjna.CJNAConsole;
 import cjna.net.HTTPProxyData;
 import cjna.net.IPAddressValidator;
 import cjna.net.PortValidator;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
 /**
  * 
  * @author Pree
@@ -195,6 +197,7 @@ public class ConnectionUI extends JFrame {
 	    	        		 addressTextField.setEnabled(true);
 	    	        		 portTextField.setEnabled(true);
 	    	        		 domainTextField.setEnabled(true);
+	    	        		 usernameTextField.setEnabled(true);
 	    	        		 
 	    	        		 
 	    	        		 //set JLable at proxy config to be more visible
@@ -301,6 +304,10 @@ public class ConnectionUI extends JFrame {
 		 lblUsernameEg.setForeground(Color.gray);
 		 lblUsername.setForeground(Color.gray);
 		 lblPassword.setForeground(Color.gray);
+		 panel_1.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{addressTextField, portTextField, domainTextField, usernameTextField, passwordField}));
+		 
+		 ipval = new IPAddressValidator();
+		 portval = new PortValidator();
 		
 	}
 
