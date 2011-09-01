@@ -132,7 +132,7 @@ public class ConnectionUI extends JFrame {
 					
 			}
 			else {
-				setMyCJNA(new CJNAConsole());
+				//setMyCJNA(new CJNAConsole());
 			}
 		}
 			

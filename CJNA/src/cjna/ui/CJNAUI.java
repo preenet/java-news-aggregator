@@ -1,12 +1,10 @@
 package cjna.ui;
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 import java.awt.Color;
 
@@ -14,6 +12,7 @@ import java.awt.Color;
 public class CJNAUI extends JFrame {
 
 	private JPanel contentPane;
+	private CJNAHandler worker;
 
 	/**
 	 * Launch the application.
@@ -56,5 +55,10 @@ public class CJNAUI extends JFrame {
 		textArea.setBackground(Color.WHITE);
 		textArea.setBounds(435, 6, -424, 235);
 		contentPane.add(textArea);
+		start();
+	}
+	
+	private void start() {
+		worker = new CJNAHandler(this);
 	}
 }
