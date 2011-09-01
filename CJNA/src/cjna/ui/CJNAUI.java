@@ -3,18 +3,24 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+
+import cjna.parser.FeedMessage;
+
 import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
 
 
 public class CJNAUI extends JFrame {
 
 	private JPanel contentPane;
-	private JLabel consoleLabel;
 	private CJNAHandler worker;
-
+	private JTextField textField;
+	private JLabel consoleLabel;
 	/**
 	 * Launch the application.
 	 */
@@ -37,30 +43,39 @@ public class CJNAUI extends JFrame {
 	public CJNAUI() {
 		setTitle("CJNA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 449, 292);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(6, 248, 438, 24);
+		panel_1.setBorder(new EmptyBorder(0, 0, 0, 0));
+		panel_1.setBounds(0, 238, 441, 16);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
 		consoleLabel = new JLabel("");
-		consoleLabel.setBounds(6, 6, 426, 16);
+		consoleLabel.setBounds(10, 0, 421, 14);
 		panel_1.add(consoleLabel);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBackground(Color.WHITE);
-		textArea.setBounds(435, 6, -424, 235);
-		contentPane.add(textArea);
-		start();
+		textField = new JTextField();
+		textField.setBounds(0, 0, 434, 237);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		worker = new CJNAHandler(this);
+		worker.start();
 	}
 	
 	public void setConsoleLabel(String t) {
+		
 		consoleLabel.setText(t);
+	}
+	
+	public void setTextArea(String s) {
+		System.out.println("calling setTextArea" + s);
+		textField.setText(s);
 	}
 	
 	private void start() {

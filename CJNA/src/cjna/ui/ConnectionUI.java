@@ -82,7 +82,7 @@ public class ConnectionUI extends JFrame {
 		setTitle("Connection Setting");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 454, 303);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -132,7 +132,7 @@ public class ConnectionUI extends JFrame {
 					
 			}
 			else {
-				//setMyCJNA(new CJNAConsole());
+				setMyCJNA(new CJNAConsole());
 			}
 		}
 			
@@ -156,7 +156,7 @@ public class ConnectionUI extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel.setBounds(6, 9, 438, 40);
+		panel.setBounds(6, 11, 438, 40);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -266,7 +266,7 @@ public class ConnectionUI extends JFrame {
 		panel_1.add(lblPassword);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(148, 129, 134, 22);
+		passwordField.setBounds(148, 123, 134, 28);
 		panel_1.add(passwordField);
 		
 		lblAddressEg = new JLabel("e.g. \"127.0.0.1\"");

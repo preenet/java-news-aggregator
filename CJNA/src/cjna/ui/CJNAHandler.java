@@ -1,6 +1,7 @@
 package cjna.ui;
 
 import cjna.CJNAConsole;
+import cjna.Global;
 
 /**
  * @author Pree
@@ -12,17 +13,16 @@ public class CJNAHandler extends Thread {
 	
 	public CJNAHandler(CJNAUI ui) {
 		this.ui = ui;
-		this.console = new CJNAConsole();
 	}
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Thread#run()
 	 */
 	public void run() {
-		this.start();
-		
+		console=  new CJNAConsole();
 		 while(true) {  
-			 try {  
+			
+			 try {   
 	                sleep(100);  
 	            } catch(InterruptedException e) {}  
 			ui.setConsoleLabel(this.console.getConsoleText());
