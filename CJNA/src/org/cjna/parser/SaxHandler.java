@@ -1,10 +1,10 @@
-package cjna.parser;
+package org.cjna.parser;
 
+import org.cjna.Global;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import cjna.Global;
 
 /**
  * @author Pree

@@ -1,4 +1,4 @@
-package cjna.net;
+package org.cjna.net;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

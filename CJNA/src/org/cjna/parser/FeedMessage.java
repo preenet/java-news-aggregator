@@ -1,4 +1,4 @@
-package cjna.parser;
+package org.cjna.parser;
 
 /**
  * 

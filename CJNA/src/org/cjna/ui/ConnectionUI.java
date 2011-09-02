@@ -1,4 +1,4 @@
-package cjna.ui;
+package org.cjna.ui;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -17,10 +17,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
-import cjna.CJNAConsole;
-import cjna.net.HTTPProxyData;
-import cjna.net.IPAddressValidator;
-import cjna.net.PortValidator;
+
+import org.cjna.CJNAConsole;
+import org.cjna.net.HTTPProxyData;
+import org.cjna.net.IPAddressValidator;
+import org.cjna.net.PortValidator;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 /**

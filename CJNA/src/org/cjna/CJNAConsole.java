@@ -1,7 +1,9 @@
-package cjna;
+package org.cjna;
 
 import java.util.Vector;
-import cjna.parser.FeedParser;
+
+import org.cjna.parser.FeedParser;
+
 
 
 /**

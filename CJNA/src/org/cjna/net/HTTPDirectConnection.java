@@ -1,4 +1,4 @@
-package cjna.net;
+package org.cjna.net;
 
 import java.io.IOException;
 import java.net.URL;

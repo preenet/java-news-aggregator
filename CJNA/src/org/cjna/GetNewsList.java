@@ -1,10 +1,11 @@
-package cjna;
+package org.cjna;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import cjna.net.HTTPConnectionSelection;
-import cjna.net.HTTPProxyData;
+import org.cjna.net.HTTPConnectionSelection;
+import org.cjna.net.HTTPProxyData;
+
 
 
 /**

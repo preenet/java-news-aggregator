@@ -1,4 +1,4 @@
-package cjna.ui;
+package org.cjna.ui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,11 +8,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
-import cjna.parser.FeedMessage;
 
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
+
+import org.cjna.parser.FeedMessage;
 
 
 public class CJNAUI extends JFrame {

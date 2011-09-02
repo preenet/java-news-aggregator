@@ -1,8 +1,9 @@
-package cjna;
+package org.cjna;
 
 import java.util.*;
 
-import cjna.parser.Feed;
+import org.cjna.parser.Feed;
+
 
 /**
  * @author Pree

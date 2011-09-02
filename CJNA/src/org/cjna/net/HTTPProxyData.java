@@ -1,4 +1,4 @@
-package cjna.net;
+package org.cjna.net;
 
 /**
  * @author Pree

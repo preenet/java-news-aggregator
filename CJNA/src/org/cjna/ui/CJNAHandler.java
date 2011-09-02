@@ -1,7 +1,8 @@
-package cjna.ui;
+package org.cjna.ui;
 
-import cjna.CJNAConsole;
-import cjna.Global;
+import org.cjna.CJNAConsole;
+import org.cjna.Global;
+
 
 /**
  * @author Pree
@@ -26,6 +27,10 @@ public class CJNAHandler extends Thread {
 	                sleep(100);  
 	            } catch(InterruptedException e) {}  
 			ui.setConsoleLabel(this.console.getConsoleText());
+			String s = "";
+			for(int i = 0; i < Global.myFeed.getMessages().size(); i++) 
+				s += Global.myFeed.getMessages().get(i).toString() + "\n";
+			ui.setTextArea(s);
 			ui.repaint();
 		 }
 	}
