@@ -1,7 +1,7 @@
 package org.cjna.ui;
 
 import org.cjna.CJNAConsole;
-import org.cjna.Global;
+
 
 
 /**
@@ -21,16 +21,13 @@ public class CJNAHandler extends Thread {
 	 */
 	public void run() {
 		console=  new CJNAConsole();
+		ui.setConsoleDone(console.getDone());
 		 while(true) {  
 			
 			 try {   
 	                sleep(100);  
-	            } catch(InterruptedException e) {}  
-			ui.setConsoleLabel(this.console.getConsoleText());
-			String s = "";
-			for(int i = 0; i < Global.myFeed.getMessages().size(); i++) 
-				s += Global.myFeed.getMessages().get(i).toString() + "\n";
-			ui.setTextArea(s);
+	            } catch(InterruptedException e) {} 
+			ui.setConsoleDone(console.getDone());
 			ui.repaint();
 		 }
 	}

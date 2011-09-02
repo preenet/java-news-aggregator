@@ -13,13 +13,12 @@ import org.cjna.parser.FeedParser;
  */
 
 public class CJNAConsole {
+	private boolean done;
 	private String listURI = "http://www.preet.sesolution.com/camtrss/news_list.txt";
-	private static String consoleTmp;
 	public CJNAConsole() {
+		done = false;
 		System.out.println("Start CJNA Console.");
-		consoleTmp = "Start CJNA Console";
 		
-	
 		
 		// first getting the list from the URI site.
 		GetNewsList myList = new GetNewsList(listURI);
@@ -58,13 +57,12 @@ public class CJNAConsole {
 			// finish the program and terminate 
 	
 			System.out.println("Done!");
+			done = true;
 		}
 	}
-	
-	public static String getConsoleText() {
-		return consoleTmp;
+	public boolean getDone() {
+		return this.done;
 	}
-	
 	public static void main(String args[]) {
 		new CJNAConsole();
 	}

@@ -26,6 +26,7 @@ public class Feed {
 		this.copyright = "";
 		this.pubDate = "";
 	}
+	
 	public ArrayList<FeedMessage> getMessages() {
 		return entries;
 	}

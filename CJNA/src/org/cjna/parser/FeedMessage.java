@@ -50,11 +50,17 @@ public class FeedMessage {
 	public void setGuid(String guid) {
 		this.guid = guid;
 	}
-
+	
+	@Override
+	public String toString() {
+		return title + "\n" + description;
+	}
+/*
 	@Override
 	public String toString() {
 		return "FeedMessage [title=" + title + ", description=" + description
 				+ ", link=" + link + ", author=" + author + ", guid=" + guid
 				+ "]";
 	}
+*/
 }// end class FeedMessage

@@ -1,32 +1,38 @@
 package org.cjna.ui;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Graphics;
 
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
+
+import org.cjna.Global;
 import javax.swing.JLabel;
-import javax.swing.JTextArea;
-
-
-import java.awt.Color;
-import javax.swing.JTextField;
-import javax.swing.border.EtchedBorder;
-
-import org.cjna.parser.FeedMessage;
-
 
 public class CJNAUI extends JFrame {
 
-	private JPanel contentPane;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private CJNAHandler worker;
-	private JTextField textField;
-	private JLabel consoleLabel;
+	private boolean consoleDone;
+	private JList listbox;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		EventQueue.invokeLater(
+		/**
+		 * @author Pree
+		 *
+		 */
+		new Runnable() {
 			public void run() {
 				try {
 					CJNAUI frame = new CJNAUI();
@@ -42,44 +48,46 @@ public class CJNAUI extends JFrame {
 	 * Create the frame.
 	 */
 	public CJNAUI() {
-		setTitle("CJNA");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 449, 292);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		consoleDone = false;
+		
+		// Set the frame characteristics
+		setTitle( "CAMT Java News Aggregrator " );
+		setSize(436, 404);
+		setBackground( Color.gray );
+		getContentPane().setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new EmptyBorder(0, 0, 0, 0));
-		panel_1.setBounds(0, 238, 441, 16);
-		contentPane.add(panel_1);
-		panel_1.setLayout(null);
+		panel_1.setBounds(0, 0, 420, 335);
+		getContentPane().add(panel_1);
+		panel_1.setLayout(new BorderLayout());
 		
-		consoleLabel = new JLabel("");
-		consoleLabel.setBounds(10, 0, 421, 14);
-		panel_1.add(consoleLabel);
+		listbox = new JList();
+		listbox.setBounds(0, 0, 420, 335);
+		JScrollPane pane = new JScrollPane(listbox);
+		panel_1.add(pane);
 		
-		textField = new JTextField();
-		textField.setBounds(0, 0, 434, 237);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(0, 333, 420, 33);
+		getContentPane().add(panel_2);
+		panel_2.setLayout(null);
+		
+		JLabel label = new JLabel("Console Label here.");
+		label.setBounds(10, 11, 400, 14);
+		panel_2.add(label);
 		
 		worker = new CJNAHandler(this);
-		worker.start();
+	    worker.start();
+				
 	}
 	
-	public void setConsoleLabel(String t) {
+	public void paint(Graphics g) {
 		
-		consoleLabel.setText(t);
+		if(consoleDone) {
+			listbox.setListData(Global.myFeed.getMessages().toArray());
+		}
 	}
 	
-	public void setTextArea(String s) {
-		System.out.println("calling setTextArea" + s);
-		textField.setText(s);
+	public void setConsoleDone(boolean done) {
+		this.consoleDone = done;
 	}
-	
-	private void start() {
-		worker = new CJNAHandler(this);
-	}
-}
+}// end class CJNAUI
