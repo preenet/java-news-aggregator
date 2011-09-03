@@ -2,7 +2,6 @@ package org.cjna.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
@@ -36,11 +35,12 @@ public class CJNAUI extends JFrame {
 	 * Create the frame.
 	 */
 	public CJNAUI() {
+		setResizable(false);
 		consoleDone = false;
 		
 		// Set the frame characteristics
 		setTitle( "CAMT Java News Aggregrator " );
-		setSize(436, 404);
+		setSize(426, 404);
 		setBackground( Color.gray );
 		getContentPane().setLayout(null);
 		setVisible(true);
