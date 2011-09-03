@@ -84,7 +84,7 @@ public class CJNAUI extends JFrame {
 				
 	}
 	
-	public void paint(Graphics g) {
+	public void refresh (Graphics g) {
 		
 		if(consoleDone) {
 			listbox.setListData(Global.myFeed.getMessages().toArray());

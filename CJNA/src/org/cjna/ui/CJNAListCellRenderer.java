@@ -5,9 +5,14 @@ import java.awt.Component;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JTextArea;
 import javax.swing.ListCellRenderer;
 
 public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Object value;
 	  public CJNAListCellRenderer() {
 	         setOpaque(true);
@@ -20,7 +25,9 @@ public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 	                                                   boolean cellHasFocus) {
 	    	 this.value = value;
 
-	         setText(value.toString());
+
+	    	 setText(value.toString());
+	         
 
 	         Color background;
 	         Color foreground;
@@ -36,8 +43,8 @@ public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 
 	         // check if this cell is selected
 	         } else if (isSelected) {
-	             background = Color.RED;
-	             foreground = Color.WHITE;
+	             background = Color.BLACK;
+	             foreground = Color.YELLOW;
 
 	         // unselected, and not the DnD drop location
 	         } else {
@@ -48,6 +55,11 @@ public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 	         setBackground(background);
 	         setForeground(foreground);
 
-	         return this;
+	         JTextArea renderer = new JTextArea();
+	         renderer.setText(value.toString());
+	         renderer.setLineWrap(true);
+	         
+	         return renderer;
+
 	     }
 }
