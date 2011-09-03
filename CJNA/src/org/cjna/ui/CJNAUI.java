@@ -27,21 +27,9 @@ public class CJNAUI extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(
-		/**
-		 * @author Pree
-		 *
-		 */
-		new Runnable() {
-			public void run() {
-				try {
-					CJNAUI frame = new CJNAUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	
+		CJNAUI frame = new CJNAUI();
+		frame.setVisible(true);
 	}
 
 	/**
@@ -55,6 +43,7 @@ public class CJNAUI extends JFrame {
 		setSize(436, 404);
 		setBackground( Color.gray );
 		getContentPane().setLayout(null);
+		setVisible(true);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 0, 420, 335);
@@ -63,6 +52,7 @@ public class CJNAUI extends JFrame {
 		
 		listbox = new JList();
 		listbox.setBounds(0, 0, 420, 335);
+		listbox.setVisibleRowCount(10);
 		JScrollPane pane = new JScrollPane(listbox);
 		panel_1.add(pane);
 		
