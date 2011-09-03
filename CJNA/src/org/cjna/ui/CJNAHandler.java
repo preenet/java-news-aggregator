@@ -1,6 +1,5 @@
 package org.cjna.ui;
-
-import org.cjna.CJNAConsole;
+import org.cjna.CJNADriver;
 
 
 
@@ -9,7 +8,7 @@ import org.cjna.CJNAConsole;
  *
  */
 public class CJNAHandler extends Thread {
-	private CJNAConsole console;
+	private CJNADriver worker;
 	private CJNAUI ui;
 	
 	public CJNAHandler(CJNAUI ui) {
@@ -20,15 +19,15 @@ public class CJNAHandler extends Thread {
 	 * @see java.lang.Thread#run()
 	 */
 	public void run() {
-		console=  new CJNAConsole();
-		ui.setConsoleDone(console.getDone());
+		worker =  new CJNADriver();
+		ui.setConsoleDone(worker.getDone());
 		 while(true) {  
-			 ui.setConsoleDone(console.getDone());
+			 ui.setConsoleDone(worker.getDone());
 			 ui.repaint();
 			 try {   
 	                sleep(10000);  
 	            } catch(InterruptedException e) {} 
-			ui.setConsoleDone(console.getDone());
+			ui.setConsoleDone(worker.getDone());
 			ui.repaint();
 		 }
 	}

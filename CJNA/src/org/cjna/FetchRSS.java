@@ -1,27 +1,26 @@
 package org.cjna;
 
+import java.util.TimerTask;
 import java.util.Vector;
 
 import org.cjna.parser.FeedParser;
 
-
-
 /**
  * @author Pree
- * Description:
- * This is the driver class of the program.
+ *
  */
+public class FetchRSS extends TimerTask {
+	private String listURI;
+	
+	public FetchRSS(String listURI) {
+		this.listURI = listURI;
+	}
 
-public class CJNAConsole {
-	private boolean done;
-	private String listURI = "http://www.preet.sesolution.com/camtrss/news_list.txt";
-	public CJNAConsole() {
-		done = false;
-		System.out.println("Start CJNA Console.");
-		
-		
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
 		// first getting the list from the URI site.
-		GetNewsList myList = new GetNewsList(listURI);
+		FetchNewsList myList = new FetchNewsList(listURI);
 		myList.execute();
 
 		Vector<FeedParser> fps = new Vector<FeedParser>();
@@ -56,16 +55,6 @@ public class CJNAConsole {
 			System.out.println();
 			// finish the program and terminate 
 	
-			System.out.println("Done!");
-			done = true;
 		}
 	}
-	public boolean getDone() {
-		return this.done;
-	}
-	public static void main(String args[]) {
-		new CJNAConsole();
-	}
-}// end class CJNA
-
-
+}

@@ -13,12 +13,12 @@ import org.cjna.net.HTTPProxyData;
  *
  */
 
-public class GetNewsList {
+public class FetchNewsList {
 		
 		private BufferedReader reader;
 		private HTTPConnectionSelection myConnSelect;
 		public String URI;
-	    public GetNewsList(String URI) {
+	    public FetchNewsList(String URI) {
 	    	this.URI = URI;
 	    	myConnSelect = new HTTPConnectionSelection(this.URI);
 	    }

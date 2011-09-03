@@ -17,8 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
-
-import org.cjna.CJNAConsole;
+import org.cjna.CJNADriver;
 import org.cjna.net.HTTPProxyData;
 import org.cjna.net.IPAddressValidator;
 import org.cjna.net.PortValidator;
@@ -46,7 +45,7 @@ public class ConnectionUI extends JFrame {
 	private JLabel lblAddress, lblAddressEg, lblPort, lblPortEg, lblUsername, lblUsernameEg, lblPassword, lblDomain, lblDomainEg;
 	private boolean isProxy;
 	private boolean hasInputError;
-	private CJNAConsole myCJNA;
+	private CJNADriver myCJNA;
 	private IPAddressValidator ipval;
 	private PortValidator portval;
 
@@ -113,7 +112,7 @@ public class ConnectionUI extends JFrame {
 						HTTPProxyData.getInstance().setProxyPort(portTextField.getText());
 						HTTPProxyData.getInstance().setProxyUserName(usernameTextField.getText());
 						HTTPProxyData.getInstance().setProxyPassword(passwordField.getText());
-						setMyCJNA(new CJNAConsole());
+						setMyCJNA(new CJNADriver());
 						
 					}
 					// incase that the ip address is not valid, we show the error dialog.
@@ -132,7 +131,7 @@ public class ConnectionUI extends JFrame {
 					
 			}
 			else {
-				setMyCJNA(new CJNAConsole());
+				setMyCJNA(new CJNADriver());
 			}
 		}
 			
@@ -319,11 +318,11 @@ public class ConnectionUI extends JFrame {
 		return  (portval.validate(port));
 	}
 	
-	public void setMyCJNA(CJNAConsole myCJNA) {
+	public void setMyCJNA(CJNADriver myCJNA) {
 		this.myCJNA = myCJNA;
 	}
 	
-	public CJNAConsole getMyCJNA() {
+	public CJNADriver getMyCJNA() {
 		return myCJNA;
 	}
 }// end class ConnectionUI
