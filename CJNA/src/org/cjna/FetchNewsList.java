@@ -17,7 +17,9 @@ public class FetchNewsList {
 		
 		private BufferedReader reader;
 		private HTTPConnectionSelection myConnSelect;
-		public String URI;
+		private String URI;
+
+		
 	    public FetchNewsList(String URI) {
 	    	this.URI = URI;
 	    	myConnSelect = new HTTPConnectionSelection(this.URI);

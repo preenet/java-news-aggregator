@@ -11,14 +11,17 @@ import org.cjna.parser.FeedParser;
  */
 public class FetchRSS extends TimerTask {
 	private String listURI;
+	private CJNADriver myDriver;
 	
-	public FetchRSS(String listURI) {
+	public FetchRSS(CJNADriver myDriver, String listURI) {
 		this.listURI = listURI;
+		this.myDriver = myDriver;
 	}
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		System.out.println("Fetching RSS News...");
+		myDriver.setDone(false);
 		// first getting the list from the URI site.
 		FetchNewsList myList = new FetchNewsList(listURI);
 		myList.execute();
@@ -54,7 +57,8 @@ public class FetchRSS extends TimerTask {
 			System.out.println("CJNA Reader now has : " + Global.myFeed.getSize() + " messages.");
 			System.out.println();
 			// finish the program and terminate 
-	
+			myDriver.setDone(true);
+			System.out.println("Finished Fetching News.");
 		}
 	}
-}
+}// end class FetchRss
