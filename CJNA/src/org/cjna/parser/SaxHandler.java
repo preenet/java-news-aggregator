@@ -44,8 +44,15 @@ public class SaxHandler extends DefaultHandler {
 			}
 			if(description) {
 				fm.setDescription(new String(ch, start, length));
-				description = false;	
-				Global.myFeed.getMessages().add(fm);
+				description = false;
+				// remove the duplicate message first before adding to the list
+				checkDuplicate dup = new checkDuplicate(); 
+				if(!dup.isDuplicate(Global.myFeed.getMessages(), fm)) {
+					Global.myFeed.getMessages().add(fm);
+				}
+				else {
+					System.out.println("Message is already in the list.");
+				}
 			}
 		}
 		
