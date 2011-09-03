@@ -52,9 +52,13 @@ public class CJNAUI extends JFrame {
 		getContentPane().add(panel_1);
 		panel_1.setLayout(new BorderLayout());
 		
+		
+		
 		listbox = new JList();
+
 		listbox.setBounds(0, 0, 420, 335);
 		listbox.setVisibleRowCount(10);
+		listbox.setCellRenderer(new CJNAListCellRenderer());
 		JScrollPane pane = new JScrollPane(listbox);
 		panel_1.add(pane);
 		

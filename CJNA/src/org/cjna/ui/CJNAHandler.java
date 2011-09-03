@@ -23,9 +23,10 @@ public class CJNAHandler extends Thread {
 		console=  new CJNAConsole();
 		ui.setConsoleDone(console.getDone());
 		 while(true) {  
-			
+			 ui.setConsoleDone(console.getDone());
+			 ui.repaint();
 			 try {   
-	                sleep(100);  
+	                sleep(10000);  
 	            } catch(InterruptedException e) {} 
 			ui.setConsoleDone(console.getDone());
 			ui.repaint();
