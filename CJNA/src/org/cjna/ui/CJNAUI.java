@@ -11,6 +11,8 @@ import javax.swing.JScrollPane;
 
 import org.cjna.Global;
 import javax.swing.JLabel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class CJNAUI extends JFrame {
 
@@ -61,9 +63,17 @@ public class CJNAUI extends JFrame {
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		
-		JLabel label = new JLabel("Console Label here.");
-		label.setBounds(10, 11, 400, 14);
-		panel_2.add(label);
+		JLabel lblConnectionSetting = new JLabel("<html><u>Connection Setting</u></html>");
+	
+		lblConnectionSetting.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ConnectionUI frame = new ConnectionUI();
+				frame.setVisible(true);
+			}
+		});
+		lblConnectionSetting.setBounds(10, 11, 400, 14);
+		panel_2.add(lblConnectionSetting);
 		
 		worker = new CJNAHandler(this);
 	    worker.start();
