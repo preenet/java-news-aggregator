@@ -1,5 +1,5 @@
-cjna
-cjna.net
-cjna.parser
-cjna.ui
-com.cloudgarden.layout
+org.cjna
+org.cjna.net
+org.cjna.parser
+org.cjna.ui
+org.eclipse.wb.swing
