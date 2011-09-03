@@ -28,7 +28,7 @@ public class CJNAHandler extends Thread {
 	                sleep(10000);  
 	            } catch(InterruptedException e) {} 
 			ui.setConsoleDone(worker.getDone());
-			ui.repaint();
+			ui.refresh();
 		 }
 	}
 
