@@ -2,14 +2,12 @@ package org.cjna.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import org.cjna.Global;
 import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -87,7 +85,7 @@ public class CJNAUI extends JFrame {
 	public void refresh () {
 		
 		if(consoleDone) {
-			listbox.setListData(Global.myFeed.getMessages().toArray());
+			listbox.setListData(this.worker.getGlobalData().getFeed().getMessages().toArray());
 		}
 	}
 	

@@ -6,7 +6,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.cjna.Global;
+import org.cjna.GlobalData;
 import org.cjna.net.HTTPProxyConnection;
 import org.cjna.net.HTTPProxyData;
 import org.xml.sax.InputSource;
@@ -21,8 +21,10 @@ import org.xml.sax.SAXException;
 public class FeedParser extends Thread {
 	private String URI;
 	private HTTPProxyConnection tempConn;
-	public FeedParser(String URI)  {
+	private GlobalData myData;
+	public FeedParser(String URI, GlobalData myData)  {
 		this.URI = URI;
+		this.myData = myData;
 		this.start();
 	}
 
@@ -39,7 +41,7 @@ public class FeedParser extends Thread {
 		} catch (SAXException e) {
 			e.printStackTrace();
 		}
-	    SaxHandler handler = new SaxHandler();
+	    SaxHandler handler = new SaxHandler(myData);
 	    System.out.println("Parsing " + URI);
 	    
 	    try {
