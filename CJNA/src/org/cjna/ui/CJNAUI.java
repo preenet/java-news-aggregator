@@ -79,7 +79,6 @@ public class CJNAUI extends JFrame {
 		
 		worker = new CJNAHandler(this);
 	    worker.start();
-				
 	}
 	
 	public void refresh () {
