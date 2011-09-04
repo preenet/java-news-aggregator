@@ -1,8 +1,6 @@
 package org.cjna.parser;
 
-import java.util.ArrayList;
-
-
+import java.util.Vector;
 
 
 /**
@@ -16,7 +14,7 @@ public class Feed {
 	private String language;
 	private String copyright;
 	private String pubDate;
-	private ArrayList<FeedMessage> entries = new ArrayList<FeedMessage>();
+	private Vector<FeedMessage> entries = new Vector<FeedMessage>();
 
 	public Feed() {
 		this.title = "";
@@ -27,7 +25,7 @@ public class Feed {
 		this.pubDate = "";
 	}
 	
-	public ArrayList<FeedMessage> getMessages() {
+	public Vector<FeedMessage> getMessages() {
 		return entries;
 	}
 

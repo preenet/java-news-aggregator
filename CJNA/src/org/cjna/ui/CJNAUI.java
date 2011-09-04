@@ -1,26 +1,26 @@
 package org.cjna.ui;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JToolBar;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
+import javax.swing.border.EtchedBorder;
 
 import org.cjna.Global;
-import javax.swing.JLabel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 
 public class CJNAUI extends JFrame {
 
 	private JPanel contentPane;
-	private final JList list = new JList();
 	private CJNAHandler worker;
 	private boolean consoleDone;
+	private final JList list = new JList();
 
 	/**
 	 * Launch the application.
@@ -46,41 +46,48 @@ public class CJNAUI extends JFrame {
 		setResizable(false);
 		consoleDone = false;
 		
-		setTitle(" CAMT News Reader");
+		setTitle("CAMT Java News Aggregrator");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout());
-		list.setBorder(null);
-		list.setBounds(6, 32, 438, 240);
-		JScrollPane sPane = new JScrollPane(list);
+		contentPane.setLayout(null);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 450, 22);
+		contentPane.add(menuBar);
+		
+		JMenu mnEdit = new JMenu("System");
+		menuBar.add(mnEdit);
+		
+		JMenuItem mntmConnectionSetting = new JMenuItem("Connection Setting");
+		mnEdit.add(mntmConnectionSetting);
+		
+		JMenuItem mntmExit = new JMenuItem("Exit");
+		mnEdit.add(mntmExit);
+		
+		JMenu mnHelp = new JMenu("Help");
+		menuBar.add(mnHelp);
+		
+		JMenuItem mntmAbout = new JMenuItem("About");
+		mnHelp.add(mntmAbout);
+		
+		JScrollPane sPane = new JScrollPane();
+		sPane.setBounds(0, 22, 450, 418);
 		contentPane.add(sPane);
-		
-		JToolBar toolBar = new JToolBar();
-		sPane.setColumnHeaderView(toolBar);
-		toolBar.setBounds(0, 0, 450, 20);
-		
-		JLabel lblConnectionSetting = new JLabel("<html><u>Connection Setting</u></html>");
-		lblConnectionSetting.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				ConnectionUI frame = new ConnectionUI();
-				frame.setVisible(true);
-			}
-		});
-		toolBar.add(lblConnectionSetting);
+		sPane.setViewportView(list);
 		
 		worker = new CJNAHandler(this);
 		worker.start();
 	}
 	
 	public void refresh() {
-		list.setListData(Global.myFeed.getMessages().toArray());
+		list.setListData(Global.myFeed.getMessages());
 	}
 	
 	public void setConsoleDone(boolean done) {
 		this.consoleDone = done;
 	}
 }
+
