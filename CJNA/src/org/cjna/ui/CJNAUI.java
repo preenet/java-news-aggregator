@@ -13,6 +13,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 import org.cjna.Global;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CJNAUI extends JFrame {
 
@@ -41,6 +45,7 @@ public class CJNAUI extends JFrame {
 	 * Create the frame.
 	 */
 	public CJNAUI() {
+		setTitle("CAMT Java News Aggregrator");
 		
 		setResizable(false);
 		consoleDone = false;
@@ -55,9 +60,21 @@ public class CJNAUI extends JFrame {
 		menuBar.add(mnSystem);
 		
 		JMenuItem mntmConnectionSetting = new JMenuItem("Connection Setting");
+		mntmConnectionSetting.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ConnectionUI frame = new ConnectionUI();
+				frame.setVisible(true);
+			}
+		});
+	
 		mnSystem.add(mntmConnectionSetting);
 		
 		JMenuItem mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		mnSystem.add(mntmExit);
 		
 		JMenu mnHelp = new JMenu("Help");
@@ -75,6 +92,7 @@ public class CJNAUI extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(new BorderLayout());
 		list.setBounds(0, 0, 450, 406);
+		list.setCellRenderer(new CJNAListCellRenderer());
 		JScrollPane sPane = new JScrollPane(list);
 		panel.add(sPane);
 		
