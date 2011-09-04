@@ -80,6 +80,7 @@ public class ConnectionUI extends JFrame {
 		
 		
 		setTitle("Connection Setting");
+		
 		setResizable(false);
 		setBounds(100, 100, 454, 303);
 		contentPane = new JPanel();

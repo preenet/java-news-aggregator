@@ -20,6 +20,10 @@ import java.awt.event.ActionEvent;
 
 public class CJNAUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private final JList list = new JList();
 	private boolean consoleDone;
@@ -33,6 +37,7 @@ public class CJNAUI extends JFrame {
 			public void run() {
 				try {
 					CJNAUI frame = new CJNAUI();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +51,6 @@ public class CJNAUI extends JFrame {
 	 */
 	public CJNAUI() {
 		setTitle("CAMT Java News Aggregrator");
-		
 		setResizable(false);
 		consoleDone = false;
 		
