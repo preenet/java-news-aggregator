@@ -54,12 +54,6 @@ public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 
 	         setBackground(background);
 	         setForeground(foreground);
-
-	         JTextArea renderer = new JTextArea();
-	         renderer.setText(value.toString());
-	         renderer.setLineWrap(true);
-	         
-	         return renderer;
-
+	         return this;
 	     }
 }
