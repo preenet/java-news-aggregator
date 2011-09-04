@@ -53,7 +53,7 @@ public class FeedMessage {
 	
 	@Override
 	public String toString() {
-		return title + "\n" + description;
+		return "<html>"  + title + " <br> "  + description + "</html>";
 	}
 /*
 	@Override

@@ -55,4 +55,4 @@ public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 	         setForeground(foreground);
 	         return this;
 	     }
-}
+}// end class CJNAListCellRendere

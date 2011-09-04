@@ -20,15 +20,16 @@ public class CJNAHandler extends Thread {
 	public void run() {
 		worker =  new CJNADriver();
 		ui.setConsoleDone(worker.getDone());
+		 ui.repaint();
+		
 		 while(true) {  
 			 ui.setConsoleDone(worker.getDone());
 			 ui.repaint();
 			 try {   
-	                sleep(10000);  
+	                sleep(1000);  
 	            } catch(InterruptedException e) {} 
 			ui.setConsoleDone(worker.getDone());
 			ui.refresh();
 		 }
 	}
-
 }// end class CJNAHandler

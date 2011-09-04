@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 public class CJNAUI extends JFrame {
 
 	/**
-	 * 
+	 * @author Pree
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;

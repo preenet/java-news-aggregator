@@ -11,11 +11,12 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class AboutCNJADialog extends JDialog {
 
 	/**
-	 * 
+	 * @author Pree
 	 */
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -46,18 +47,18 @@ public class AboutCNJADialog extends JDialog {
 		{
 			JLabel lblNewLabel = new JLabel("CAMT Java News Aggregrator");
 			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblNewLabel.setBounds(118, 11, 214, 14);
+			lblNewLabel.setBounds(118, 11, 214, 29);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			JLabel lblNewLabel_1 = new JLabel("CNJA version 0.0.119");
 			lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblNewLabel_1.setBounds(147, 51, 238, 14);
+			lblNewLabel_1.setBounds(147, 51, 141, 14);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("Pree Thiengburanathum");
-			lblNewLabel_2.setBounds(157, 76, 200, 14);
+			lblNewLabel_2.setBounds(157, 76, 123, 14);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
@@ -83,4 +84,4 @@ public class AboutCNJADialog extends JDialog {
 		}
 	}
 
-}
+}// end class AboutCNJADialog
