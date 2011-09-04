@@ -27,7 +27,6 @@ public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 
 
 	    	 setText(value.toString());
-	         
 
 	         Color background;
 	         Color foreground;
