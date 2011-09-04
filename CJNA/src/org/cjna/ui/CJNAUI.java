@@ -102,7 +102,7 @@ public class CJNAUI extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(new BorderLayout());
 		list.setBounds(0, 0, 450, 406);
-		list.setCellRenderer(new CJNAListCellRenderer());
+		//list.setCellRenderer(new CJNAListCellRenderer());
 		JScrollPane sPane = new JScrollPane(list);
 		panel.add(sPane);
 		

@@ -53,7 +53,13 @@ public class FeedMessage {
 	
 	@Override
 	public String toString() {
-		return "<html>"  + title + " <br> "  + description + "</html>";
+		return "<html><b>"  + title + "</b> <br> "  + description + "</html>";
+	}
+	
+	private String formatLine(String s) {
+	// we will token the string s into equal size of line then will add <br> and the end of line
+	// and at </html> at the end of the last string.
+		return s;
 	}
 /*
 	@Override
