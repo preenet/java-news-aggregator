@@ -53,7 +53,7 @@ public class FeedMessage {
 	
 	@Override
 	public String toString() {
-		return "<html><b>"  + title + "</b> <br> "  + description + "</html>";
+		return "<html><font size = \"4\">"  + title + "</font> <br> <font color = \"blue\">"   + description + "</font></html>";
 	}
 	
 	private String formatLine(String s) {

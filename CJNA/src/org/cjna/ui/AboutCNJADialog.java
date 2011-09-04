@@ -53,12 +53,12 @@ public class AboutCNJADialog extends JDialog {
 		{
 			JLabel lblNewLabel_1 = new JLabel("CNJA version 0.0.119");
 			lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblNewLabel_1.setBounds(147, 51, 141, 14);
+			lblNewLabel_1.setBounds(147, 51, 158, 14);
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
 			JLabel lblNewLabel_2 = new JLabel("Pree Thiengburanathum");
-			lblNewLabel_2.setBounds(157, 76, 123, 14);
+			lblNewLabel_2.setBounds(147, 76, 148, 14);
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
