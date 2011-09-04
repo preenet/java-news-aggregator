@@ -5,22 +5,21 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.border.EtchedBorder;
 
 import org.cjna.Global;
 
 public class CJNAUI extends JFrame {
 
 	private JPanel contentPane;
-	private CJNAHandler worker;
-	private boolean consoleDone;
 	private final JList list = new JList();
+	private boolean consoleDone;
+	private CJNAHandler worker;
 
 	/**
 	 * Launch the application.
@@ -46,48 +45,49 @@ public class CJNAUI extends JFrame {
 		setResizable(false);
 		consoleDone = false;
 		
-		setTitle("CAMT Java News Aggregrator");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 450);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 450, 22);
-		contentPane.add(menuBar);
+		setJMenuBar(menuBar);
 		
-		JMenu mnEdit = new JMenu("System");
-		menuBar.add(mnEdit);
+		JMenu mnSystem = new JMenu("System");
+		menuBar.add(mnSystem);
 		
 		JMenuItem mntmConnectionSetting = new JMenuItem("Connection Setting");
-		mnEdit.add(mntmConnectionSetting);
+		mnSystem.add(mntmConnectionSetting);
 		
 		JMenuItem mntmExit = new JMenuItem("Exit");
-		mnEdit.add(mntmExit);
+		mnSystem.add(mntmExit);
 		
 		JMenu mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
 		
 		JMenuItem mntmAbout = new JMenuItem("About");
 		mnHelp.add(mntmAbout);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		JScrollPane sPane = new JScrollPane();
-		sPane.setBounds(0, 22, 450, 418);
-		contentPane.add(sPane);
-		sPane.setViewportView(list);
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 450, 406);
+		contentPane.add(panel);
+		panel.setLayout(new BorderLayout());
+		list.setBounds(0, 0, 450, 406);
+		JScrollPane sPane = new JScrollPane(list);
+		panel.add(sPane);
 		
 		worker = new CJNAHandler(this);
 		worker.start();
 	}
 	
-	public void refresh() {
-		list.setListData(Global.myFeed.getMessages());
-	}
-	
 	public void setConsoleDone(boolean done) {
 		this.consoleDone = done;
 	}
-}
+	
+	public void refresh() {
+		list.setListData(Global.myFeed.getMessages());
+	}
 
+}
