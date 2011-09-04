@@ -1,7 +1,5 @@
 package org.cjna.ui;
 import org.cjna.CJNADriver;
-import org.cjna.GlobalData;
-
 
 
 /**
@@ -31,10 +29,6 @@ public class CJNAHandler extends Thread {
 			ui.setConsoleDone(worker.getDone());
 			ui.refresh();
 		 }
-	}
-	
-	public GlobalData getGlobalData() {
-		return this.worker.getGlobalData();
 	}
 
 }// end class CJNAHandler

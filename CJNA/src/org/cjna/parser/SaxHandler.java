@@ -1,6 +1,6 @@
 package org.cjna.parser;
 
-import org.cjna.GlobalData;
+import org.cjna.Global;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -14,9 +14,7 @@ public class SaxHandler extends DefaultHandler {
 		private boolean title = false;
 		private boolean description = false;
 		private FeedMessage fm;
-		private GlobalData myData;
-		public SaxHandler(GlobalData myData) {
-			this.myData = myData;
+		public SaxHandler() {
 		}
 		
 		@Override
@@ -51,8 +49,8 @@ public class SaxHandler extends DefaultHandler {
 				description = false;
 				// remove the duplicate message first before adding to the list
 				checkDuplicate dup = new checkDuplicate(); 
-				if(!dup.isDuplicate(myData.getFeed().getMessages(), fm)) {
-					myData.getFeed().getMessages().add(fm);
+				if(!dup.isDuplicate(Global.myFeed.getMessages(), fm)) {
+					Global.myFeed.getMessages().add(fm);
 				}
 				else {
 					System.out.println("Message is already in the list.");

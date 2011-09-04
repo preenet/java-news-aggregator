@@ -18,12 +18,9 @@ public class FetchNewsList {
 		private BufferedReader reader;
 		private HTTPConnectionSelection myConnSelect;
 		private String URI;
-		private GlobalData myData;
 
-		
-	    public FetchNewsList(String URI, GlobalData myData) {
+	    public FetchNewsList(String URI) {
 	    	this.URI = URI;
-	    	this.myData = myData;
 	    	myConnSelect = new HTTPConnectionSelection(this.URI);
 	    }
 	  
@@ -42,7 +39,7 @@ public class FetchNewsList {
 					  String s; 
 				  
 					    while ((s = reader.readLine()) != null) {
-					      myData.getURI().add(s);
+					      Global.URI.add(s);
 					    }
 					     close();
 				  }
@@ -52,7 +49,7 @@ public class FetchNewsList {
 					  String s; 
 					  
 					    while ((s = reader.readLine()) != null) {
-					    	myData.getURI().add(s);
+					    	Global.URI.add(s);
 					    }
 					      close();
 				  }
