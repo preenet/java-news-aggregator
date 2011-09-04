@@ -88,11 +88,7 @@ public class CJNAUI extends JFrame {
 	public void refresh () {
 		
 		if(consoleDone) {
-		//	Vector<String> tmp = new Vector<String>();
-			//for(int i = 0; i < Global.myFeed.getSize(); i++) 
-				//tmp.add(Global.myFeed.getMessages().get(i).getTitle() + " " + Global.myFeed.getMessages().get(i).getDescription());
 			listbox.setListData(Global.myFeed.getMessages().toArray());
-			//listbox.setListData(tmp);
 		}
 	}
 	
