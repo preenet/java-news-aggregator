@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.UIManager;
 
 import org.cjna.Global;
 import java.awt.event.ActionListener;
@@ -20,7 +21,7 @@ import javax.swing.JLabel;
 
 /**
  * @author Pree Thiengburanathum preenet@gmail.com
- *
+ * 
  */
 public class CJNAUI extends JFrame {
 
@@ -50,21 +51,22 @@ public class CJNAUI extends JFrame {
 	 * Create the frame.
 	 */
 	public CJNAUI() {
+		setNativeLookAndFeel();
 		setTitle("CAMT Java News Aggregrator");
 		setResizable(false);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 470);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		JMenu mnSystem = new JMenu("System");
 		menuBar.add(mnSystem);
-		
+
 		JMenuItem mntmAddRss = new JMenuItem("Add RSS");
 		mnSystem.add(mntmAddRss);
-		
+
 		JMenuItem mntmConnectionSetting = new JMenuItem("Connection Setting");
 		mntmConnectionSetting.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -73,7 +75,7 @@ public class CJNAUI extends JFrame {
 			}
 		});
 		mnSystem.add(mntmConnectionSetting);
-		
+
 		JMenuItem mntmExit = new JMenuItem("Exit");
 		mntmExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -81,10 +83,10 @@ public class CJNAUI extends JFrame {
 			}
 		});
 		mnSystem.add(mntmExit);
-		
+
 		JMenu mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
-		
+
 		JMenuItem mntmAboutCjna = new JMenuItem("About CJNA");
 		mntmAboutCjna.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -97,22 +99,30 @@ public class CJNAUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
+
 		list = new JList();
 		list.setCellRenderer(new CJNAListCellRenderer());
 		JScrollPane scroll = new JScrollPane(list);
 		contentPane.add(scroll, BorderLayout.CENTER);
-		
+
 		JToolBar toolBar = new JToolBar();
 		contentPane.add(toolBar, BorderLayout.SOUTH);
-		
+
 		JLabel lblSystemMessage = new JLabel("System Message");
 		toolBar.add(lblSystemMessage);
-		
+
 		worker = new CJNAHandler(this);
 		worker.start();
 	}
-	
+
+	public static void setNativeLookAndFeel() {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+			System.out.println("Error setting native LAF: " + e);
+		}
+	}
+
 	public void setConsoleDone(boolean d) {
 		worker.setConsoleDone(d);
 	}
