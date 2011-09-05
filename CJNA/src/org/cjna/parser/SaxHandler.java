@@ -5,7 +5,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-
 /**
  * @author Pree
  *
@@ -47,8 +46,9 @@ public class SaxHandler extends DefaultHandler {
 			if(description) {
 				fm.setDescription(new String(ch, start, length));
 				description = false;
+				
 				// remove the duplicate message first before adding to the list
-				CheckDuplicate dup = new CheckDuplicate(); 
+				CheckDuplicateFeed dup = new CheckDuplicateFeed(); 
 				if(!dup.isDuplicate(Global.myFeed.getMessages(), fm)) {
 					Global.myFeed.getMessages().add(fm);
 				}

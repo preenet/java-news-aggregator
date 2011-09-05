@@ -13,6 +13,27 @@ public class FeedMessage {
 	private String author;
 	private String guid;
 	
+	private String formatMultipleLine(String s) {
+		// we will token the string s into equal size of line then will add <br> and the end of line
+		// and at </html> at the end of the last string.
+			int partLength = 70;
+			int len = s.length();
+
+		    // Number of parts
+		    int nparts = (len + partLength - 1) / partLength;
+		    String parts = "";
+
+		    // Break into parts
+		    int offset= 0;
+		    int i = 0;
+		    while (i < nparts) {
+		        parts += s.substring(offset, Math.min(offset + partLength, len)) + "<br>";
+		        offset += partLength;
+		        i++;
+		    }
+		    return parts;
+		}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -53,14 +74,9 @@ public class FeedMessage {
 	
 	@Override
 	public String toString() {
-		return "<html><font size = \"4\" color = \"blue\">"   + title + "</font> <br>"   + description + "</html>";
+		return "<html><font size = \"4\" color = \"blue\">"   + title + "</font> <br>"   + formatMultipleLine(description) + "</html>";
 	}
-	
-	private String formatLine(String s) {
-	// we will token the string s into equal size of line then will add <br> and the end of line
-	// and at </html> at the end of the last string.
-		return s;
-	}
+		
 /*
 	@Override
 	public String toString() {

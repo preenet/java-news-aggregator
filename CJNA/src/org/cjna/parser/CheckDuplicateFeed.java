@@ -7,9 +7,9 @@ import java.util.Vector;
  * @author Pree
  *
  */
-public class CheckDuplicate {
+public class CheckDuplicateFeed {
 	
-	public CheckDuplicate() {} // end constructor
+	public CheckDuplicateFeed() {} // end constructor
 	/**
 	 * @param fmList
 	 * @param fm
@@ -28,4 +28,4 @@ public class CheckDuplicate {
 		return false;
 	}
 
-}// end class CheckDuplicaet
+}// end class CheckDuplicateFeed
