@@ -1,0 +1,5 @@
+org.cjna
+org.cjna.net
+org.cjna.parser
+org.cjna.ui
+org.eclipse.wb.swing
