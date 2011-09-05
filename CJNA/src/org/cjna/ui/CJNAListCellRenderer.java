@@ -9,23 +9,27 @@ import javax.swing.ListCellRenderer;
 
 public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 	/**
-	 * @author Pree
+	 * @author Pree Thiengburanathum
+	 * preenet@gmail.com
 	 */
 	private static final long serialVersionUID = 1L;
 	private Object value;
-	  public CJNAListCellRenderer() {
+	public CJNAListCellRenderer() {
 	         setOpaque(true);
-	     }
+	}
 
-	     public Component getListCellRendererComponent(JList list,
+	public Component getListCellRendererComponent(JList list,
 	                                                   Object value,
 	                                                   int index,
 	                                                   boolean isSelected,
 	                                                   boolean cellHasFocus) {
 	    	 setText(value.toString());
-	         setBackground(isSelected ? Color.red : Color.white);
-	         setForeground(isSelected ? Color.white : Color.black);
+	    	 
+	    	 Color colr1 = new Color(139, 69, 19);
+	    	 Color colr2 = new Color(255, 140, 0);
+	    	 
+	         setBackground(isSelected ? colr2: colr1 );
+	         setForeground(isSelected ? colr1 : colr2);
 	         return this;
-
-	     }
+	}
 }// end class CJNAListCellRendere

@@ -14,42 +14,63 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * @author Pree
- *
+ * @author Pree Thiengburanathum preenet@gmail.com
+ * 
  */
 public class HTTPProxyConnection {
 	private BufferedReader reader;
 	private String URI;
+
+	/**
+	 * 
+	 * @param URI
+	 * @throws HttpException
+	 * @throws IOException
+	 */
 	public HTTPProxyConnection(String URI) throws HttpException, IOException {
 		this.URI = URI;
 		this.execute();
 	}
-	
+
+	/**
+	 * 
+	 * @throws HttpException
+	 * @throws IOException
+	 */
 	public void execute() throws HttpException, IOException {
 		HttpClient proxyClient = new HttpClient();
-		proxyClient.getHostConfiguration().setProxy(HTTPProxyData.getInstance().getProxyHost(),
+		proxyClient.getHostConfiguration().setProxy(
+				HTTPProxyData.getInstance().getProxyHost(),
 				HTTPProxyData.getInstance().getProxyPort());
-		
+
 		List<String> authPrefs = new ArrayList<String>();
 		authPrefs.add(AuthPolicy.NTLM);
 
-        proxyClient.getState().setProxyCredentials(
-            new AuthScope(null, 8080, null),
-            new NTCredentials(HTTPProxyData.getInstance().getProxyUserName(),HTTPProxyData.getInstance().getProxyPassword(),
-            		"", HTTPProxyData.getInstance().getProxyDomain()));
+		proxyClient.getState().setProxyCredentials(
+				new AuthScope(null, 8080, null),
+				new NTCredentials(HTTPProxyData.getInstance()
+						.getProxyUserName(), HTTPProxyData.getInstance()
+						.getProxyPassword(), "", HTTPProxyData.getInstance()
+						.getProxyDomain()));
 
-        proxyClient.getParams().setParameter(AuthPolicy.AUTH_SCHEME_PRIORITY, authPrefs);
+		proxyClient.getParams().setParameter(AuthPolicy.AUTH_SCHEME_PRIORITY,
+				authPrefs);
 
-        HttpMethod get = new GetMethod(this.URI);
-   
-        int status = proxyClient.executeMethod(get);
-        System.out.println("HTTP status is: " + status);
-      
-        reader = new BufferedReader(new InputStreamReader(get.getResponseBodyAsStream()));
+		HttpMethod get = new GetMethod(this.URI);
+
+		int status = proxyClient.executeMethod(get);
+		System.out.println("HTTP status is: " + status);
+
+		reader = new BufferedReader(new InputStreamReader(
+				get.getResponseBodyAsStream()));
 
 	}
+
+	/**
+	 * 
+	 * @return BufferedReader reader
+	 */
 	public BufferedReader getBufferedReader() {
 		return this.reader;
 	}

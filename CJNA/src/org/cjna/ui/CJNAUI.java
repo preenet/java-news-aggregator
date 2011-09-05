@@ -13,20 +13,20 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 import org.cjna.Global;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Observable;
+import java.util.Observer;
 
-public class CJNAUI extends JFrame {
+public class CJNAUI extends JFrame implements Observer {
 
 	/**
-	 * @author Pree
+	 * @author Pree Thiengburanathum preenet@gmail.com
 	 */
+
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private final JList list = new JList();
-	private boolean consoleDone;
 	private CJNAHandler worker;
 
 	/**
@@ -52,17 +52,16 @@ public class CJNAUI extends JFrame {
 	public CJNAUI() {
 		setTitle("CAMT Java News Aggregrator");
 		setResizable(false);
-		consoleDone = false;
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 450);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		JMenu mnSystem = new JMenu("System");
 		menuBar.add(mnSystem);
-		
+
 		JMenuItem mntmConnectionSetting = new JMenuItem("Connection Setting");
 		mntmConnectionSetting.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -70,9 +69,9 @@ public class CJNAUI extends JFrame {
 				frame.setVisible(true);
 			}
 		});
-	
+
 		mnSystem.add(mntmConnectionSetting);
-		
+
 		JMenuItem mntmExit = new JMenuItem("Exit");
 		mntmExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -80,10 +79,10 @@ public class CJNAUI extends JFrame {
 			}
 		});
 		mnSystem.add(mntmExit);
-		
+
 		JMenu mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
-		
+
 		JMenuItem mntmAbout = new JMenuItem("About CJNA");
 		mntmAbout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -96,7 +95,7 @@ public class CJNAUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 450, 406);
 		contentPane.add(panel);
@@ -106,19 +105,25 @@ public class CJNAUI extends JFrame {
 		list.setCellRenderer(new CJNAListCellRenderer());
 		JScrollPane sPane = new JScrollPane(list);
 		panel.add(sPane);
-		
+
 		worker = new CJNAHandler(this);
 		worker.start();
 	}
-	
+
 	public void setConsoleDone(boolean d) {
 		worker.setConsoleDone(d);
 	}
-	
+
 	public void refresh() {
-		if(worker.getConsoleDone()) {
+		if (worker.getConsoleDone()) {
 			list.setListData(Global.myFeed.getMessages());
 			setConsoleDone(false);
 		}
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+
 	}
 }// end class CJNAUI

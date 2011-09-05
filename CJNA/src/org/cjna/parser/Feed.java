@@ -2,9 +2,8 @@ package org.cjna.parser;
 
 import java.util.Vector;
 
-
 /**
- * @author Pree
+ * @author Pree Thiengburanathum preenet@gmail.com
  */
 public class Feed {
 
@@ -24,14 +23,14 @@ public class Feed {
 		this.copyright = "";
 		this.pubDate = "";
 	}
-	
+
 	public Vector<FeedMessage> getMessages() {
 		return entries;
 	}
 
 	public String getTitle() {
 		return title;
-	}// end method getTitle
+	}
 
 	public String getLink() {
 		return link;
@@ -52,7 +51,7 @@ public class Feed {
 	public String getPubDate() {
 		return pubDate;
 	}
-	
+
 	public int getSize() {
 		return this.entries.size();
 	}

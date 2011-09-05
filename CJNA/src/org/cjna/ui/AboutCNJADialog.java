@@ -2,7 +2,6 @@ package org.cjna.ui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -11,12 +10,11 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
 
 public class AboutCNJADialog extends JDialog {
 
 	/**
-	 * @author Pree
+	 * @author Pree Thiengburanathum preenet@gmail.com
 	 */
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -62,7 +60,8 @@ public class AboutCNJADialog extends JDialog {
 			contentPanel.add(lblNewLabel_2);
 		}
 		{
-			JLabel lblNewLabel_3 = new JLabel("<html>Warning: This program is for educational purpose. <br>The author doesn't response for any damage of your system.</html>");
+			JLabel lblNewLabel_3 = new JLabel(
+					"<html>Warning: This program is for educational purpose. <br>The author doesn't response for any damage of your system.</html>");
 			lblNewLabel_3.setBounds(21, 160, 305, 58);
 			contentPanel.add(lblNewLabel_3);
 		}
@@ -83,5 +82,4 @@ public class AboutCNJADialog extends JDialog {
 			}
 		}
 	}
-
 }// end class AboutCNJADialog

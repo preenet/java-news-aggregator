@@ -2,10 +2,9 @@ package org.cjna.parser;
 
 import java.util.Vector;
 
-
 /**
- * @author Pree
- *
+ * @author Pree Thiengburanathum preenet@gmail.com
+ * 
  */
 public class CheckDuplicateFeed {
 	

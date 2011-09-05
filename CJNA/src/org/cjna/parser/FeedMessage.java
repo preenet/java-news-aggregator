@@ -2,8 +2,8 @@ package org.cjna.parser;
 
 /**
  * 
- * @author Pree
- *
+ * @author Pree Thiengburanathum preenet@gmail.com
+ * 
  */
 public class FeedMessage {
 
@@ -12,31 +12,34 @@ public class FeedMessage {
 	private String link;
 	private String author;
 	private String guid;
-	
+
 	private String formatMultipleLine(String s) {
-		// we will token the string s into equal size of line then will add <br> and the end of line
+		// we will token the string s into equal size of line then will add <br>
+		// and the end of line
 		// and at </html> at the end of the last string.
-			int partLength = 70;
-			int len = s.length();
+		int partLength = 70;
+		int len = s.length();
 
-		    // Number of parts
-		    int nparts = (len + partLength - 1) / partLength;
-		    String parts = "";
+		// number of parts
+		int nparts = (len + partLength - 1) / partLength;
+		String parts = "";
 
-		    // Break into parts
-		    int offset= 0;
-		    int i = 0;
-		    while (i < nparts) {
-		        parts += s.substring(offset, Math.min(offset + partLength, len)) + "<br>";
-		        offset += partLength;
-		        i++;
-		    }
-		    return parts;
+		// break into parts
+		int offset = 0;
+		int i = 0;
+		while (i < nparts) {
+			parts += s.substring(offset, Math.min(offset + partLength, len))
+					+ "<br>";
+			offset += partLength;
+			i++;
 		}
-	
+		return parts;
+	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -68,21 +71,20 @@ public class FeedMessage {
 	public String getGuid() {
 		return guid;
 	}
+
 	public void setGuid(String guid) {
 		this.guid = guid;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "<html><font size = \"4\" color = \"blue\">"   + title + "</font> <br>"   + formatMultipleLine(description) + "</html>";
+		return "<html><font size = \"4\" color = \"black\">" + title
+				+ "</font> <br>" + formatMultipleLine(description) + "</html>";
 	}
-		
-/*
-	@Override
-	public String toString() {
-		return "FeedMessage [title=" + title + ", description=" + description
-				+ ", link=" + link + ", author=" + author + ", guid=" + guid
-				+ "]";
-	}
-*/
+
+	/*
+	 * @Override public String toString() { return "FeedMessage [title=" + title
+	 * + ", description=" + description + ", link=" + link + ", author=" +
+	 * author + ", guid=" + guid + "]"; }
+	 */
 }// end class FeedMessage

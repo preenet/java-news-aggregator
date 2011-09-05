@@ -1,8 +1,8 @@
 package org.cjna.net;
 
 /**
- * @author Pree
- *
+ * @author Pree Thiengburanathum preenet@gmail.com
+ * 
  */
 public class HTTPProxyData {
 
@@ -12,11 +12,12 @@ public class HTTPProxyData {
 	private String proxyDomain;
 	private String proxyUserName;
 	private String proxyPassword;
-	
+
 	private static class HTTPProxyDataHolder {
-        private static final HTTPProxyData INSTANCE = new HTTPProxyData();
-   
+		private static final HTTPProxyData INSTANCE = new HTTPProxyData();
+
 	}
+
 	public HTTPProxyData() {
 		this.isProxy = false;
 		this.proxyDomain = "";
@@ -26,13 +27,17 @@ public class HTTPProxyData {
 	}
 
 	/**
-    *
-    * @return the instance
-    */
-   public static HTTPProxyData getInstance() {
-       return HTTPProxyDataHolder.INSTANCE;
-   }
+	 * 
+	 * @return the instance
+	 */
+	public static HTTPProxyData getInstance() {
+		return HTTPProxyDataHolder.INSTANCE;
+	}
 
+	/**
+	 * 
+	 * @param proxyPort
+	 */
 	public void setProxyPort(String proxyPort) {
 		this.proxyPort = Integer.parseInt(proxyPort);
 	}
@@ -44,6 +49,10 @@ public class HTTPProxyData {
 		return proxyPort;
 	}
 
+	/**
+	 * 
+	 * @param proxyHost
+	 */
 	public void setProxyHost(String proxyHost) {
 		this.proxyHost = proxyHost;
 	}
@@ -52,6 +61,10 @@ public class HTTPProxyData {
 		return proxyHost;
 	}
 
+	/**
+	 * 
+	 * @param isProxy
+	 */
 	public void setProxy(boolean isProxy) {
 		this.isProxy = isProxy;
 	}
@@ -60,30 +73,54 @@ public class HTTPProxyData {
 		return isProxy;
 	}
 
+	/**
+	 * 
+	 * @param proxyUserName
+	 */
 	public void setProxyUserName(String proxyUserName) {
 		this.proxyUserName = proxyUserName;
 	}
 
+	/**
+	 * 
+	 * @return proxyUserName
+	 */
 	public String getProxyUserName() {
 		return proxyUserName;
 	}
 
+	/**
+	 * 
+	 * @param proxyDomain
+	 */
 	public void setProxyDomain(String proxyDomain) {
 		this.proxyDomain = proxyDomain;
 	}
 
+	/**
+	 * 
+	 * @return proxyDomain
+	 */
 	public String getProxyDomain() {
 		return proxyDomain;
 	}
 
+	/**
+	 * 
+	 * @param proxyPassword
+	 */
 	public void setProxyPassword(String proxyPassword) {
 		this.proxyPassword = proxyPassword;
 	}
 
+	/**
+	 * 
+	 * @return proxyPassword
+	 */
 	public String getProxyPassword() {
 		return proxyPassword;
 	}
-	
+
 	public void resetProxyData() {
 		this.isProxy = false;
 		this.proxyDomain = "";
