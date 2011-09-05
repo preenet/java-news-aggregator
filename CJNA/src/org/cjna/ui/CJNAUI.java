@@ -70,8 +70,7 @@ public class CJNAUI extends JFrame {
 		JMenuItem mntmConnectionSetting = new JMenuItem("Connection Setting");
 		mntmConnectionSetting.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ConnectionUI frame = new ConnectionUI();
-				frame.setVisible(true);
+				openConnectionSetting();
 			}
 		});
 		mnSystem.add(mntmConnectionSetting);
@@ -121,6 +120,16 @@ public class CJNAUI extends JFrame {
 		} catch (Exception e) {
 			System.out.println("Error setting native LAF: " + e);
 		}
+	}
+	
+	private void openConnectionSetting() {
+		ConnectionUI frame = new ConnectionUI(this);
+		frame.setVisible(true);
+	}
+	
+	public void restartCJNA() {
+		this.worker = new CJNAHandler(this);
+		worker.start();
 	}
 
 	public void setConsoleDone(boolean d) {

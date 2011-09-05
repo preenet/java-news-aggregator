@@ -49,7 +49,7 @@ public class AboutCNJADialog extends JDialog {
 			contentPanel.add(lblNewLabel);
 		}
 		{
-			JLabel lblNewLabel_1 = new JLabel("CNJA version 0.0.119");
+			JLabel lblNewLabel_1 = new JLabel("CNJA version 0.0.137");
 			lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 			lblNewLabel_1.setBounds(147, 51, 158, 14);
 			contentPanel.add(lblNewLabel_1);
