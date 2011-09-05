@@ -14,16 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>img/CJNAIcon.ico</name>
-			<type>1</type>
-			<location>C:/Documents and Settings/Administrator/Desktop/CJNAIcon.ico</location>
-		</link>
-		<link>
-			<name>img/SplashCNJA.bmp</name>
-			<type>1</type>
-			<location>C:/Documents and Settings/Administrator/Desktop/SplashCNJA.bmp</location>
-		</link>
-	</linkedResources>
 </projectDescription>
