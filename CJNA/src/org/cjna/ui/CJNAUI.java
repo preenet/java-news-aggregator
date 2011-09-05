@@ -103,7 +103,7 @@ public class CJNAUI extends JFrame {
 		panel.setLayout(new BorderLayout());
 		list.setVisibleRowCount(20);
 		list.setBounds(0, 0, 450, 406);
-		//list.setCellRenderer(new CJNAListCellRenderer());
+		list.setCellRenderer(new CJNAListCellRenderer());
 		JScrollPane sPane = new JScrollPane(list);
 		panel.add(sPane);
 		
@@ -111,12 +111,14 @@ public class CJNAUI extends JFrame {
 		worker.start();
 	}
 	
-	public void setConsoleDone(boolean done) {
-		this.consoleDone = done;
+	public void setConsoleDone(boolean d) {
+		worker.setConsoleDone(d);
 	}
 	
 	public void refresh() {
-		list.setListData(Global.myFeed.getMessages());
+		if(worker.getConsoleDone()) {
+			list.setListData(Global.myFeed.getMessages());
+			setConsoleDone(false);
+		}
 	}
-
-}
+}// end class CJNAUI

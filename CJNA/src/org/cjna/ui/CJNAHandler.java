@@ -1,7 +1,6 @@
 package org.cjna.ui;
 import org.cjna.CJNADriver;
 
-
 /**
  * @author Pree
  *
@@ -20,16 +19,23 @@ public class CJNAHandler extends Thread {
 	public void run() {
 		worker =  new CJNADriver();
 		ui.setConsoleDone(worker.getDone());
-		 ui.repaint();
+		ui.refresh();
 		
 		 while(true) {  
 			 ui.setConsoleDone(worker.getDone());
-			 ui.repaint();
 			 try {   
 	                sleep(1000);  
 	            } catch(InterruptedException e) {} 
 			ui.setConsoleDone(worker.getDone());
 			ui.refresh();
 		 }
+	}
+	
+	public boolean getConsoleDone() {
+		return worker.getDone();
+	}
+	
+	public void setConsoleDone(boolean d) {
+		worker.setDone(d);
 	}
 }// end class CJNAHandler

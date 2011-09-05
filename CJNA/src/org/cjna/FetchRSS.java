@@ -30,7 +30,7 @@ public class FetchRSS extends TimerTask {
 		
 		// show the list to the console and parse each URI site.
 		if(Global.URI.size() == 0) {
-			System.out.println("Error: No sites to read.");
+			System.out.println("Error: Can not connect to the site.");
 			System.exit(0);
 		}
 		else {
@@ -56,6 +56,7 @@ public class FetchRSS extends TimerTask {
 			}
 			System.out.println("CJNA Reader now has : " + Global.myFeed.getSize() + " messages.");
 			System.out.println();
+			
 			// finish the program and terminate 
 			myDriver.setDone(true);
 			System.out.println("Finished Fetching News.");
