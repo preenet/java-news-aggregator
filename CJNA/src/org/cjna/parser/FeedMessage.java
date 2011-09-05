@@ -17,7 +17,7 @@ public class FeedMessage {
 		// we will token the string s into equal size of line then will add <br>
 		// and the end of line
 		// and at </html> at the end of the last string.
-		int partLength = 70;
+		int partLength = 65;
 		int len = s.length();
 
 		// number of parts

@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
 /**
- * @author Pree
+ * @author Pree Thiengburanathum preenet@gmail.com
  *
  */
 public class CJNAUI extends JFrame {
@@ -37,6 +37,7 @@ public class CJNAUI extends JFrame {
 			public void run() {
 				try {
 					CJNAUI frame = new CJNAUI();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,6 +50,9 @@ public class CJNAUI extends JFrame {
 	 * Create the frame.
 	 */
 	public CJNAUI() {
+		setTitle("CAMT Java News Aggregrator");
+		setResizable(false);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 470);
 		
