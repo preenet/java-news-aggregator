@@ -33,7 +33,7 @@ public class FetchRSS extends TimerTask {
 		
 		myDriver.setDone(false);
 		// first getting the list from the URI site.
-		FetchNewsList myList = new FetchNewsList(listURI);
+		FetchNewsList myList = new FetchNewsList(listURI, myDriver);
 		myList.execute();
 
 		Vector<FeedParser> fps = new Vector<FeedParser>();
@@ -69,7 +69,9 @@ public class FetchRSS extends TimerTask {
 
 			// finish the program and terminate
 			myDriver.setDone(true);
-			System.out.println("Finished Fetching News.");
+			msg = "Finished Fetching News.";
+			System.out.println(msg);
+			myDriver.setSystemMsg(msg + ", Total message(s) (" + Global.myFeed.getSize()+")");
 		}
 	}
 }// end class FetchRss

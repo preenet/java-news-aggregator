@@ -17,9 +17,13 @@ public class FetchNewsList {
 	private BufferedReader reader;
 	private HTTPConnectionSelection myConnSelect;
 	private String URI;
+	private CJNADriver myDriver;
+	private String msg;
 
-	public FetchNewsList(String URI) {
+	public FetchNewsList(String URI, CJNADriver myDriver) {
 		this.URI = URI;
+		this.myDriver = myDriver;
+		this.msg = "";
 		myConnSelect = new HTTPConnectionSelection(this.URI);
 	}
 
@@ -29,8 +33,9 @@ public class FetchNewsList {
 	 * future parse.
 	 */
 	public void execute() {
-		
-		System.out.println("Connecting to news list server at " + this.URI);
+		msg = "Connecting to news list server at " + this.URI;
+		System.out.println(msg);
+		myDriver.setSystemMsg(msg);
 	
 		try {
 			if (!HTTPProxyData.getInstance().isProxy()) {
@@ -53,7 +58,9 @@ public class FetchNewsList {
 				}
 				close();
 			} else {
-				System.out.println("Error: Can't connect to the list server.");
+				msg = "Error: Can't connect to the list server.";
+				System.out.println(msg);
+				myDriver.setSystemMsg(msg);
 			}
 		} catch (Exception e) {
 		}

@@ -22,6 +22,7 @@ public class CJNAHandler extends Thread {
 	public void run() {
 		worker = new CJNADriver();
 		ui.setConsoleDone(worker.getDone());
+		setSystemMsg();
 		ui.refresh();
 
 		while (true) {
@@ -31,6 +32,8 @@ public class CJNAHandler extends Thread {
 			} catch (InterruptedException e) {
 			}
 			ui.setConsoleDone(worker.getDone());
+			setSystemMsg();
+			ui.repaint();
 			ui.refresh();
 		}
 	}
@@ -43,7 +46,7 @@ public class CJNAHandler extends Thread {
 		worker.setDone(d);
 	}
 	
-	public CJNADriver getDriver() {
-		return this.worker;
+	private void setSystemMsg() {
+		ui.setMessage(worker.getSystemMsg());
 	}
 }// end class CJNAHandler

@@ -31,6 +31,7 @@ public class CJNAUI extends JFrame {
 	private JPanel contentPane;
 	private JList list;
 	private CJNAHandler worker;
+	private JLabel lblSystemMessage;
 	
 	/**
 	 * Launch the application.
@@ -114,7 +115,7 @@ public class CJNAUI extends JFrame {
 		JToolBar toolBar = new JToolBar();
 		contentPane.add(toolBar, BorderLayout.SOUTH);
 
-		JLabel lblSystemMessage = new JLabel("System Message");
+		lblSystemMessage = new JLabel("System Message");
 		toolBar.add(lblSystemMessage);
 
 		worker = new CJNAHandler(this);
@@ -129,8 +130,8 @@ public class CJNAUI extends JFrame {
 		}
 	}
 	
-	private void setMessage(String s) {
-		worker.getDriver().getSystemMsg()
+	public void setMessage(String s) {
+		lblSystemMessage.setText(s);
 	}
 	
 	private void openConnectionSetting() {
