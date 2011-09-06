@@ -152,11 +152,8 @@ public class CJNAUI extends JFrame {
 
 	public void refresh() {
 		if (worker.getConsoleDone()) {
-			System.out.println("console is done!");
 			list.setListData(Global.myFeed.getMessages());
 			setConsoleDone(false);
 		}
-		else
-			System.out.println("console is NOT done!");
 	}
 }// end class CJNAUI

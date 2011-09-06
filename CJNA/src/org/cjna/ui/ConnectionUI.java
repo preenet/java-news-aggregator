@@ -20,6 +20,7 @@ import javax.swing.JPasswordField;
 import org.cjna.net.HTTPProxyData;
 import org.cjna.net.IPAddressValidator;
 import org.cjna.net.PortValidator;
+import org.cjna.util.ProxyReader;
 import org.cjna.util.ProxyWriter;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
@@ -42,7 +43,6 @@ public class ConnectionUI extends JFrame {
 	private JButton okButton, cancelButton;
 	private JLabel lblAddress, lblAddressEg, lblPort, lblPortEg, lblUsername,
 			lblUsernameEg, lblPassword, lblDomain, lblDomainEg;
-	private boolean isProxy;
 	private boolean hasInputError;
 	private CJNAUI ui;
 	private IPAddressValidator ipval;
@@ -75,7 +75,7 @@ public class ConnectionUI extends JFrame {
 	 * Create the frame.
 	 */
 	public void intiGUI() {
-		isProxy = false;
+
 		hasInputError = false;
 
 		setTitle("Connection Setting");
@@ -100,10 +100,10 @@ public class ConnectionUI extends JFrame {
 				} else if (!hasInputError) {
 					// TODO Auto-generated method stub
 					dispose();
-					if (isProxy) {
+					if (HTTPProxyData.getInstance().isProxy()) {
+						
 						// set proxy configuration
 						HTTPProxyData.getInstance();
-						HTTPProxyData.getInstance().setProxy(isProxy);
 						HTTPProxyData.getInstance().setProxyDomain(
 								domainTextField.getText());
 
@@ -121,6 +121,7 @@ public class ConnectionUI extends JFrame {
 							try {
 								ui.restartCJNA();
 								try {
+									// all proxy setting is passed, now we write the valid setting to file
 									ProxyWriter writer = new ProxyWriter();
 								} catch (IOException e1) {
 									// TODO Auto-generated catch block
@@ -151,7 +152,8 @@ public class ConnectionUI extends JFrame {
 							HTTPProxyData.getInstance().resetProxyData();
 							intiGUI();
 						}
-
+						
+						// direct connection.
 					} else {
 						try {
 							ui.restartCJNA();
@@ -188,7 +190,7 @@ public class ConnectionUI extends JFrame {
 
 		JCheckBox proxyCheckBox = new JCheckBox("Connect via proxy server");
 		proxyCheckBox.setBounds(6, 6, 212, 23);
-		proxyCheckBox.setSelected(false);
+		proxyCheckBox.setSelected(HTTPProxyData.getInstance().isProxy());
 		proxyCheckBox.addItemListener(new ItemListener() {
 			/*
 			 * (non-Javadoc)
@@ -198,8 +200,8 @@ public class ConnectionUI extends JFrame {
 			 * )
 			 */
 			public void itemStateChanged(ItemEvent e) {
-				isProxy = (e.getStateChange() == ItemEvent.SELECTED);
-				if (!isProxy) {
+				HTTPProxyData.getInstance().setProxy((e.getStateChange() == ItemEvent.SELECTED));
+				if (!HTTPProxyData.getInstance().isProxy()) {
 					lblPassword.setForeground(Color.gray);
 					passwordField.setEnabled(false);
 					addressTextField.setEnabled(false);
@@ -218,6 +220,7 @@ public class ConnectionUI extends JFrame {
 					lblUsernameEg.setForeground(Color.gray);
 					lblUsername.setForeground(Color.gray);
 					lblPassword.setForeground(Color.gray);
+					
 
 				} else {
 					lblPassword.setForeground(Color.black);
@@ -241,6 +244,16 @@ public class ConnectionUI extends JFrame {
 		});
 
 		panel.add(proxyCheckBox);
+		
+		// reader previous proxy setting here first before get user input from text fields.
+		
+		try {
+			ProxyReader proxyReader = new ProxyReader();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -253,7 +266,7 @@ public class ConnectionUI extends JFrame {
 		panel_1.add(lblAddress);
 
 		addressTextField = new JTextField();
-		addressTextField.setText("192.168.11.1");
+		addressTextField.setText(HTTPProxyData.getInstance().getProxyHost());
 		addressTextField.setBounds(148, 11, 134, 28);
 		panel_1.add(addressTextField);
 		addressTextField.setColumns(10);
@@ -263,7 +276,7 @@ public class ConnectionUI extends JFrame {
 		panel_1.add(lblPort);
 
 		portTextField = new JTextField();
-		portTextField.setText("8080");
+		portTextField.setText(Integer.toString(HTTPProxyData.getInstance().getProxyPort()));
 		portTextField.setBounds(148, 39, 134, 28);
 		panel_1.add(portTextField);
 		portTextField.setColumns(10);
@@ -273,7 +286,7 @@ public class ConnectionUI extends JFrame {
 		panel_1.add(lblDomain);
 
 		domainTextField = new JTextField();
-		domainTextField.setText("camt");
+		domainTextField.setText(HTTPProxyData.getInstance().getProxyDomain());
 		domainTextField.setBounds(148, 67, 134, 28);
 		panel_1.add(domainTextField);
 		domainTextField.setColumns(10);
@@ -283,6 +296,7 @@ public class ConnectionUI extends JFrame {
 		panel_1.add(lblUsername);
 
 		usernameTextField = new JTextField();
+		usernameTextField.setText(HTTPProxyData.getInstance().getProxyUserName());
 		usernameTextField.setBounds(148, 95, 134, 28);
 		panel_1.add(usernameTextField);
 		usernameTextField.setColumns(10);
@@ -292,6 +306,7 @@ public class ConnectionUI extends JFrame {
 		panel_1.add(lblPassword);
 
 		passwordField = new JPasswordField();
+		passwordField.setText(HTTPProxyData.getInstance().getProxyPassword());
 		passwordField.setBounds(148, 123, 134, 28);
 		panel_1.add(passwordField);
 

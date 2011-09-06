@@ -1,5 +1,9 @@
 package org.cjna.net;
 
+import java.io.IOException;
+
+import org.cjna.util.ProxyReader;
+
 /**
  * @author Pree Thiengburanathum preenet@gmail.com
  * 
@@ -19,11 +23,13 @@ public class HTTPProxyData {
 	}
 
 	public HTTPProxyData() {
+		// default configuration for the proxy setting if there is no previous setup
 		this.isProxy = false;
-		this.proxyDomain = "";
-		this.proxyHost = "";
+		this.proxyDomain = "camt";
+		this.proxyHost = "192.168.11.1";
+		this.proxyUserName = "";
 		this.proxyPassword = "";
-		this.proxyPort = 0;
+		this.proxyPort = 8080;
 	}
 
 	/**

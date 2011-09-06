@@ -8,7 +8,7 @@ import org.cjna.net.HTTPProxyData;
 
 public class ProxyWriter {
 	public ProxyWriter() throws IOException {
-		FileWriter fstream = new FileWriter("proxy.txt");
+		FileWriter fstream = new FileWriter("proxy.ini");
 		  BufferedWriter out = new BufferedWriter(fstream);
 		  
 		  System.out.println("Start writing proxy configuration to file..");
@@ -18,7 +18,7 @@ public class ProxyWriter {
 			  out.write(HTTPProxyData.getInstance().getProxyPort() + "\n");
 			  out.write(HTTPProxyData.getInstance().getProxyDomain() + "\n");
 			  out.write(HTTPProxyData.getInstance().getProxyUserName() + "\n");
-			  out.write(HTTPProxyData.getInstance().getProxyPassword());
+			  out.write(HTTPProxyData.getInstance().getProxyPassword() + "\n");
 		  }
 		  else 
 			  out.write("false");

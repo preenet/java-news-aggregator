@@ -16,5 +16,6 @@ public interface Global {
 	public static long delay = 0;
 	public static long period = 100000;
 	public static String msg = "";
+	public static String proxyFile = "proxy.ini";
 
 }// end interface Global
