@@ -12,11 +12,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 
 import org.cjna.Global;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JLabel;
 
 /**
@@ -29,7 +32,7 @@ public class CJNAUI extends JFrame {
 	private JPanel contentPane;
 	private JList list;
 	private CJNAHandler worker;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -62,12 +65,15 @@ public class CJNAUI extends JFrame {
 		setJMenuBar(menuBar);
 
 		JMenu mnSystem = new JMenu("System");
+		mnSystem.setMnemonic('S');
 		menuBar.add(mnSystem);
 
 		JMenuItem mntmAddRss = new JMenuItem("Add RSS");
+		mntmAddRss.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.Event.CTRL_MASK));
 		mnSystem.add(mntmAddRss);
 
-		JMenuItem mntmConnectionSetting = new JMenuItem("Connection Setting");
+		JMenuItem mntmConnectionSetting = new JMenuItem("Connection Setting", 'C');
+		mntmConnectionSetting.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.Event.CTRL_MASK));
 		mntmConnectionSetting.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				openConnectionSetting();
@@ -76,6 +82,7 @@ public class CJNAUI extends JFrame {
 		mnSystem.add(mntmConnectionSetting);
 
 		JMenuItem mntmExit = new JMenuItem("Exit");
+		mntmExit.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.Event.CTRL_MASK));
 		mntmExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
@@ -84,6 +91,7 @@ public class CJNAUI extends JFrame {
 		mnSystem.add(mntmExit);
 
 		JMenu mnHelp = new JMenu("Help");
+		mnHelp.setMnemonic('H');
 		menuBar.add(mnHelp);
 
 		JMenuItem mntmAboutCjna = new JMenuItem("About CJNA");
