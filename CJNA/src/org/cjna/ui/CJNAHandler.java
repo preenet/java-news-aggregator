@@ -42,4 +42,8 @@ public class CJNAHandler extends Thread {
 	public void setConsoleDone(boolean d) {
 		worker.setDone(d);
 	}
+	
+	public CJNADriver getDriver() {
+		return this.worker;
+	}
 }// end class CJNAHandler

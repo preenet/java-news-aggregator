@@ -29,7 +29,9 @@ public class FetchNewsList {
 	 * future parse.
 	 */
 	public void execute() {
+		
 		System.out.println("Connecting to news list server at " + this.URI);
+	
 		try {
 			if (!HTTPProxyData.getInstance().isProxy()) {
 				myConnSelect.DirectConnect();

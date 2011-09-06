@@ -12,6 +12,7 @@ import org.cjna.parser.FeedParser;
 public class FetchRSS extends TimerTask {
 	private String listURI;
 	private CJNADriver myDriver;
+	private String msg;
 
 	/**
 	 * 
@@ -21,11 +22,15 @@ public class FetchRSS extends TimerTask {
 	public FetchRSS(CJNADriver myDriver, String listURI) {
 		this.listURI = listURI;
 		this.myDriver = myDriver;
+		this.msg = "";
 	}
 
 	@Override
 	public void run() {
-		System.out.println("Fetching RSS News...");
+		msg = "Fetching RSS News...";
+		System.out.println(msg);
+		myDriver.setSystemMsg(msg);
+		
 		myDriver.setDone(false);
 		// first getting the list from the URI site.
 		FetchNewsList myList = new FetchNewsList(listURI);

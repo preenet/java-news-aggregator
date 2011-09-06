@@ -8,6 +8,7 @@ import java.util.TimerTask;
  */
 
 public class CJNADriver {
+	private String systemMsg = "";
 	private TimerTask fetchRSS;
 	private boolean done = false;
 	private String listURI = "http://www.preet.sesolution.com/camtrss/news_list.txt";
@@ -24,6 +25,14 @@ public class CJNADriver {
 
 	public boolean getDone() {
 		return done;
+	}
+	
+	public String getSystemMsg() {
+		return this.systemMsg;
+	}
+	
+	public void setSystemMsg(String s) {
+		this.systemMsg = s;
 	}
 }// end class CJNA
 
