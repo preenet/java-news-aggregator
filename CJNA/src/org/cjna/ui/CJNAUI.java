@@ -128,7 +128,7 @@ public class CJNAUI extends JFrame {
 	}
 	
 	public void restartCJNA() {
-		this.worker = new CJNAHandler(this);
+		CJNAHandler worker = new CJNAHandler(this);
 		worker.start();
 	}
 
@@ -138,8 +138,11 @@ public class CJNAUI extends JFrame {
 
 	public void refresh() {
 		if (worker.getConsoleDone()) {
+			System.out.println("console is done!");
 			list.setListData(Global.myFeed.getMessages());
 			setConsoleDone(false);
 		}
+		else
+			System.out.println("console is NOT done!");
 	}
 }// end class CJNAUI
