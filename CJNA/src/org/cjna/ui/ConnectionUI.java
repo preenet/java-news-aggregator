@@ -116,7 +116,12 @@ public class ConnectionUI extends JFrame {
 									usernameTextField.getText());
 							HTTPProxyData.getInstance().setProxyPassword(
 									passwordField.getText());
-							ui.restartCJNA();
+							try {
+								ui.restartCJNA();
+							} catch (InterruptedException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 
 						}
 						// incase that the ip address is not valid, we show the
@@ -140,7 +145,12 @@ public class ConnectionUI extends JFrame {
 						}
 
 					} else {
-						ui.restartCJNA();
+						try {
+							ui.restartCJNA();
+						} catch (InterruptedException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					}
 				}
 

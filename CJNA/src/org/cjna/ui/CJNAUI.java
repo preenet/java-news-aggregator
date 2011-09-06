@@ -139,7 +139,9 @@ public class CJNAUI extends JFrame {
 		frame.setVisible(true);
 	}
 	
-	public void restartCJNA() {
+	@SuppressWarnings("deprecation")
+	public void restartCJNA() throws InterruptedException {
+		this.worker.suspend();
 		CJNAHandler worker = new CJNAHandler(this);
 		worker.start();
 	}
