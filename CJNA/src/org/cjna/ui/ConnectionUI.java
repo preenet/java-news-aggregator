@@ -20,8 +20,10 @@ import javax.swing.JPasswordField;
 import org.cjna.net.HTTPProxyData;
 import org.cjna.net.IPAddressValidator;
 import org.cjna.net.PortValidator;
+import org.cjna.util.ProxyWriter;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
+import java.io.IOException;
 
 /**
  * 
@@ -118,6 +120,12 @@ public class ConnectionUI extends JFrame {
 									passwordField.getText());
 							try {
 								ui.restartCJNA();
+								try {
+									ProxyWriter writer = new ProxyWriter();
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 							} catch (InterruptedException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
