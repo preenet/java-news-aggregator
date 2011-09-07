@@ -156,8 +156,9 @@ public class ConnectionUI extends JFrame {
 						}
 						
 						// direct connection.
-					} else {
+					} else if (!HTTPProxyData.getInstance().isProxy()){
 						try {
+							
 							ui.restartCJNA();
 						} catch (InterruptedException e1) {
 							// TODO Auto-generated catch block

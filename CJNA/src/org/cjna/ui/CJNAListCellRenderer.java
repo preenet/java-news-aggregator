@@ -3,14 +3,11 @@ package org.cjna.ui;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-import java.io.UnsupportedEncodingException;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
-import org.cjna.Global;
-import org.cjna.parser.FeedMessage;
 
 public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 	/**
@@ -33,6 +30,7 @@ public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 			 String s = value.toString();
 			 setFont(new Font("Arial Unicode MS",Font.ITALIC,12));
 			 setText(s.trim());
+			 
 			 Color colr1 = new Color(139, 69, 19);
 	    	 Color colr2 = new Color(255, 140, 0);
 
