@@ -151,9 +151,15 @@ public class CJNAUI extends JFrame {
 	}
 
 	public void refresh() {
-		if (worker.getConsoleDone()) {
-			list.setListData(Global.myFeed.getMessages());
-			setConsoleDone(false);
-		}
+		Runnable  doRefresh = new Runnable() {
+		    public void run() {
+		    	if (worker.getConsoleDone()) {
+					list.setListData(Global.myFeed.getMessages());
+					setConsoleDone(false);
+				}
+		    }
+		};
+		doRefresh.run();
+		
 	}
 }// end class CJNAUI

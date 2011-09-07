@@ -2,10 +2,15 @@ package org.cjna.ui;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
+import java.io.UnsupportedEncodingException;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
+
+import org.cjna.Global;
+import org.cjna.parser.FeedMessage;
 
 public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 	/**
@@ -13,7 +18,7 @@ public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 	 * preenet@gmail.com
 	 */
 	private static final long serialVersionUID = 1L;
-	private Object value;
+	
 	public CJNAListCellRenderer() {
 	         setOpaque(true);
 	}
@@ -23,13 +28,16 @@ public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 	                                                   int index,
 	                                                   boolean isSelected,
 	                                                   boolean cellHasFocus) {
-	    	 setText(value.toString());
-	    	 
-	    	 Color colr1 = new Color(139, 69, 19);
+
+			
+			 String s = value.toString();
+			 setFont(new Font("Arial Unicode MS",Font.ITALIC,12));
+			 setText(s.trim());
+			 Color colr1 = new Color(139, 69, 19);
 	    	 Color colr2 = new Color(255, 140, 0);
-	    	 
+
 	         setBackground(isSelected ? colr2: colr1 );
 	         setForeground(isSelected ? colr1 : colr2);
-	         return this;
-	}
+		     return this;
+	}  
 }// end class CJNAListCellRendere
