@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
+import org.cjna.Global;
 import org.cjna.net.HTTPProxyData;
 import org.cjna.net.IPAddressValidator;
 import org.cjna.net.PortValidator;
@@ -24,6 +25,7 @@ import org.cjna.util.ProxyReader;
 import org.cjna.util.ProxyWriter;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -245,15 +247,26 @@ public class ConnectionUI extends JFrame {
 
 		panel.add(proxyCheckBox);
 		
-		// reader previous proxy setting here first before get user input from text fields.
-		
-		try {
-			ProxyReader proxyReader = new ProxyReader();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		File findFile = new File(Global.proxyFile);
+		if(findFile.canRead()) {
+			
+			System.out.println("Detect the proxy setting file, now reading the configuration...");
+			try {
+				ProxyReader proxyReader = new ProxyReader();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
-		
+		else {
+			System.out.println("Couldn't find the proxy setting find, now writting a default setting...");
+			try {
+				ProxyWriter writer = new ProxyWriter();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -351,6 +364,7 @@ public class ConnectionUI extends JFrame {
 		ipval = new IPAddressValidator();
 		portval = new PortValidator();
 
+	
 	}
 
 	private boolean checkIP(String IPAddress) {
