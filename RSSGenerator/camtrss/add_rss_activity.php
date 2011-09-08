@@ -26,17 +26,21 @@ $dirname = "./activity/images/".$dt;
 $dh = opendir($dirname);
 $photo = "";
 $img = "";
+$encloure = "";
 		$i = 1;
 					while ((false !== ($pic = readdir($dh))) && ($i <= 1)) 
 					{ 
 					if (($pic == ".") || ($pic == "..") || ($pic == "Thumbs.db")) { } else 
 							{
 										 $photo = $photo.'<img src= "http://www.camt.cmu.ac.th/th/activity/images/'.$dt.'/'.$pic.' "/>   ';
-										 $img = $img.'<image_url>http://www.camt.cmu.ac.th/th/activity/images/'.$dt.'/'.$pic.'</image_url>' ;
+										$img ='http://www.camt.cmu.ac.th/th/activity/images/'.$dt.'/'.$pic ;
+										$encloure.="<enclosure url='".$img."' type='image/jpg'/>";		
+										
 										$i = $i+1;
 							}
 						
-					}closedir($dh);	//while				
+						
+					}closedir($dh);	//while			
 
 		$photo = "<![CDATA[<div>".$photo."</div>  ]]>";
    
@@ -44,7 +48,7 @@ $img = "";
 		<item>
 		<title>$stitle</title>
 			<link>http://www.camt.cmu.ac.th/th/rss/activity_detail?id=$dt</link>
-			<description>$desc</description>
+			<description>$desc.$photo</description>
 			<guid>http://www.camt.cmu.ac.th/th/rss/activity_detail?id=$dt</guid>
 			<category>ข่าวสำหรับบุคลากร</category>
 			<comments>http://www.camt.cmu.ac.th/th/rss/activity_detail?id=$dt</comments>
@@ -72,13 +76,16 @@ $dirname = "./activity/images/".$dt;
 $dh = opendir($dirname);
 $photo = "";
 $img = "";
+$encloure = "";
 		$i = 1;
 					while ((false !== ($pic = readdir($dh))) && ($i <= 1)) 
 					{ 
 					if (($pic == ".") || ($pic == "..") || ($pic == "Thumbs.db")) { } else 
 							{
 										 $photo = $photo.'<img src= "http://www.camt.cmu.ac.th/th/activity/images/'.$dt.'/'.$pic.' "/>   ';
-										  $img = $img.'<image_url>http://www.camt.cmu.ac.th/th/activity/images/'.$dt.'/'.$pic.'</image_url>' ;
+										$img ='http://www.camt.cmu.ac.th/th/activity/images/'.$dt.'/'.$pic;
+										
+										$encloure.="<enclosure url='".$img."' type='image/jpg'/>";
 										$i = $i+1;
 							}
 						
@@ -90,9 +97,9 @@ $img = "";
 				<item>
 		<title>$stitle</title>
 			<link>http://www.camt.cmu.ac.th/th/rss/activity_detail?id=$dt</link>
-			<description>$desc</description>
+			<description>$desc.$photo</description>
 			<guid>http://www.camt.cmu.ac.th/th/rss/activity_detail?id=$dt</guid>
-			<category>ข่าวสำหรับบุคลากร</category>
+			<category>Activity Group 2</category>
 			<comments>http://www.camt.cmu.ac.th/th/rss/activity_detail?id=$dt</comments>
         </item> 
 ";
@@ -115,17 +122,21 @@ if ($dt == "") {$dt=0;}
 $dirname = "./activity/images/".$dt;		
 $dh = opendir($dirname);
 $photo = "";
-$img = "";
+//$img = "";
+$encloure = "";
 		$i = 1;
 					while ((false !== ($pic = readdir($dh))) && ($i <= 1)) 
 					{ 
 					if (($pic == ".") || ($pic == "..") || ($pic == "Thumbs.db")) { } else 
 							{
 										 $photo = $photo.'<img src= "http://www.camt.cmu.ac.th/th/activity/images/'.$dt.'/'.$pic.' "/>   ';
-										  $img = $img.'<image_url>http://www.camt.cmu.ac.th/th/activity/images/'.$dt.'/'.$pic.'</image_url>' ;
-										  
+										$img ='http://www.camt.cmu.ac.th/th/activity/images/'.$dt.'/'.$pic;
+										
+										$encloure.="<enclosure url='".$img."' type='image/jpg'/>";
+										
 										$i = $i+1;
 							}
+							
 						
 					}closedir($dh);	//while				
 
@@ -135,9 +146,10 @@ $img = "";
 		<item>
 		<title>$stitle</title>
 			<link>http://www.camt.cmu.ac.th/th/rss/activity_detail?id=$dt</link>
-			<description>$desc</description>
+			<description>$desc.$photo</description>
 			<guid>http://www.camt.cmu.ac.th/th/rss/activity_detail?id=$dt</guid>
-			<category>ข่าวสำหรับบุคลากร</category>
+			".$encloure."
+			<category>Activity Group 3</category>
 			<comments>http://www.camt.cmu.ac.th/th/rss/activity_detail?id=$dt</comments>
         </item> 
 ";

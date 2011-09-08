@@ -1,6 +1,6 @@
 <?
-//$link = mysql_pconnect("localhost","camt_root","root") or die('Count not connect database');
-$link = mysql_pconnect("localhost","root","camt") or die('Count not connect database');
+$link = mysql_pconnect("localhost","camt_root","root") or die('Count not connect database');
+//$link = mysql_pconnect("localhost","root","camt") or die('Count not connect database');
 $dbname="camt_news";
 mysql_db_query($dbname,"SET NAMES utf8");
 
@@ -10,24 +10,34 @@ if (mysql_num_rows($result) < 1) {
     die("No records"); 
 } 
 
-$items = '';
+$items = "";
 $i = 1; 
 while ($row = mysql_fetch_assoc($result)) { 
 	$num = $i;
     $stitle = $row["news"]; 
 	$link = "";
-    if ($row[file1] != ""){$link = '<![CDATA[<a href="http://www.camt.cmu.ac.th/th/docs/'.$row["attach1"].'"  target="_blank">'.$row[file1].'</a>  ]]> ';}
-	if ($row[file2] != "") { $link + = '<![CDATA[ <a href="http://www.camt.cmu.ac.th/th/docs/'.$row["attach2"].'"  target="_blank">'.$row[file2].'</a>  ]]> '; }
-	if ($row[file3] != "") { $link3 + = '<![CDATA[ <a href="http://www.camt.cmu.ac.th/th/docs/'.$row["attach3"].'"  target="_blank">'.$row[file3].'</a>  ]]>'; }
+    if ($row[file1] != ""){
+	
+		$link .= '<![CDATA[<a href="http://www.camt.cmu.ac.th/th/docs/'.$row["attach1"].'"  target="_blank">'.$row[file1].'</a>  ]]> ';
+	}
+	if ($row[file2] != "") { 
+	
+		$link .= '<![CDATA[ <a href="http://www.camt.cmu.ac.th/th/docs/'.$row["attach2"].'"  target="_blank">'.$row[file2].'</a>  ]]> '; 
+	
+	}
+	if ($row[file3] != "") {
+
+		$link3 .= '<![CDATA[ <a href="http://www.camt.cmu.ac.th/th/docs/'.$row["attach3"].'"  target="_blank">'.$row[file3].'</a>  ]]>';
+
+	}
    
     $items .= "
-		<title>$stitle</title>
-		<description>$link</description>
-			<guid>$link</guid>
-			<category>ข่าวสาร</category>
-			<comments>$link</comments>
-        </item> 
-";
+		<item>
+			<title>$stitle</title>
+			<description>$link</description>
+			<category>News</category>
+			<guid>http://www.camt.cmu.ac.th/#".$row["id"]."</guid>
+        </item>";
 $i = $i+1;
 } 
 
