@@ -9,6 +9,9 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+
+import org.cjna.Global;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -54,7 +57,7 @@ public class AboutCNJADialog extends JDialog {
 			contentPanel.add(lblNewLabel);
 		}
 		{
-			JLabel lblNewLabel_1 = new JLabel("CNJA version 0.0.151");
+			JLabel lblNewLabel_1 = new JLabel("CNJA" + Global.version);
 			lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
 			lblNewLabel_1.setBounds(147, 51, 158, 14);
 			contentPanel.add(lblNewLabel_1);

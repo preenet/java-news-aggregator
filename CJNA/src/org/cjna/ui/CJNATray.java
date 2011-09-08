@@ -9,7 +9,8 @@ import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+
+import org.cjna.Global;
 
 /**
  * @author Pree Thiengburanathum preenet@gmail.com
@@ -29,7 +30,7 @@ public class CJNATray {
 	    final PopupMenu popup = new PopupMenu();
 	    final TrayIcon trayIcon =
 	            new TrayIcon(Toolkit.getDefaultToolkit() 
-						  .getImage("CAMTICON.JPG"), "CNJA Agent");
+						  .getImage("CAMTICON.JPG"), "CNJA Agent " + Global.version);
 	    final SystemTray tray = SystemTray.getSystemTray();
 	    
 	    // create a popup menu components

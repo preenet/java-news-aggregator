@@ -17,5 +17,6 @@ public interface Global {
 	public static long period = 100000;
 	public static String msg = "";
 	public static String proxyFile = "proxy.ini";
+	public static String version = "version 0.0156";
 
 }// end interface Global
