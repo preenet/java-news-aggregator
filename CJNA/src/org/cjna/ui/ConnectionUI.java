@@ -17,15 +17,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
-import org.cjna.Global;
 import org.cjna.net.HTTPProxyData;
 import org.cjna.net.IPAddressValidator;
 import org.cjna.net.PortValidator;
-import org.cjna.util.ProxyReader;
 import org.cjna.util.ProxyWriter;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
-import java.io.File;
 import java.io.IOException;
 
 /**
