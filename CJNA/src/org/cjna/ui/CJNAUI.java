@@ -1,9 +1,16 @@
 package org.cjna.ui;
 
+import java.awt.AWTException;
 import java.awt.BorderLayout;
+import java.awt.CheckboxMenuItem;
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.awt.Menu;
+import java.awt.MenuItem;
+import java.awt.PopupMenu;
+import java.awt.SystemTray;
 import java.awt.Toolkit;
+import java.awt.TrayIcon;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.JMenu;
@@ -24,6 +32,8 @@ import org.cjna.util.ProxyWriter;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -42,6 +52,7 @@ public class CJNAUI extends JFrame {
 	private JLabel lblSystemMessage;
 	private ProxyWriter writer;
 	private ProxyReader reader;
+	private CJNATray tray;
 	
 	/**
 	 * Launch the application.
@@ -63,10 +74,18 @@ public class CJNAUI extends JFrame {
 		});
 	}
 
+	public CJNAUI() throws IOException {
+		super();
+		intiGUI();
+	}
+	
 	/**
 	 * Create the frame.
 	 */
-	public CJNAUI() throws IOException {
+	public void intiGUI() {
+		// set program into the user tray.
+		tray = new CJNATray(this);
+        
 		// init proxy reader/writer
 		writer = new ProxyWriter();
 		reader = new ProxyReader();
@@ -76,7 +95,6 @@ public class CJNAUI extends JFrame {
 		setTitle("CAMT Java News Aggregrator");
 		setResizable(false);
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 470);
 
 		JMenuBar menuBar = new JMenuBar();
@@ -103,7 +121,7 @@ public class CJNAUI extends JFrame {
 		mntmExit.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.Event.CTRL_MASK));
 		mntmExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
+				//System.exit(0);
 			}
 		});
 		mnSystem.add(mntmExit);
@@ -147,7 +165,12 @@ public class CJNAUI extends JFrame {
 		}
 		else {
 			System.out.println("Couldn't find the proxy setting find, now writting a default setting...");
-			writer.write();
+			try {
+				writer.write();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 
 		worker = new CJNAHandler(this);
@@ -192,4 +215,16 @@ public class CJNAUI extends JFrame {
 		};
 		doRefresh.run();
 	}
+	
+	//Obtain the image URL
+    protected static Image createImage(String path, String description) {
+        java.net.URL imageURL = CJNAUI.class.getResource(path);
+        
+        if (imageURL == null) {
+            System.err.println("Resource not found: " + path);
+            return null;
+        } else {
+            return (new ImageIcon(imageURL, description)).getImage();
+        }
+    }
 }// end class CJNAUI
