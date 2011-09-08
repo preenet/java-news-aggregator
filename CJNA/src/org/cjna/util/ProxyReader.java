@@ -9,8 +9,11 @@ import org.cjna.net.HTTPProxyData;
 public class ProxyReader {
 	private ExternalFile exFile;
 	private Vector<String> dataLine;
-
-	public ProxyReader() throws IOException {
+	
+	public ProxyReader() {
+		
+	}
+	public void read() throws IOException {
 		System.out.println("Reading proxy setting from file...");
 		exFile = new ExternalFile(Global.proxyFile);
 		

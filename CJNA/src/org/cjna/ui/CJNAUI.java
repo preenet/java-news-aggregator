@@ -16,8 +16,13 @@ import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 
 import org.cjna.Global;
+import org.cjna.util.ProxyReader;
+import org.cjna.util.ProxyWriter;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JLabel;
 
@@ -32,11 +37,14 @@ public class CJNAUI extends JFrame {
 	private JList list;
 	private CJNAHandler worker;
 	private JLabel lblSystemMessage;
+	private ProxyWriter writer;
+	private ProxyReader reader;
 	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -53,7 +61,12 @@ public class CJNAUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CJNAUI() {
+	public CJNAUI() throws IOException {
+		// init proxy reader/writer
+		writer = new ProxyWriter();
+		reader = new ProxyReader();
+		
+		// now construct the ui components.
 		setNativeLookAndFeel();
 		setTitle("CAMT Java News Aggregrator");
 		setResizable(false);
@@ -117,6 +130,20 @@ public class CJNAUI extends JFrame {
 
 		lblSystemMessage = new JLabel("System Message");
 		toolBar.add(lblSystemMessage);
+		
+		// we check the proxy configuration here before calling the driver.
+		File findFile = new File(Global.proxyFile);
+		if(findFile.canRead()) {
+			
+			System.out.println("Detect the proxy setting file, now reading the configuration...");
+			try {
+				reader.read();
+			} catch (IOException e1) {e1.printStackTrace();}
+		}
+		else {
+			System.out.println("Couldn't find the proxy setting find, now writting a default setting...");
+			writer.write();
+		}
 
 		worker = new CJNAHandler(this);
 		worker.start();
@@ -140,7 +167,7 @@ public class CJNAUI extends JFrame {
 	}
 	
 	public void restartCJNA() throws InterruptedException {
-		lblSystemMessage = new JLabel("System Message");
+		lblSystemMessage = new JLabel("System starting...");
 		this.worker = new CJNAHandler(this);
 		worker.start();
 	}
@@ -159,6 +186,5 @@ public class CJNAUI extends JFrame {
 		    }
 		};
 		doRefresh.run();
-		
 	}
 }// end class CJNAUI

@@ -49,6 +49,7 @@ public class ConnectionUI extends JFrame {
 	private CJNAUI ui;
 	private IPAddressValidator ipval;
 	private PortValidator portval;
+	private ProxyWriter writer;
 
 	/**
 	 * Launch the application.
@@ -77,7 +78,7 @@ public class ConnectionUI extends JFrame {
 	 * Create the frame.
 	 */
 	public void intiGUI() {
-
+		writer = new ProxyWriter();
 		hasInputError = false;
 
 		setTitle("Connection Setting");
@@ -97,10 +98,8 @@ public class ConnectionUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				if (hasInputError) {
-
 					System.out.println("input error");
 				} else if (!hasInputError) {
-					// TODO Auto-generated method stub
 					dispose();
 					if (HTTPProxyData.getInstance().isProxy()) {
 						
@@ -122,15 +121,13 @@ public class ConnectionUI extends JFrame {
 									passwordField.getText());
 							try {
 								ui.restartCJNA();
+								// all proxy setting is passed, now we write the valid setting to file
 								try {
-									// all proxy setting is passed, now we write the valid setting to file
-									ProxyWriter writer = new ProxyWriter();
+									writer.write();
 								} catch (IOException e1) {
-									// TODO Auto-generated catch block
 									e1.printStackTrace();
 								}
 							} catch (InterruptedException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 
@@ -158,7 +155,11 @@ public class ConnectionUI extends JFrame {
 						// direct connection.
 					} else if (!HTTPProxyData.getInstance().isProxy()){
 						try {
-							
+							try {
+								writer.write();
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
 							ui.restartCJNA();
 						} catch (InterruptedException e1) {
 							// TODO Auto-generated catch block
@@ -247,27 +248,6 @@ public class ConnectionUI extends JFrame {
 		});
 
 		panel.add(proxyCheckBox);
-		
-		File findFile = new File(Global.proxyFile);
-		if(findFile.canRead()) {
-			
-			System.out.println("Detect the proxy setting file, now reading the configuration...");
-			try {
-				ProxyReader proxyReader = new ProxyReader();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
-		else {
-			System.out.println("Couldn't find the proxy setting find, now writting a default setting...");
-			try {
-				ProxyWriter writer = new ProxyWriter();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
