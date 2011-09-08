@@ -1,24 +1,16 @@
 package org.cjna.ui;
 
-import java.awt.AWTException;
+
 import java.awt.BorderLayout;
-import java.awt.CheckboxMenuItem;
 import java.awt.EventQueue;
 import java.awt.Image;
-import java.awt.Menu;
-import java.awt.MenuItem;
-import java.awt.PopupMenu;
-import java.awt.SystemTray;
 import java.awt.Toolkit;
-import java.awt.TrayIcon;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.JMenu;
@@ -103,10 +95,6 @@ public class CJNAUI extends JFrame {
 		JMenu mnSystem = new JMenu("System");
 		mnSystem.setMnemonic('S');
 		menuBar.add(mnSystem);
-
-		JMenuItem mntmAddRss = new JMenuItem("Add RSS");
-		mntmAddRss.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.Event.CTRL_MASK));
-		mnSystem.add(mntmAddRss);
 
 		JMenuItem mntmConnectionSetting = new JMenuItem("Connection Setting", 'C');
 		mntmConnectionSetting.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.Event.CTRL_MASK));

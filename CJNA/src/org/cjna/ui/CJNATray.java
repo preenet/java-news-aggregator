@@ -36,7 +36,6 @@ public class CJNATray {
 	    // create a popup menu components
 	    MenuItem aboutItem = new MenuItem("About");
 	    Menu displayMenu = new Menu("System");
-	    MenuItem addRSSItem = new MenuItem("Add RSS");
 	    MenuItem connectionSettingItem = new MenuItem("Connection Setting");
 	    MenuItem exitItem = new MenuItem("Exit");
 	    
@@ -44,7 +43,6 @@ public class CJNATray {
 	    popup.add(aboutItem);
 	    popup.addSeparator();
 	    popup.add(displayMenu);
-	    displayMenu.add(addRSSItem);
 	    displayMenu.add(connectionSettingItem);
 	    popup.add(exitItem);
 	    
