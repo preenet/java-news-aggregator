@@ -2,10 +2,13 @@ package org.cjna.ui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
@@ -51,6 +54,8 @@ public class CJNAUI extends JFrame {
 					CJNAUI frame = new CJNAUI();
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
+					 frame.setIconImage(Toolkit.getDefaultToolkit() 
+							  .getImage("CAMTICON.JPG"));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

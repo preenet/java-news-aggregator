@@ -2,6 +2,8 @@ package org.cjna.ui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -37,6 +39,9 @@ public class AboutCNJADialog extends JDialog {
 	 */
 	public AboutCNJADialog() {
 		setDefaultLookAndFeelDecorated(true);
+		setIconImage(Toolkit.getDefaultToolkit() 
+				  .getImage("CAMTICON.JPG"));
+		
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
