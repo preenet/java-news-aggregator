@@ -6,6 +6,10 @@ import java.util.Vector;
 import org.cjna.Global;
 import org.cjna.net.HTTPProxyData;
 
+/**
+ * @author Pree Thiengburanathum preenet@gmail.com
+ *
+ */
 public class ProxyReader {
 	private ExternalFile exFile;
 	private Vector<String> dataLine;
@@ -13,6 +17,9 @@ public class ProxyReader {
 	public ProxyReader() {
 		
 	}
+	/**
+	 * @throws IOException
+	 */
 	public void read() throws IOException {
 		System.out.println("Reading proxy setting from file...");
 		exFile = new ExternalFile(Global.proxyFile);
@@ -32,7 +39,11 @@ public class ProxyReader {
 			HTTPProxyData.getInstance().setProxyPassword(dataLine.elementAt(5));
 		}
 	}
-	
+	/**
+	 * 
+	 * @param p
+	 * @return boolean true or false
+	 */
 	private boolean isProxy(String p) {
 		if(p.equals("true"))
 			return true;

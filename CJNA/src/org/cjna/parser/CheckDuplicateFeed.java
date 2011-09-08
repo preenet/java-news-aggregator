@@ -12,7 +12,7 @@ public class CheckDuplicateFeed {
 	/**
 	 * @param fmList
 	 * @param fm
-	 * @return 
+	 * @return boolean true of false
 	 */
 	public boolean isDuplicate(Vector<FeedMessage> fmList, FeedMessage fm) {
 		// iterate through the array list and check from the title if the string is match the coming fm.

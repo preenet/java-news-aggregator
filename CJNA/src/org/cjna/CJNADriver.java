@@ -18,19 +18,35 @@ public class CJNADriver {
 		Timer fetchTimer = new Timer();
 		fetchTimer.schedule(fetchRSS, Global.delay, Global.period);
 	}
-
+	
+	/**
+	 * 
+	 * @param d boolean true of false
+	 */
 	public void setDone(boolean d) {
 		done = d;
 	}
-
+	
+	/**
+	 * 
+	 * @return boolean true of false
+	 */
 	public boolean getDone() {
 		return done;
 	}
 	
+	/**
+	 * 
+	 * @return String as the system message
+	 */
 	public String getSystemMsg() {
 		return this.systemMsg;
 	}
 	
+	/**
+	 * 
+	 * @param s String as message
+	 */
 	public void setSystemMsg(String s) {
 		this.systemMsg = s;
 	}

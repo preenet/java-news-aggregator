@@ -6,10 +6,15 @@ import java.io.IOException;
 
 import org.cjna.net.HTTPProxyData;
 
+/**
+ * @author Pree Thiengburanathum preenet@gmail.com
+ *
+ */
 public class ProxyWriter {
 	public ProxyWriter() {
 		
 	}
+	
 	public void write() throws IOException {
 		FileWriter fstream = new FileWriter("proxy.ini");
 		  BufferedWriter out = new BufferedWriter(fstream);

@@ -12,7 +12,7 @@ public class PortValidator {
 
 	/**
 	 * @param port
-	 * @return
+	 * @return boolean true or false
 	 */
 	public boolean validate(String port) {
 		// check the port is empty

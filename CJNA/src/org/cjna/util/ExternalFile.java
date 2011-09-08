@@ -16,7 +16,7 @@ public class ExternalFile {
     }
     
     /**
-     * @return
+     * @return boolean true of false
      */
     public boolean havehitEOF() throws IOException {
        return !exFile.ready();
