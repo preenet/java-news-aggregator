@@ -1,12 +1,7 @@
 package org.cjna.ui;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.FontFormatException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,8 +9,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextPane;
 
 import org.cjna.parser.FeedMessage;
-import javax.swing.JTextArea;
-import javax.swing.JEditorPane;
 
 public class CJNAFullNews extends JFrame {
 
@@ -36,17 +29,8 @@ public class CJNAFullNews extends JFrame {
 		JTextPane textPane = new JTextPane();
 		textPane.setContentType("text/html");
 		contentPane.add(textPane, BorderLayout.CENTER);
+	    textPane.setFont(new Font("Lucida Sans", Font.PLAIN, 12));
 		textPane.setText(fm.toString());
+
 	}
-
-	  public void loadFont() throws FontFormatException, IOException{
-	    String fontFileName = "Lucida Sans Unicode.ttf";
-	   File f = new File(fontFileName);
-	   FileInputStream in = new FileInputStream(f);
-
-	    Font ttfBase = Font.createFont(Font.TRUETYPE_FONT, in);
-
-	    Font ttfReal = ttfBase.deriveFont(Font.PLAIN, 24);
-	    
-	  }
 }

@@ -40,27 +40,7 @@ public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 
 	         setBackground(isSelected ? colr2: colr1 );
 	         setForeground(isSelected ? colr1 : colr2);
-	         try {
-				loadFont();
-			} catch (FontFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	         setFont(new Font("Lucida Sans", Font.PLAIN, 12));
 		     return this;
 	}  
-	
-
-	  public void loadFont() throws FontFormatException, IOException{
-	    String fontFileName = "Lucida Sans Unicode.ttf";
-	   File f = new File(fontFileName);
-	   FileInputStream in = new FileInputStream(f);
-
-	    Font ttfBase = Font.createFont(Font.TRUETYPE_FONT, in);
-
-	    Font ttfReal = ttfBase.deriveFont(Font.PLAIN, 24);
-	    
-	  }
 }// end class CJNAListCellRendere
