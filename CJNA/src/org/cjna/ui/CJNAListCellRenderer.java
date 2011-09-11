@@ -28,7 +28,7 @@ public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 
 			
 			 String s = value.toString();
-			 setFont(new Font("Arial Unicode MS",Font.PLAIN,12));
+			 setFont(new Font("Lucida Sans",Font.PLAIN,12));
 			 setText(s.trim());
 			 
 			 Color colr1 = new Color(139, 69, 19);

@@ -1,6 +1,7 @@
 package org.cjna.ui;
 
 
+import java.applet.AppletContext;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -8,6 +9,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JList;
@@ -19,6 +21,7 @@ import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 
 import org.cjna.Global;
+import org.cjna.parser.FeedMessage;
 import org.cjna.util.ProxyReader;
 import org.cjna.util.ProxyWriter;
 
@@ -28,8 +31,12 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JLabel;
+import javax.swing.event.ListSelectionListener;
 
 /**
  * @author Pree Thiengburanathum preenet@gmail.com
@@ -132,6 +139,13 @@ public class CJNAUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 
 		list = new JList();
+		list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				FeedMessage selection = (FeedMessage) list.getSelectedValue();
+				System.out.println("You have selected: " + selection);
+			}
+		});
+		
 		list.setCellRenderer(new CJNAListCellRenderer());
 		JScrollPane scroll = new JScrollPane(list);
 		contentPane.add(scroll, BorderLayout.CENTER);
@@ -160,10 +174,14 @@ public class CJNAUI extends JFrame {
 				e1.printStackTrace();
 			}
 		}
+		
+		
 
 		worker = new CJNAHandler(this);
 		worker.start();
 	}
+	
+
 
 	public static void setNativeLookAndFeel() {
 		try {
