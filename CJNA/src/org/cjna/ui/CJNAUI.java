@@ -142,7 +142,8 @@ public class CJNAUI extends JFrame {
 		list.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				FeedMessage selection = (FeedMessage) list.getSelectedValue();
-				System.out.println("You have selected: " + selection);
+				CJNAFullNews fn = new CJNAFullNews(selection);
+				fn.setVisible(true);
 			}
 		});
 		

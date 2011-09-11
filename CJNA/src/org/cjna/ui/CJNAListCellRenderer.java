@@ -17,6 +17,7 @@ public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 	private static final long serialVersionUID = 1L;
 	
 	public CJNAListCellRenderer() {
+		setText("text/html");
 	         setOpaque(true);
 	}
 
@@ -25,10 +26,8 @@ public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 	                                                   int index,
 	                                                   boolean isSelected,
 	                                                   boolean cellHasFocus) {
-
 			
 			 String s = value.toString();
-			 setFont(new Font("Lucida Sans",Font.PLAIN,12));
 			 setText(s.trim());
 			 
 			 Color colr1 = new Color(139, 69, 19);
