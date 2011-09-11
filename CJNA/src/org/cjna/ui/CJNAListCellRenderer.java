@@ -3,10 +3,16 @@ package org.cjna.ui;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
+
+import org.omg.CORBA.portable.InputStream;
 
 
 public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
@@ -17,7 +23,6 @@ public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 	private static final long serialVersionUID = 1L;
 	
 	public CJNAListCellRenderer() {
-		setText("text/html");
 	         setOpaque(true);
 	}
 
@@ -35,6 +40,27 @@ public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 
 	         setBackground(isSelected ? colr2: colr1 );
 	         setForeground(isSelected ? colr1 : colr2);
+	         try {
+				loadFont();
+			} catch (FontFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		     return this;
 	}  
+	
+
+	  public void loadFont() throws FontFormatException, IOException{
+	    String fontFileName = "Lucida Sans Unicode.ttf";
+	   File f = new File(fontFileName);
+	   FileInputStream in = new FileInputStream(f);
+
+	    Font ttfBase = Font.createFont(Font.TRUETYPE_FONT, in);
+
+	    Font ttfReal = ttfBase.deriveFont(Font.PLAIN, 24);
+	    
+	  }
 }// end class CJNAListCellRendere
