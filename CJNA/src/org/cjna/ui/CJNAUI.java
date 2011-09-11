@@ -1,7 +1,6 @@
 package org.cjna.ui;
 
 
-import java.applet.AppletContext;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -27,14 +26,9 @@ import org.cjna.util.ProxyWriter;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javax.swing.JLabel;
 import javax.swing.event.ListSelectionListener;
 
@@ -52,6 +46,7 @@ public class CJNAUI extends JFrame {
 	private ProxyWriter writer;
 	private ProxyReader reader;
 	private CJNATray tray;
+	private CJNANewsDialog fn;
 	
 	/**
 	 * Launch the application.
@@ -139,18 +134,25 @@ public class CJNAUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 
 		list = new JList();
+		
 		list.addListSelectionListener(new ListSelectionListener() {
+			
 			public void valueChanged(ListSelectionEvent arg0) {
-				FeedMessage selection = (FeedMessage) list.getSelectedValue();
-				CJNAFullNews fn = new CJNAFullNews(selection);
-				fn.setVisible(true);
+				if(!arg0.getValueIsAdjusting()) {
+					FeedMessage selection = (FeedMessage) list.getSelectedValue();
+					fn = new CJNANewsDialog(selection);
+					fn.pack();
+					fn.setVisible(true);
+				}
 			}
 		});
 		
 		list.setCellRenderer(new CJNAListCellRenderer());
 		JScrollPane scroll = new JScrollPane(list);
 		contentPane.add(scroll, BorderLayout.CENTER);
-
+		
+	
+		
 		JToolBar toolBar = new JToolBar();
 		contentPane.add(toolBar, BorderLayout.SOUTH);
 
