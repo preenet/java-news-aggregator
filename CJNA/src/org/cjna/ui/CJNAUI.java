@@ -111,7 +111,7 @@ public class CJNAUI extends JFrame {
 		mntmExit.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.Event.CTRL_MASK));
 		mntmExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//System.exit(0);
+				System.exit(0);
 			}
 		});
 		mnSystem.add(mntmExit);
