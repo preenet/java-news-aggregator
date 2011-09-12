@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>cjna.nsi</name>
+			<type>1</type>
+			<location>C:/Users/Pree/Desktop/cjna/cjna.nsi</location>
+		</link>
+	</linkedResources>
 </projectDescription>
