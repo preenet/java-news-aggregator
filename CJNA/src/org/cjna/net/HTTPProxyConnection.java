@@ -63,7 +63,7 @@ public class HTTPProxyConnection {
 		System.out.println("HTTP status is: " + status);
 
 		reader = new BufferedReader(new InputStreamReader(
-				get.getResponseBodyAsStream()));
+				get.getResponseBodyAsStream(), "UTF-8"));
 
 	}
 

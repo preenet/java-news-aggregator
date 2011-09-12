@@ -11,7 +11,7 @@ public class CJNADriver {
 	private String systemMsg = "";
 	private TimerTask fetchRSS;
 	private boolean done = false;
-	private String listURI = "http://www.preet.sesolution.com/camtrss/news_list.txt";
+	private String listURI = "http://preet.sesolution.com/camtrss/news_list.txt";
 
 	public CJNADriver() {
 		fetchRSS = new FetchRSS(this, listURI);
