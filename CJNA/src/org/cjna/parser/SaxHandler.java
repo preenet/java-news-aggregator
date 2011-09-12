@@ -11,6 +11,7 @@ import org.xml.sax.helpers.DefaultHandler;
 public class SaxHandler extends DefaultHandler {
 	private boolean title = false;
 	private boolean description = false;
+	private boolean link = false;
 	private FeedMessage fm;
 
 	public SaxHandler() {
@@ -38,6 +39,10 @@ public class SaxHandler extends DefaultHandler {
 		if (qName.equalsIgnoreCase("description")) {
 			description = true;
 		}
+		
+		if (qName.equalsIgnoreCase("link")) {
+			link = true;
+		}
 	}
 	
 	@Override
@@ -59,6 +64,13 @@ public class SaxHandler extends DefaultHandler {
 				System.out.println("Message is already in the list.");
 			}
 		}
+		if (link) {
+			fm.setLink(new String(ch, start, length));
+			link = false;
+		}
+	
+	
+		
 	}
 
 	@Override

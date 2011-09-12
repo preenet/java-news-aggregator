@@ -12,6 +12,14 @@ public class FeedMessage {
 	private String link;
 	private String author;
 	private String guid;
+	
+	public FeedMessage() {
+		this.title = "";
+		this.description = "";
+		this.link = "http://www.camt.cmu.ac.th/th";
+		this.author = "";
+		this.guid = "";
+	}
 
 	private String formatMultipleLine(String s, int p) {
 		// we will token the string s into equal size of line then will add <br>
@@ -79,8 +87,8 @@ public class FeedMessage {
 
 	@Override
 	public String toString() {
-		return "<html><font size = \"4\" color = \"black\"><b>" + formatMultipleLine(title, 55)
-				+ "</b></font> <br>" + formatMultipleLine(description, 70) + "</html>";
+		return "<html><font size = \"4\" color = \"white\"><b>" + formatMultipleLine(title, 55)
+				+ "</b></font> <br>" + formatMultipleLine(description, 70) + "</html>" + link;
 	}
 
 	/*

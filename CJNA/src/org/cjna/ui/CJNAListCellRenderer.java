@@ -35,8 +35,8 @@ public class CJNAListCellRenderer extends JLabel implements ListCellRenderer {
 			 String s = value.toString();
 			 setText(s.trim());
 			 
-			 Color colr1 = new Color(139, 69, 19);
-	    	 Color colr2 = new Color(255, 140, 0);
+			 Color colr2 = new Color(248,179, 16);
+	    	 Color colr1 = new Color(84, 36, 0);
 
 	         setBackground(isSelected ? colr2: colr1 );
 	         setForeground(isSelected ? colr1 : colr2);

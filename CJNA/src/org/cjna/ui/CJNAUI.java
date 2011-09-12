@@ -2,6 +2,8 @@ package org.cjna.ui;
 
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -26,12 +28,14 @@ import org.cjna.util.ProxyWriter;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import java.io.File;
 import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.event.ListSelectionListener;
-
+import java.net.URI;
 /**
  * @author Pree Thiengburanathum preenet@gmail.com
  * 
@@ -46,7 +50,7 @@ public class CJNAUI extends JFrame {
 	private ProxyWriter writer;
 	private ProxyReader reader;
 	private CJNATray tray;
-	private CJNANewsDialog fn;
+
 	
 	/**
 	 * Launch the application.
@@ -134,18 +138,31 @@ public class CJNAUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 
 		list = new JList();
-		
-		list.addListSelectionListener(new ListSelectionListener() {
-			
-			public void valueChanged(ListSelectionEvent arg0) {
-				if(!arg0.getValueIsAdjusting()) {
-					FeedMessage selection = (FeedMessage) list.getSelectedValue();
-					fn = new CJNANewsDialog(selection);
-					fn.pack();
-					fn.setVisible(true);
-				}
-			}
-		});
+		list.addMouseListener(new MouseAdapter() {  
+			 Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
+		     
+		        public void mouseClicked(MouseEvent me)  {  
+		        	list.setCursor(handCursor);  
+		           try {  
+		        	   
+		        	   FeedMessage selection = (FeedMessage) list.getSelectedValue();
+		   
+		        	openLinkFromBrowser(new URI(selection.getLink()));
+		        
+		           }
+		             catch(Exception e) {  
+		                System.out.println(e);  
+		             }  
+		        }  
+		 	@Override
+		 	public void mousePressed(MouseEvent e) {
+		 		list.setCursor(handCursor );  
+		 	}
+		 	@Override
+		 	public void mouseReleased(MouseEvent e) {
+		 		list.setCursor(handCursor );  
+		 	}
+		       });  
 		
 		list.setCellRenderer(new CJNAListCellRenderer());
 		JScrollPane scroll = new JScrollPane(list);
@@ -203,6 +220,19 @@ public class CJNAUI extends JFrame {
 		frame.setVisible(true);
 	}
 	
+	 private static void openLinkFromBrowser(URI uri) {
+	        if (Desktop.isDesktopSupported()) {
+	                Desktop desktop = Desktop.getDesktop();
+	                try {
+	                        desktop.browse(uri);
+	                } catch (IOException e) {
+	                        // TODO: error handling
+	                }
+	        } else {
+	                // TODO: error handling
+	        }
+	 }
+	
 	public void restartCJNA() throws InterruptedException {
 		lblSystemMessage = new JLabel("System starting...");
 		this.worker = new CJNAHandler(this);
@@ -212,6 +242,8 @@ public class CJNAUI extends JFrame {
 	public void setConsoleDone(boolean d) {
 		worker.setConsoleDone(d);
 	}
+	
+	
 
 	public void refresh() {
 		Runnable  doRefresh = new Runnable() {
@@ -224,16 +256,4 @@ public class CJNAUI extends JFrame {
 		};
 		doRefresh.run();
 	}
-	
-	//Obtain the image URL
-    protected static Image createImage(String path, String description) {
-        java.net.URL imageURL = CJNAUI.class.getResource(path);
-        
-        if (imageURL == null) {
-            System.err.println("Resource not found: " + path);
-            return null;
-        } else {
-            return (new ImageIcon(imageURL, description)).getImage();
-        }
-    }
 }// end class CJNAUI
