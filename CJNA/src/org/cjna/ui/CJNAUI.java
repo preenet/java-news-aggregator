@@ -171,6 +171,8 @@ public class CJNAUI extends JFrame {
 	
 		
 		JToolBar toolBar = new JToolBar();
+		toolBar.setFloatable(false);
+	
 		contentPane.add(toolBar, BorderLayout.SOUTH);
 
 		lblSystemMessage = new JLabel("System Message");
