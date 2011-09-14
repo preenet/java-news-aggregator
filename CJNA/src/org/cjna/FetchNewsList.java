@@ -18,12 +18,10 @@ public class FetchNewsList {
 	private HTTPConnectionSelection myConnSelect;
 	private String URI;
 	private CJNADriver myDriver;
-	private String msg;
 
 	public FetchNewsList(String URI, CJNADriver myDriver) {
 		this.URI = URI;
 		this.myDriver = myDriver;
-		this.msg = "";
 		myConnSelect = new HTTPConnectionSelection(this.URI);
 	}
 
@@ -57,13 +55,8 @@ public class FetchNewsList {
 					Global.URI.add(s);
 				}
 				close();
-			} else {
-				msg = "Error: Can't connect to the list server.";
-				System.out.println(msg);
-				myDriver.setSystemMsg(msg);
-			}
-		
-
+			} else 
+				myDriver.setSystemMsg("Error: Can't connect to the list server.");
 	}
 	
 	/**

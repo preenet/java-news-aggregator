@@ -75,37 +75,12 @@ public class CJNATray {
 	        }
 	    });
 	    
-	  
-	    
-	    ActionListener listener = new ActionListener() {
+	    connectionSettingItem.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
-	            MenuItem item = (MenuItem)e.getSource();
-	            //TrayIcon.MessageType type = null;
-	            System.out.println(item.getLabel());
-	            if ("Error".equals(item.getLabel())) {
-	                //type = TrayIcon.MessageType.ERROR;
-	                trayIcon.displayMessage("CAMT Java News Aggregrator",
-	                        "This is an error message", TrayIcon.MessageType.ERROR);
-	                
-	            } else if ("Warning".equals(item.getLabel())) {
-	                //type = TrayIcon.MessageType.WARNING;
-	                trayIcon.displayMessage("CAMT Java News Aggregrator",
-	                        "This is a warning message", TrayIcon.MessageType.WARNING);
-	                
-	            } else if ("Info".equals(item.getLabel())) {
-	                //type = TrayIcon.MessageType.INFO;
-	                trayIcon.displayMessage("CAMT Java News Aggregrator",
-	                        "This is an info message", TrayIcon.MessageType.INFO);
-	                
-	            } else if ("None".equals(item.getLabel())) {
-	                //type = TrayIcon.MessageType.NONE;
-	                trayIcon.displayMessage("CAMT Java News Aggregrator",
-	                        "This is an ordinary message", TrayIcon.MessageType.NONE);
-	            }
+	        	ConnectionUI frame = new ConnectionUI(getFrame());
+	    		frame.setVisible(true);
 	        }
-	    };
-	    
-	    connectionSettingItem.addActionListener(listener);
+	    });
 	    
 	    exitItem.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
@@ -114,6 +89,11 @@ public class CJNATray {
 	        }
 	    });
 	}
+	
+	private CJNAUI getFrame() {
+		return this.ui;
+	}
+	
 	public void removeTrayIcon() {
 		tray.remove(trayIcon);
 	}
