@@ -49,6 +49,7 @@ public class FetchRSS extends TimerTask {
 		} else {
 			System.out.println("News List are as following: ");
 			for (int i = 0; i < Global.URI.size(); i++) {
+				myDriver.setSystemMsg("Fetchig news...");
 				System.out.println(i + 1 + ". " + Global.URI.get(i));
 				FeedParser fp = new FeedParser(Global.URI.get(i));
 				fps.add(fp);

@@ -18,6 +18,6 @@ public interface Global {
 	public static String msg = "";
 	public static int timeout = 10000;
 	public static String proxyFile = "proxy.ini";
-	public static String version = " version 0.1.0171";
+	public static String version = " version 0.1.0173";
 
 }// end interface Global
