@@ -1,5 +1,6 @@
 package org.cjna;
 
+import java.io.IOException;
 import java.util.TimerTask;
 import java.util.Vector;
 
@@ -34,7 +35,11 @@ public class FetchRSS extends TimerTask {
 		myDriver.setDone(false);
 		// first getting the list from the URI site.
 		FetchNewsList myList = new FetchNewsList(listURI, myDriver);
-		myList.execute();
+		try {
+			myList.execute();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 
 		Vector<FeedParser> fps = new Vector<FeedParser>();
 

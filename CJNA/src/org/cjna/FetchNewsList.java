@@ -31,14 +31,13 @@ public class FetchNewsList {
 	 * This method will check if we via direct connection or via proxy, the it
 	 * will read the list of rss URLs from the site to the URI collection for
 	 * future parse.
+	 * @throws IOException 
 	 */
-	public void execute() {
-		msg = "Connecting to news list server at " + this.URI;
-		System.out.println(msg);
-		myDriver.setSystemMsg(msg);
-	
-		try {
+	public void execute() throws IOException {
+		myDriver.setSystemMsg("Connecting to news list server");
+		
 			if (!HTTPProxyData.getInstance().isProxy()) {
+				myDriver.setSystemMsg("Connecting via Direct Connection...");
 				myConnSelect.DirectConnect();
 				reader = new BufferedReader(new InputStreamReader(myConnSelect
 						.getURLConnection().getInputStream()));
@@ -49,6 +48,7 @@ public class FetchNewsList {
 				}
 				close();
 			} else if (HTTPProxyData.getInstance().isProxy()) {
+				myDriver.setSystemMsg("Connecting via Proxy Connection...");
 				myConnSelect.ProxyConnect();
 				reader = myConnSelect.getBufferedReader();
 				String s;
@@ -62,8 +62,7 @@ public class FetchNewsList {
 				System.out.println(msg);
 				myDriver.setSystemMsg(msg);
 			}
-		} catch (Exception e) {
-		}
+		
 
 	}
 	

@@ -116,6 +116,7 @@ public class CJNAUI extends JFrame {
 		mntmExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
+				tray.removeTrayIcon();
 			}
 		});
 		mnSystem.add(mntmExit);

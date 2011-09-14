@@ -18,7 +18,11 @@ import org.cjna.Global;
  */
 public class CJNATray {
 	private CJNAUI ui;
+	private TrayIcon trayIcon;
+	private SystemTray tray;
 	
+	
+	 
 	public CJNATray(final CJNAUI ui) {
 		
 		this.ui = ui;
@@ -27,11 +31,11 @@ public class CJNATray {
 	        System.out.println("Error: SystemTray is not supported");
 	        return;
 	    }
-	    final PopupMenu popup = new PopupMenu();
-	    final TrayIcon trayIcon =
+	    PopupMenu popup = new PopupMenu();
+	    trayIcon =
 	            new TrayIcon(Toolkit.getDefaultToolkit() 
 						  .getImage("CAMTICON.JPG"), "CNJA Agent " + Global.version);
-	    final SystemTray tray = SystemTray.getSystemTray();
+	    tray = SystemTray.getSystemTray();
 	    
 	    // create a popup menu components
 	    MenuItem aboutItem = new MenuItem("About");
@@ -105,9 +109,12 @@ public class CJNATray {
 	    
 	    exitItem.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
-	            tray.remove(trayIcon);
+	        	removeTrayIcon();
 	            System.exit(0);
 	        }
 	    });
+	}
+	public void removeTrayIcon() {
+		tray.remove(trayIcon);
 	}
 }// end class CJNATray
