@@ -45,8 +45,7 @@ public class FetchRSS extends TimerTask {
 
 		// show the list to the console and parse each URI site.
 		if (Global.URI.size() == 0) {
-			System.out.println("Error: Can not connect to the site.");
-			System.exit(0);
+			myDriver.setSystemMsg("Unable to connect, please check the connection setting.");
 		} else {
 			System.out.println("News List are as following: ");
 			for (int i = 0; i < Global.URI.size(); i++) {

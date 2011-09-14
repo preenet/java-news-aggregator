@@ -319,7 +319,7 @@ public class ConnectionUI extends JFrame {
 		lblUsernameEg = new JLabel("e.g. \"john\"");
 		lblUsernameEg.setBounds(294, 101, 138, 16);
 		panel_1.add(lblUsernameEg);
-
+		
 		lblPassword.setForeground(Color.gray);
 		passwordField.setEnabled(false);
 		addressTextField.setEnabled(false);
@@ -338,6 +338,7 @@ public class ConnectionUI extends JFrame {
 		lblUsernameEg.setForeground(Color.gray);
 		lblUsername.setForeground(Color.gray);
 		lblPassword.setForeground(Color.gray);
+		
 		panel_1.setFocusTraversalPolicy(new FocusTraversalOnArray(
 				new Component[] { addressTextField, portTextField,
 						domainTextField, usernameTextField, passwordField }));

@@ -237,8 +237,10 @@ public class CJNAUI extends JFrame {
 	 }
 	
 	public void restartCJNA() throws InterruptedException {
-		lblSystemMessage = new JLabel("System starting...");
-		this.worker = new CJNAHandler(this);
+		lblSystemMessage.setText("System starting...");
+		worker.stop();
+		
+		worker = new CJNAHandler(this);
 		worker.start();
 	}
 
@@ -246,8 +248,6 @@ public class CJNAUI extends JFrame {
 		worker.setConsoleDone(d);
 	}
 	
-	
-
 	public void refresh() {
 		Runnable  doRefresh = new Runnable() {
 		    public void run() {

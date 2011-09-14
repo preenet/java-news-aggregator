@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import org.cjna.Global;
+
 /**
  * @author Pree Thiengburanathum preenet@gmail.com
  *
@@ -31,6 +33,7 @@ public class HTTPDirectConnection {
 		System.out.println("Open Direct Connection to: " + this.URI);
 		url = new URL(this.URI);
 		urlConn = url.openConnection();
+		urlConn.setConnectTimeout(Global.timeout);
 		urlConn.setDoInput(true); 
 		urlConn.setUseCaches(false);
 	}

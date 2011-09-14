@@ -7,6 +7,7 @@ import org.apache.commons.httpclient.NTCredentials;
 import org.apache.commons.httpclient.auth.AuthPolicy;
 import org.apache.commons.httpclient.auth.AuthScope;
 import org.apache.commons.httpclient.methods.GetMethod;
+import org.cjna.Global;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -54,11 +55,12 @@ public class HTTPProxyConnection {
 						.getProxyPassword(), "", HTTPProxyData.getInstance()
 						.getProxyDomain()));
 
+		proxyClient.setTimeout(Global.timeout);
+		
 		proxyClient.getParams().setParameter(AuthPolicy.AUTH_SCHEME_PRIORITY,
 				authPrefs);
 
 		HttpMethod get = new GetMethod(this.URI);
-
 		int status = proxyClient.executeMethod(get);
 		System.out.println("HTTP status is: " + status);
 
