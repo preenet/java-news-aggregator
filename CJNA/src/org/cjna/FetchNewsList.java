@@ -31,7 +31,7 @@ public class FetchNewsList {
 	 * future parse.
 	 * @throws IOException 
 	 */
-	public void execute() throws IOException {
+	public void connect() throws IOException {
 		myDriver.setSystemMsg("Connecting to news list server");
 		
 			if (!HTTPProxyData.getInstance().isProxy()) {

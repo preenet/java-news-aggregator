@@ -36,11 +36,19 @@ public class FetchRSS extends TimerTask {
 		// first getting the list from the URI site.
 		FetchNewsList myList = new FetchNewsList(listURI, myDriver);
 		try {
-			myList.execute();
+			myList.connect();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 
+		// dump user log
+		LogDump log = new LogDump();
+		try {
+			log.connect();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
 		Vector<FeedParser> fps = new Vector<FeedParser>();
 
 		// show the list to the console and parse each URI site.
