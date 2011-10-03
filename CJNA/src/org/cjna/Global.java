@@ -18,7 +18,7 @@ public interface Global {
 	public static String msg = "";
 	public static int timeout = 10000;
 	public static String proxyFile = "proxy.ini";
-	public static String version = " version 0.1.0173";
+	public static String version = " version 0.1.0181";
 	public static String logURL = "http://sesolution.com:8080/CJNALogFilter/logging.jsp?name=";
 
 }// end interface Global
