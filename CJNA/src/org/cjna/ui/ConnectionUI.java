@@ -47,6 +47,7 @@ public class ConnectionUI extends JFrame {
 	private CJNAUI ui;
 	private IPAddressValidator ipval;
 	private PortValidator portval;
+	private TextFieldValidator textval;
 	private ProxyWriter writer;
 
 	/**
@@ -110,7 +111,9 @@ public class ConnectionUI extends JFrame {
 
 						// check input ip and port are valid
 						if (checkIP(addressTextField.getText())
-								&& checkPort(portTextField.getText())) {
+								&& checkPort(portTextField.getText()) 
+								&& checkUserName(usernameTextField.getText())) {
+							
 							HTTPProxyData.getInstance().setProxyHost(
 									addressTextField.getText());
 							HTTPProxyData.getInstance().setProxyPort(
@@ -147,6 +150,13 @@ public class ConnectionUI extends JFrame {
 						else if (!checkPort(portTextField.getText())) {
 							JOptionPane.showMessageDialog(null,
 									"Invalid Port Number", "Error",
+									JOptionPane.ERROR_MESSAGE);
+							HTTPProxyData.getInstance().resetProxyData();
+							intiGUI();
+						}
+						else if(!checkUserName(usernameTextField.getText())) {
+							JOptionPane.showMessageDialog(null,
+									"Invalid Username", "Error",
 									JOptionPane.ERROR_MESSAGE);
 							HTTPProxyData.getInstance().resetProxyData();
 							intiGUI();
@@ -345,6 +355,7 @@ public class ConnectionUI extends JFrame {
 
 		ipval = new IPAddressValidator();
 		portval = new PortValidator();
+		textval = new TextFieldValidator();
 
 	
 	}
@@ -355,5 +366,9 @@ public class ConnectionUI extends JFrame {
 
 	private boolean checkPort(String port) {
 		return (portval.validate(port));
+	}
+	
+	private boolean checkUserName(String username) {
+		return (textval.checkUserName(username));
 	}
 }// end class ConnectionUI
