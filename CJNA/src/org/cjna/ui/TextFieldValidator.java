@@ -38,5 +38,15 @@ public class TextFieldValidator {
 		else
 			return true;
 	}
+	/**
+	 * 
+	 * @param password
+	 * @return
+	 */
+	public boolean checkPassword(String password) {
+		if(password.isEmpty())
+			return true;
+		return false;
+	}
 
 }// end TextFieldValidation

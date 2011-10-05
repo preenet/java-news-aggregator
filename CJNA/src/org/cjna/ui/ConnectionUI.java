@@ -112,7 +112,8 @@ public class ConnectionUI extends JFrame {
 						// check input ip and port are valid
 						if (checkIP(addressTextField.getText())
 								&& checkPort(portTextField.getText()) 
-								&& checkUserName(usernameTextField.getText())) {
+								&& checkUserName(usernameTextField.getText())
+								&& checkPassWord(passwordField.getText())) {
 							
 							HTTPProxyData.getInstance().setProxyHost(
 									addressTextField.getText());
@@ -157,6 +158,14 @@ public class ConnectionUI extends JFrame {
 						else if(!checkUserName(usernameTextField.getText())) {
 							JOptionPane.showMessageDialog(null,
 									"Invalid Username", "Error",
+									JOptionPane.ERROR_MESSAGE);
+							HTTPProxyData.getInstance().resetProxyData();
+							intiGUI();
+						}
+						
+						else if(!checkUserName(passwordField.getText())) {
+							JOptionPane.showMessageDialog(null,
+									"Password can't be empty", "Error",
 									JOptionPane.ERROR_MESSAGE);
 							HTTPProxyData.getInstance().resetProxyData();
 							intiGUI();
@@ -370,5 +379,9 @@ public class ConnectionUI extends JFrame {
 	
 	private boolean checkUserName(String username) {
 		return (textval.checkUserName(username));
+	}
+	
+	private boolean checkPassWord(String password) {
+		return (textval.checkPassword(password));
 	}
 }// end class ConnectionUI
