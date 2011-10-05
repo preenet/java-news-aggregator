@@ -82,9 +82,16 @@ public class FetchRSS extends TimerTask {
 
 			// finish the program and terminate
 			myDriver.setDone(true);
-			msg = "Finished Fetching News.";
-			System.out.println(msg);
-			myDriver.setSystemMsg(msg + ", Total message(s) (" + Global.myFeed.getSize()+")");
+			if(Global.myFeed.getSize() > 0) {
+				msg = "Finished Fetching News.";
+				System.out.println(msg);
+				myDriver.setSystemMsg(msg + ", Total message(s) (" + Global.myFeed.getSize()+")");
+			}
+			else {
+				msg = "Unable to connect, please check the connection setting.";
+				System.out.println(msg);
+				myDriver.setSystemMsg(msg);
+			}
 		}
 	}
 }// end class FetchRss

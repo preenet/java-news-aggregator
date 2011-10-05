@@ -88,7 +88,7 @@ public class FeedMessage {
 	@Override
 	public String toString() {
 		return "<html><font size = \"4\" color = \"white\"><b>" + formatMultipleLine(title, 55)
-				+ "</b></font> <br>" + formatMultipleLine(description, 70) + "</html>" + link;
+				+ "</b></font> <br>" + formatMultipleLine(description, 70) + "<br></html>" + link;
 	}
 
 	/*
