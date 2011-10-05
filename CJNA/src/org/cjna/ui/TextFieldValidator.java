@@ -32,7 +32,7 @@ public class TextFieldValidator {
 	 */
 	public boolean checkDomain(String domain) {
 		if(domain.isEmpty())
-			return true;
+			return false;
 		else if(domain.matches("((-|\\+)?[0-9]+(\\.[0-9]+)?)+"))
 			return false;
 		else
@@ -45,8 +45,8 @@ public class TextFieldValidator {
 	 */
 	public boolean checkPassword(String password) {
 		if(password.isEmpty())
-			return true;
-		return false;
+			return false;
+		return true;
 	}
 
 }// end TextFieldValidation

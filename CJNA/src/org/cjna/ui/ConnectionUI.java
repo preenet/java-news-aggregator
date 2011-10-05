@@ -142,7 +142,7 @@ public class ConnectionUI extends JFrame {
 							JOptionPane.showMessageDialog(null,
 									"Invalid IP Address", "Error",
 									JOptionPane.ERROR_MESSAGE);
-							HTTPProxyData.getInstance().resetProxyData();
+							//HTTPProxyData.getInstance().resetProxyData();
 							intiGUI();
 
 						}
@@ -152,14 +152,14 @@ public class ConnectionUI extends JFrame {
 							JOptionPane.showMessageDialog(null,
 									"Invalid Port Number", "Error",
 									JOptionPane.ERROR_MESSAGE);
-							HTTPProxyData.getInstance().resetProxyData();
+							//HTTPProxyData.getInstance().resetProxyData();
 							intiGUI();
 						}
 						else if(!checkUserName(usernameTextField.getText())) {
 							JOptionPane.showMessageDialog(null,
 									"Invalid Username", "Error",
 									JOptionPane.ERROR_MESSAGE);
-							HTTPProxyData.getInstance().resetProxyData();
+							//HTTPProxyData.getInstance().resetProxyData();
 							intiGUI();
 						}
 						
@@ -167,7 +167,7 @@ public class ConnectionUI extends JFrame {
 							JOptionPane.showMessageDialog(null,
 									"Password can't be empty", "Error",
 									JOptionPane.ERROR_MESSAGE);
-							HTTPProxyData.getInstance().resetProxyData();
+							//HTTPProxyData.getInstance().resetProxyData();
 							intiGUI();
 						}
 						
